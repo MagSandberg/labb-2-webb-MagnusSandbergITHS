@@ -1,4 +1,4 @@
-namespace Labb_2_webb_REST_Api.Shared
+namespace WebbutvecklingLabb2RESTApi.Shared
 {
     public class WeatherForecast
     {

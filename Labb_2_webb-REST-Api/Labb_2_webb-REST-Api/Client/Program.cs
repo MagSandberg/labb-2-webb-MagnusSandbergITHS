@@ -1,4 +1,4 @@
-using Labb_2_webb_REST_Api.Client;
+using WebbutvecklingLabb2RESTApi.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

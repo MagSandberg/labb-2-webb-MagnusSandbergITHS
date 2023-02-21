@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Labb_2_webb-REST-Api.Shared.csproj" />
+    <ProjectReference Include="..\..\Labb_2_webb_REST-Api.DataAccess\WebbutvecklingLabb2RESTApi.DataAccess.csproj" />
+    <ProjectReference Include="..\Shared\WebbutvecklingLabb2RESTApi.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,11 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using WebbutvecklingLabb2RESTApi.DataAccess.Repositories;
+using WebbutvecklingLabb2RESTApi.Shared.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddSingleton<ProductRepository>();
+builder.Services.AddSingleton<ProductDto>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
@@ -28,6 +30,17 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.MapGet("/createProduct", async (ProductRepository productRepository, ProductDto dto) =>
+    await productRepository.CreateProduct(dto));
+
+//app.MapGet("/getAllCustomers", async (CustomerRepository customerRepository) => 
+//    await customerRepository.GetAllCustomers());
+
+//app.MapGet("/getAllOrders", async (OrderRepository orderRepository) => 
+//    await orderRepository.GetAllOrders());
+
+//app.MapGet("/getAllProducts", async (ProductRepository productRepository) => 
+//    await productRepository.GetAllProducts());
 
 app.MapRazorPages();
 app.MapControllers();

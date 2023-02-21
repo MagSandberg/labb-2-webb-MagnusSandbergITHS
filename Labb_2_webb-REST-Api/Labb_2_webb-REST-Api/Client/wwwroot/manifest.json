@@ -1,6 +1,6 @@
 {
-  "name": "Labb_2_webb-REST-Api",
-  "short_name": "Labb_2_webb-REST-Api",
+  "name": "WebbutvecklingLabb2RESTApi",
+  "short_name": "WebbutvecklingLabb2RESTApi",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

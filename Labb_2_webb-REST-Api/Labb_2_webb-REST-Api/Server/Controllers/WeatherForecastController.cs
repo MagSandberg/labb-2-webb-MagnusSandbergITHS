@@ -1,7 +1,7 @@
-using Labb_2_webb_REST_Api.Shared;
 using Microsoft.AspNetCore.Mvc;
+using WebbutvecklingLabb2RESTApi.Shared;
 
-namespace Labb_2_webb_REST_Api.Server.Controllers
+namespace WebbutvecklingLabb2RESTApi.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]

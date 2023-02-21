@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Labb_2_webb-REST-Api.Server</RootNamespace>
+    <RootNamespace>WebbutvecklingLabb2RESTApi.Server</RootNamespace>
     <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
   </PropertyGroup>
 
@@ -13,8 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\Labb_2_webb-REST-Api.Client.csproj" />
-    <ProjectReference Include="..\Shared\Labb_2_webb-REST-Api.Shared.csproj" />
+    <ProjectReference Include="..\..\Labb_2_webb_REST-Api.DataAccess\WebbutvecklingLabb2RESTApi.DataAccess.csproj" />
+    <ProjectReference Include="..\Client\WebbutvecklingLabb2RESTApi.Client.csproj" />
+    <ProjectReference Include="..\Shared\WebbutvecklingLabb2RESTApi.Shared.csproj" />
   </ItemGroup>
 
 
