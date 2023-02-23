@@ -1,8 +1,9 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using WebbLabb2RestApi.DataAccess.Models;
 using WebbLabb2RestApi.Shared.DTOs;
 
-namespace WebbLabb2RestApi.DataAccess.Respositories;
+namespace WebbLabb2RestApi.DataAccess.Repositories;
 
 public class ProductRepository
 {
@@ -44,6 +45,13 @@ public class ProductRepository
         var getAllProducts = await _productModelCollection.FindAsync(_ => true);
 
         return getAllProducts.ToList().Select(ConvertToDto).ToArray();
+    }
+
+    public async Task<ProductDto[]> GetProduct(ObjectId id)
+    {
+        var product = await _productModelCollection.FindAsync(p => p.ProductId.Equals(id));
+
+        return product.ToList().Select(ConvertToDto).ToArray();
     }
 
     private ProductDto ConvertToDto(ProductModel dataModel)

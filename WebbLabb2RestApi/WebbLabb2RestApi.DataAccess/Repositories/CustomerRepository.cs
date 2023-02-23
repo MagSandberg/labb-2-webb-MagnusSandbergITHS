@@ -2,7 +2,7 @@
 using WebbLabb2RestApi.DataAccess.Models;
 using WebbLabb2RestApi.Shared.DTOs;
 
-namespace WebbLabb2RestApi.DataAccess.Respositories;
+namespace WebbLabb2RestApi.DataAccess.Repositories;
 
 public class CustomerRepository
 {

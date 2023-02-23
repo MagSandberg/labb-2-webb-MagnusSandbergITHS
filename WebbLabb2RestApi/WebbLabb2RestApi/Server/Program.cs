@@ -1,4 +1,5 @@
-using WebbLabb2RestApi.DataAccess.Respositories;
+using MongoDB.Bson;
+using WebbLabb2RestApi.DataAccess.Repositories;
 using WebbLabb2RestApi.Server.Services;
 using WebbLabb2RestApi.Shared.DTOs;
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddScoped<ProductDto>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
 
@@ -36,14 +38,17 @@ app.UseRouting();
 app.MapPost("/createProduct", async (ProductService productService, ProductDto dto) =>
     await productService.AddProduct(dto));
 
+app.MapGet("/getAllProducts", async (ProductService productService) =>
+    await productService.GetProducts());
+
+app.MapGet("/getProduct", async (ProductService productService, ObjectId id) =>
+    await productService.GetProductById(id));
+
 //app.MapGet("/getAllCustomers", async (CustomerRepository customerRepository) => 
 //    await customerRepository.GetAllCustomers());
 
 //app.MapGet("/getAllOrders", async (OrderRepository orderRepository) => 
 //    await orderRepository.GetAllOrders());
-
-//app.MapGet("/getAllProducts", async (ProductRepository productRepository) => 
-//    await productRepository.GetAllProducts());
 
 app.MapRazorPages();
 app.MapControllers();

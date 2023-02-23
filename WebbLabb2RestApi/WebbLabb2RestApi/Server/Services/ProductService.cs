@@ -1,4 +1,5 @@
-﻿using WebbLabb2RestApi.DataAccess.Respositories;
+﻿using MongoDB.Bson;
+using WebbLabb2RestApi.DataAccess.Repositories;
 using WebbLabb2RestApi.Shared.DTOs;
 
 namespace WebbLabb2RestApi.Server.Services;
@@ -15,5 +16,15 @@ public class ProductService
     public async Task AddProduct(ProductDto productDto)
     {
         await _productRepository.CreateProduct(productDto);
+    }
+
+    public async Task GetProductById(ObjectId id)
+    {
+        await _productRepository.GetProduct(id);
+    }
+
+    public async Task GetProducts()
+    {
+        await _productRepository.GetAllProducts();
     }
 }
