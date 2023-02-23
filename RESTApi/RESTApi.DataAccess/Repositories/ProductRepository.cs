@@ -39,23 +39,23 @@ public class ProductRepository
         await _productModelCollection.InsertOneAsync(ConvertToModel(dto));
     }
 
-    public async Task<ProductDto[]> GetAllProducts()
-    {
-        var getAllProducts = await _productModelCollection.FindAsync(_ => true);
+    //public async Task<ProductDto[]> GetAllProducts()
+    //{
+    //    var getAllProducts = await _productModelCollection.FindAsync(_ => true);
 
-        return getAllProducts.ToList().Select(ConvertToDto).ToArray();
-    }
+    //    return getAllProducts.ToList().Select(ConvertToDto).ToArray();
+    //}
 
-    private ProductDto ConvertToDto(ProductModel dataModel)
-    {
-        return new ProductDto()
-        {
-            ProductNumber = dataModel.ProductNumber,
-            ProductName = dataModel.ProductName,
-            ProductDescription = dataModel.ProductDescription,
-            ProductPrice = dataModel.ProductPrice,
-            ProductCategory = dataModel.ProductCategory,
-            ProductStatus = dataModel.ProductStatus,
-        };
-    }
+    //private ProductDto ConvertToDto(ProductModel dataModel)
+    //{
+    //    return new ProductDto()
+    //    {
+    //        ProductNumber = dataModel.ProductNumber,
+    //        ProductName = dataModel.ProductName,
+    //        ProductDescription = dataModel.ProductDescription,
+    //        ProductPrice = dataModel.ProductPrice,
+    //        ProductCategory = dataModel.ProductCategory,
+    //        ProductStatus = dataModel.ProductStatus,
+    //    };
+    //}
 }
