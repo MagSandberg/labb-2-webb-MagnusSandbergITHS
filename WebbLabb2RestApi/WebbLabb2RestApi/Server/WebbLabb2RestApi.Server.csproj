@@ -11,8 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\WebbLabb2RestApi.DataAccess\WebbLabb2RestApi.DataAccess.csproj" />
     <ProjectReference Include="..\Client\WebbLabb2RestApi.Client.csproj" />
     <ProjectReference Include="..\Shared\WebbLabb2RestApi.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 

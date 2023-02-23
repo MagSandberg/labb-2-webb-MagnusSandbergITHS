@@ -1,8 +1,13 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using WebbLabb2RestApi.DataAccess.Respositories;
+using WebbLabb2RestApi.Server.Services;
+using WebbLabb2RestApi.Shared.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<ProductRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -28,6 +33,17 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.MapPost("/createProduct", async (ProductService productService, ProductDto dto) =>
+    await productService.AddProduct(dto));
+
+//app.MapGet("/getAllCustomers", async (CustomerRepository customerRepository) => 
+//    await customerRepository.GetAllCustomers());
+
+//app.MapGet("/getAllOrders", async (OrderRepository orderRepository) => 
+//    await orderRepository.GetAllOrders());
+
+//app.MapGet("/getAllProducts", async (ProductRepository productRepository) => 
+//    await productRepository.GetAllProducts());
 
 app.MapRazorPages();
 app.MapControllers();

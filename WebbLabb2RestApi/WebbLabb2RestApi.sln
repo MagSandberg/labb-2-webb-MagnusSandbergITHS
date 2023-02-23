@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebbLabb2RestApi.Client", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebbLabb2RestApi.Shared", "WebbLabb2RestApi\Shared\WebbLabb2RestApi.Shared.csproj", "{B6C2F098-9126-4011-BA08-93185D479988}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebbLabb2RestApi.DataAccess", "WebbLabb2RestApi.DataAccess\WebbLabb2RestApi.DataAccess.csproj", "{64D16163-9E8B-44E3-B3D4-1CF1C4A657CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B6C2F098-9126-4011-BA08-93185D479988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6C2F098-9126-4011-BA08-93185D479988}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6C2F098-9126-4011-BA08-93185D479988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D16163-9E8B-44E3-B3D4-1CF1C4A657CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D16163-9E8B-44E3-B3D4-1CF1C4A657CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D16163-9E8B-44E3-B3D4-1CF1C4A657CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D16163-9E8B-44E3-B3D4-1CF1C4A657CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
