@@ -1,7 +1,7 @@
 ﻿using RESTApi.DataAccess.Repositories;
 using RESTApi.Shared.DTOs;
 
-namespace RESTApi.Server.Services;
+namespace RESTApi.DataAccess.Services;
 
 public class ProductService
 {

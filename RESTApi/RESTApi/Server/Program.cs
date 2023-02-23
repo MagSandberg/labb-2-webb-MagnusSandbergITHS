@@ -1,14 +1,12 @@
 using RESTApi.Shared.DTOs;
 using RESTApi.DataAccess.Repositories;
-using RESTApi.Server.Services;
-using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<ProductRepository>();
-
+builder.Services.AddSingleton<ProductRepository>();
+builder.Services.AddSingleton<ProductDto>();
+builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -32,8 +30,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.MapPost("/createProduct", async (ProductService productService, ProductDto dto) =>
-    await productService.AddProduct(dto));
+app.MapGet("/createProduct", async (ProductRepository productRepository, ProductDto dto) =>
+    await productRepository.CreateProduct(dto));
 
 //app.MapGet("/getAllCustomers", async (CustomerRepository customerRepository) => 
 //    await customerRepository.GetAllCustomers());
