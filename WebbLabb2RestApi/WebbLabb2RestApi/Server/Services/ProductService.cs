@@ -18,13 +18,13 @@ public class ProductService
         await _productRepository.CreateProduct(productDto);
     }
 
-    public async Task GetProductById(ObjectId id)
+    public async Task<ProductDto[]> GetProductByName(string name)
     {
-        await _productRepository.GetProduct(id);
+        return await _productRepository.GetProductByName(name);
     }
 
-    public async Task GetProducts()
+    public async Task<ProductDto[]> GetProducts()
     {
-        await _productRepository.GetAllProducts();
+        return await _productRepository.GetAllProducts();
     }
 }

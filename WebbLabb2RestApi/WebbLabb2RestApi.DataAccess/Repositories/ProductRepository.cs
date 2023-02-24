@@ -26,6 +26,7 @@ public class ProductRepository
     {
         return new ProductModel()
         {
+            ProductId = dto.ProductId,
             ProductNumber = dto.ProductNumber,
             ProductName = dto.ProductName,
             ProductDescription = dto.ProductDescription,
@@ -42,14 +43,20 @@ public class ProductRepository
 
     public async Task<ProductDto[]> GetAllProducts()
     {
-        var getAllProducts = await _productModelCollection.FindAsync(_ => true);
+        var products = await _productModelCollection.FindAsync(_ => true);
 
-        return getAllProducts.ToList().Select(ConvertToDto).ToArray();
+        return products.ToList().Select(ConvertToDto).ToArray();
     }
 
-    public async Task<ProductDto[]> GetProduct(ObjectId id)
+    public async Task<ProductDto[]> GetProductByName(string name)
     {
-        var product = await _productModelCollection.FindAsync(p => p.ProductId.Equals(id));
+        var product = await _productModelCollection
+            .FindAsync(p => p.ProductName.Equals(name));
+        
+        if (product == null)
+        {
+            return null;
+        }
 
         return product.ToList().Select(ConvertToDto).ToArray();
     }
@@ -58,6 +65,7 @@ public class ProductRepository
     {
         return new ProductDto()
         {
+            ProductId = dataModel.ProductId,
             ProductNumber = dataModel.ProductNumber,
             ProductName = dataModel.ProductName,
             ProductDescription = dataModel.ProductDescription,

@@ -7,7 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddScoped<ProductDto>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
 
@@ -35,14 +34,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.MapPost("/createProduct", async (ProductService productService, ProductDto dto) =>
-    await productService.AddProduct(dto));
+app.MapPost("/createProduct", async (ProductService productService, ProductDto productDto) =>
+    await productService.AddProduct(productDto));
 
 app.MapGet("/getAllProducts", async (ProductService productService) =>
     await productService.GetProducts());
 
-app.MapGet("/getProduct", async (ProductService productService, ObjectId id) =>
-    await productService.GetProductById(id));
+app.MapGet("/getProductByName", async (ProductService productService, string name) =>
+    await productService.GetProductByName(name));
 
 //app.MapGet("/getAllCustomers", async (CustomerRepository customerRepository) => 
 //    await customerRepository.GetAllCustomers());

@@ -6,7 +6,8 @@ namespace WebbLabb2RestApi.DataAccess.Models;
 public class ProductModel
 {
     [BsonId]
-    public ObjectId ProductId { get; set; }
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string ProductId { get; set; } = string.Empty;
     [BsonElement]
     public int ProductNumber { get; set; }
     [BsonElement]

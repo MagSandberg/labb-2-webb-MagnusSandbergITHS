@@ -33,12 +33,14 @@
     </div>
     <button class="btn btn-primary mt-2">Save</button>
 </EditForm>
-@*
+
 <ul class="container list-unstyled">
-    <Virtualize Items="Messages.OrderByDescending(m=>m.Timestamp).ToArray()" Context="message">
+    <Virtualize Items="AllProducts.ToArray()" Context="product">
         <li class="p-2 mb-1">
-            <label class="lh-sm"> <span class="oi oi-person"></span>@message.Name - @message.Timestamp.Value.ToLocalTime().ToString("HH:mm")</label>
-            <h4 class="bg-info text-light rounded-3 p-2 mb-1">@message.Message</h4>
+            <span>Product id:</span> @product.ProductId.ToString()
+        </li>
+        <li class="p-2 mb-1">
+           <span>Product name:</span> @product.ProductName
         </li>
     </Virtualize>
-</ul>*@
+</ul>
