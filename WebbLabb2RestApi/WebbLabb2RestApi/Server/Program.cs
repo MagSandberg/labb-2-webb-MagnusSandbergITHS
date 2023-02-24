@@ -37,6 +37,9 @@ app.UseRouting();
 app.MapPost("/createProduct", async (ProductService productService, ProductDto productDto) =>
     await productService.AddProduct(productDto));
 
+app.MapPost("/updateProduct", async (ProductService productService, string name) =>
+    await productService.UpdateProduct(name));
+
 app.MapGet("/getAllProducts", async (ProductService productService) =>
     await productService.GetProducts());
 

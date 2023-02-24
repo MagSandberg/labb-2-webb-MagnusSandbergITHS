@@ -22,20 +22,6 @@ public class ProductRepository
                 new MongoCollectionSettings() { AssignIdOnInsert = true });
     }
 
-    private ProductModel ConvertToModel(ProductDto dto)
-    {
-        return new ProductModel()
-        {
-            ProductId = dto.ProductId,
-            ProductNumber = dto.ProductNumber,
-            ProductName = dto.ProductName,
-            ProductDescription = dto.ProductDescription,
-            ProductPrice = dto.ProductPrice,
-            ProductCategory = dto.ProductCategory,
-            ProductStatus = dto.ProductStatus,
-        };
-    }
-
     public async Task CreateProduct(ProductDto dto)
     {
         await _productModelCollection.InsertOneAsync(ConvertToModel(dto));
@@ -59,6 +45,28 @@ public class ProductRepository
         }
 
         return product.ToList().Select(ConvertToDto).ToArray();
+    }
+
+    public async Task UpdateProduct(string name)
+    {
+        var filter = Builders<ProductModel>.Filter.Eq("ProductName", name);
+        var update = Builders<ProductModel>.Update.Set("ProductName", "Test").Set("ProductNumber", 1337);
+
+        await _productModelCollection.UpdateOneAsync(filter, update);
+    }
+
+    private ProductModel ConvertToModel(ProductDto dto)
+    {
+        return new ProductModel()
+        {
+            ProductId = dto.ProductId,
+            ProductNumber = dto.ProductNumber,
+            ProductName = dto.ProductName,
+            ProductDescription = dto.ProductDescription,
+            ProductPrice = dto.ProductPrice,
+            ProductCategory = dto.ProductCategory,
+            ProductStatus = dto.ProductStatus,
+        };
     }
 
     private ProductDto ConvertToDto(ProductModel dataModel)
