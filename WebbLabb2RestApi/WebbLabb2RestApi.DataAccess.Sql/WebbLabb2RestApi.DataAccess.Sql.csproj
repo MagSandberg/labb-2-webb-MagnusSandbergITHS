@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -16,6 +16,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebbLabb2RestApi\Shared\WebbLabb2RestApi.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contexts\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
