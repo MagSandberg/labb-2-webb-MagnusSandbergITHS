@@ -37,14 +37,17 @@ app.UseRouting();
 app.MapPost("/createProduct", async (ProductService productService, ProductDto productDto) =>
     await productService.AddProduct(productDto));
 
-app.MapPost("/updateProduct", async (ProductService productService, string name) =>
-    await productService.UpdateProduct(name));
+app.MapPost("/updateProduct", async (ProductService productService, string name, string value) =>
+    await productService.UpdateProduct(name, value));
 
 app.MapGet("/getAllProducts", async (ProductService productService) =>
     await productService.GetProducts());
 
 app.MapGet("/getProductByName", async (ProductService productService, string name) =>
     await productService.GetProductByName(name));
+
+app.MapDelete("/removeProduct", async (ProductService productService, string name) =>
+    await productService.RemoveProduct(name));
 
 //app.MapGet("/getAllCustomers", async (CustomerRepository customerRepository) => 
 //    await customerRepository.GetAllCustomers());

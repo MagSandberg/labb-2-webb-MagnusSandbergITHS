@@ -34,7 +34,7 @@ public class ProductRepository
         return products.ToList().Select(ConvertToDto).ToArray();
     }
 
-    public async Task<ProductDto[]> GetProductByName(string name)
+    public async Task<ProductDto[]?> GetProductByName(string name)
     {
         var product = await _productModelCollection
             .FindAsync(p => p.ProductName.Equals(name));
@@ -47,12 +47,20 @@ public class ProductRepository
         return product.ToList().Select(ConvertToDto).ToArray();
     }
 
-    public async Task UpdateProduct(string name)
+    public async Task UpdateProduct(string name, string value)
     {
         var filter = Builders<ProductModel>.Filter.Eq("ProductName", name);
-        var update = Builders<ProductModel>.Update.Set("ProductName", "Test").Set("ProductNumber", 1337);
+        var update = Builders<ProductModel>.Update
+            .Set("ProductName", $"{value}")
+            .Set("ProductNumber", 1337);
 
         await _productModelCollection.UpdateOneAsync(filter, update);
+    }
+
+    public async Task RemoveProduct(string name)
+    {
+        var product = await _productModelCollection
+            .DeleteOneAsync(p => p.ProductName.Equals(name));
     }
 
     private ProductModel ConvertToModel(ProductDto dto)

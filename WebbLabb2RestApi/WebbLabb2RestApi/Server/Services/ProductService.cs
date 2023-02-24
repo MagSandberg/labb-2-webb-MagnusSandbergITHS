@@ -18,9 +18,9 @@ public class ProductService
         await _productRepository.CreateProduct(productDto);
     }
 
-    public async Task UpdateProduct(string name)
+    public async Task UpdateProduct(string name, string value)
     {
-        await _productRepository.UpdateProduct(name);
+        await _productRepository.UpdateProduct(name, value);
     }
 
     public async Task<ProductDto[]> GetProductByName(string name)
@@ -31,5 +31,10 @@ public class ProductService
     public async Task<ProductDto[]> GetProducts()
     {
         return await _productRepository.GetAllProducts();
+    }
+
+    public async Task RemoveProduct(string name)
+    {
+        await _productRepository.RemoveProduct(name);
     }
 }
