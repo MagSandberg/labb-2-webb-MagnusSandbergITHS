@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using WebbLabb2RestApi.DataAccess.Repositories;
+﻿using WebbLabb2RestApi.DataAccess.Repositories;
 using WebbLabb2RestApi.Shared.DTOs;
 
 namespace WebbLabb2RestApi.Server.Services;
@@ -36,5 +35,10 @@ public class ProductService
     public async Task RemoveProduct(string name)
     {
         await _productRepository.RemoveProduct(name);
+    }
+
+    public async Task UpdateAvailability(string name, bool value)
+    {
+        await _productRepository.UpdateAvailability(name, value);
     }
 }

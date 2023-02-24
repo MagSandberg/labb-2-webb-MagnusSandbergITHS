@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using System.Runtime.CompilerServices;
+using MongoDB.Driver;
 using WebbLabb2RestApi.DataAccess.Models;
 using WebbLabb2RestApi.Shared.DTOs;
 
@@ -21,7 +22,7 @@ public class OrderRepository
                 new MongoCollectionSettings() { AssignIdOnInsert = true });
     }
 
-    public async Task CreateOrder(OrderDto dto)
+    public async Task CreateOrder(OrderDto dto, string email)
     {
         await _orderModelCollection.InsertOneAsync(ConvertToModel(dto));
     }
@@ -47,7 +48,7 @@ public class OrderRepository
         return new OrderDto()
         {
             CustomerEmail = dataModel.CustomerEmail,
-            ProductList = dataModel.ProductList,
+            ProductList = dataModel.ProductList
         };
     }
 }

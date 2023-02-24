@@ -2,6 +2,7 @@
 
 public class OrderDto
 {
+    public string OrderId { get; set; } = string.Empty;
     public string CustomerEmail { get; set; } = string.Empty;
-    public List<string> ProductList { get; set; } = new();
+    public List<ProductDto>? ProductList { get; set; } = new();
 }

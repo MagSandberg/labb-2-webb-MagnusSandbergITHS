@@ -37,8 +37,12 @@ app.UseRouting();
 app.MapPost("/createProduct", async (ProductService productService, ProductDto productDto) =>
     await productService.AddProduct(productDto));
 
-app.MapPost("/updateProduct", async (ProductService productService, string name, string value) =>
+//Ändra till Put och ta in en Dto
+app.MapPatch("/updateProduct", async (ProductService productService, string name, string value) =>
     await productService.UpdateProduct(name, value));
+
+app.MapPatch("/updateAvailability", async (ProductService productService, string name, bool value) =>
+    await productService.UpdateAvailability(name, value));
 
 app.MapGet("/getAllProducts", async (ProductService productService) =>
     await productService.GetProducts());

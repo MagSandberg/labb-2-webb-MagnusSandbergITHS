@@ -1,14 +1,16 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using WebbLabb2RestApi.Shared.DTOs;
 
 namespace WebbLabb2RestApi.DataAccess.Models;
 
 public class OrderModel
 {
     [BsonId]
-    public ObjectId OrderId { get; set; }
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string OrderId { get; set; } = string.Empty;
     [BsonElement]
     public string CustomerEmail { get; set; } = string.Empty;
     [BsonElement]
-    public List<string> ProductList { get; set; } = new();
+    public List<ProductDto>? ProductList { get; set; }
 }
