@@ -8,27 +8,27 @@
 
 <EditForm Model="CurrentProduct" OnSubmit="SaveProduct">
     <div class="form-control">
-        <label>Product number</label>
+        <label>Product number:</label>
         <InputNumber @bind-Value="CurrentProduct.ProductNumber"></InputNumber>
     </div>
     <div class="form-control mt-2">
-        <label>Product name</label>
+        <label>Product name:</label>
         <InputText @bind-Value="CurrentProduct.ProductName"></InputText>
     </div>
     <div class="form-control mt-2">
-        <label>Product description</label>
+        <label>Product description:</label>
         <InputTextArea @bind-Value="CurrentProduct.ProductDescription"></InputTextArea>
     </div>
     <div class="form-control mt-2">
-        <label>Product price</label>
+        <label>Product price:</label>
         <InputNumber @bind-Value="CurrentProduct.ProductPrice"></InputNumber>
     </div>
     <div class="form-control mt-2">
-        <label>Product category</label>
+        <label>Product category:</label>
         <InputText @bind-Value="CurrentProduct.ProductCategory"></InputText>
     </div>
     <div class="form-control mt-2">
-        <label>Product available</label>
+        <label>Product available:</label>
         <InputCheckbox @bind-Value="CurrentProduct.ProductStatus"></InputCheckbox>
     </div>
     <button class="btn btn-primary mt-2">Save</button>
