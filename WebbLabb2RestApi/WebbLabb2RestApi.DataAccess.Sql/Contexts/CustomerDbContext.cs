@@ -3,9 +3,9 @@ using WebbLabb2RestApi.DataAccess.Sql.Models;
 
 namespace WebbLabb2RestApi.DataAccess.Sql.Contexts;
 
-public class CustomerContext : DbContext
+public class CustomerDbContext : DbContext
 {
-    public CustomerContext(DbContextOptions<CustomerContext> options) : base(options)
+    public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options)
     {
     }
 

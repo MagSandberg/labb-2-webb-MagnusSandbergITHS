@@ -1,5 +1,6 @@
-using MongoDB.Bson;
+using Microsoft.EntityFrameworkCore;
 using WebbLabb2RestApi.DataAccess.Repositories;
+using WebbLabb2RestApi.DataAccess.Sql.Contexts;
 using WebbLabb2RestApi.Server.Services;
 using WebbLabb2RestApi.Shared.DTOs;
 
@@ -12,6 +13,10 @@ builder.Services.AddScoped<ProductRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("CustomerDb")
+));
 
 var app = builder.Build();
 
