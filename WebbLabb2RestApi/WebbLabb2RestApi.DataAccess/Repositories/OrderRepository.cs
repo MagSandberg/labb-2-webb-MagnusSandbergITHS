@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using WebbLabb2RestApi.DataAccess.Models;
 using WebbLabb2RestApi.Shared.DTOs;
 

@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using WebbLabb2RestApi.DataAccess.Models;
 using WebbLabb2RestApi.Shared.DTOs;
 
@@ -60,8 +59,6 @@ public class ProductRepository
 
         await _productModelCollection.UpdateOneAsync(filter, update);
     }
-
-    
 
     public async Task RemoveProduct(string name)
     {
