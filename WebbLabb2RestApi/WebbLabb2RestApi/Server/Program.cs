@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebbLabb2RestApi.DataAccess.Repositories;
 using WebbLabb2RestApi.DataAccess.Sql.Contexts;
+using WebbLabb2RestApi.DataAccess.Sql.Repositories;
 using WebbLabb2RestApi.Server.Extensions;
 using WebbLabb2RestApi.Server.Services;
 using WebbLabb2RestApi.Shared.DTOs;
@@ -8,6 +9,9 @@ using WebbLabb2RestApi.Shared.DTOs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<CustomerRepository>();
 
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
@@ -41,6 +45,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.MapMongoDbEndpoints();
+app.MapSqlDbEndpoints();
 
 //app.MapPost("/createProduct", async (ProductService productService, ProductDto productDto) =>
 //    await productService.AddProduct(productDto));

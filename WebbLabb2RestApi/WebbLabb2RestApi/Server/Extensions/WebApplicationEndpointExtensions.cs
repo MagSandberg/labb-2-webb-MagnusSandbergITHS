@@ -1,4 +1,5 @@
-﻿using WebbLabb2RestApi.Server.Services;
+﻿using System;
+using WebbLabb2RestApi.Server.Services;
 using WebbLabb2RestApi.Shared.DTOs;
 
 namespace WebbLabb2RestApi.Server.Extensions;
@@ -25,6 +26,14 @@ public static class WebApplicationEndpointExtensions
 
         app.MapDelete("/removeProduct", async (ProductService productService, string name) =>
             await productService.RemoveProduct(name));
+
+        return app;
+    }
+
+    public static WebApplication MapSqlDbEndpoints(this WebApplication app)
+    {
+        app.MapPost("/createUser", async (CustomerService customerService, CustomerDto customerDto) => 
+            await customerService.AddUser(customerDto));
 
         return app;
     }
