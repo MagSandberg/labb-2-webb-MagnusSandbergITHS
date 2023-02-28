@@ -45,6 +45,7 @@ public class ProductRepository
     {
         var filter = Builders<ProductModel>.Filter.Eq("ProductId", id);
         var update = Builders<ProductModel>.Update
+            .Set("ProductId", $"{dto.ProductId}")
             .Set("ProductNumber", $"{dto.ProductNumber}")
             .Set("ProductName", $"{dto.ProductName}")
             .Set("ProductDescription", $"{dto.ProductDescription}")
@@ -66,8 +67,7 @@ public class ProductRepository
 
     public async Task RemoveProduct(string name)
     {
-        var product = await _productModelCollection
-            .DeleteOneAsync(p => p.ProductName.Equals(name));
+        await _productModelCollection.DeleteOneAsync(p => p.ProductName.Equals(name));
     }
 
     private ProductModel ConvertToModel(ProductDto dto)

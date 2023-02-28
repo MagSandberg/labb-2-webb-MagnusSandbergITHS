@@ -42,10 +42,16 @@ public class OrderRepository
         return getAllOrders.ToList().Select(ConvertToDto).ToArray();
     }
 
+    public async Task RemoveOrder(string id)
+    {
+        await _orderModelCollection.DeleteOneAsync(p => p.OrderId.Equals(id));
+    }
+
     private OrderModel ConvertToModel(OrderDto dto)
     {
         return new OrderModel()
         {
+            OrderId = dto.OrderId,
             CustomerEmail = dto.CustomerEmail,
             ProductList = dto.ProductList
         };
@@ -55,6 +61,7 @@ public class OrderRepository
     {
         return new OrderDto()
         {
+            OrderId = dataModel.OrderId,
             CustomerEmail = dataModel.CustomerEmail,
             ProductList = dataModel.ProductList
         };

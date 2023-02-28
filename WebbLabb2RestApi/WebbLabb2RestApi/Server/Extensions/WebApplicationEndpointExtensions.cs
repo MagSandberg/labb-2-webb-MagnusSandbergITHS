@@ -40,14 +40,8 @@ public static class WebApplicationEndpointExtensions
         app.MapGet("/getOrders", async (OrderService orderService) =>
             await orderService.GetOrders());
 
-        //app.MapPatch("/updateAvailability", async (ProductService productService, string name, bool value) =>
-        //    await productService.UpdateAvailability(name, value));
-
-        //app.MapGet("/getProductByName", async (ProductService productService, string name) =>
-        //    await productService.GetProductByName(name));
-
-        //app.MapDelete("/removeProduct", async (ProductService productService, string name) =>
-        //    await productService.RemoveProduct(name));
+        app.MapDelete("/removeOrder", async (OrderService orderService, string id) =>
+            await orderService.RemoveOrder(id));
 
         return app;
     }

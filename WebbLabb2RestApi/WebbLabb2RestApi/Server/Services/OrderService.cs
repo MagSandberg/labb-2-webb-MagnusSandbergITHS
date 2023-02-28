@@ -26,4 +26,9 @@ public class OrderService
     {
         return await _orderRepository.GetAllOrders();
     }
+
+    public async Task RemoveOrder(string id)
+    {
+        await _orderRepository.RemoveOrder(id);
+    }
 }
