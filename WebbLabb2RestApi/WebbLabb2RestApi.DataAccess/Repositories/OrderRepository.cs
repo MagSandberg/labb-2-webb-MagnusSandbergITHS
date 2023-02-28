@@ -26,12 +26,21 @@ public class OrderRepository
         await _orderModelCollection.InsertOneAsync(ConvertToModel(dto));
     }
 
-    //public async Task<OrderDto[]> GetAllOrders()
-    //{
-    //    var getAllOrders = await _orderModelCollection.FindAsync(_ => true);
+    public async Task UpdateOrder(string id, OrderDto dto)
+    {
+        var filter = Builders<OrderModel>.Filter.Eq("OrderId", id);
+        var update = Builders<OrderModel>.Update
+            .Set(o => o.ProductList, dto.ProductList);
 
-    //    return getAllOrders.ToList().Select(ConvertToDto).ToArray();
-    //}
+        await _orderModelCollection.UpdateOneAsync(filter, update);
+    }
+
+    public async Task<OrderDto[]> GetAllOrders()
+    {
+        var getAllOrders = await _orderModelCollection.FindAsync(_ => true);
+
+        return getAllOrders.ToList().Select(ConvertToDto).ToArray();
+    }
 
     private OrderModel ConvertToModel(OrderDto dto)
     {

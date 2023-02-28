@@ -34,14 +34,14 @@ public static class WebApplicationEndpointExtensions
         app.MapPost("/createOrder", async (OrderService orderService, OrderDto dto) =>
             await orderService.CreateOrder(dto));
 
-        //app.MapPatch("/updateProduct", async (ProductService productService, string id, ProductDto dto) =>
-        //    await productService.UpdateProduct(id, dto));
+        app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>
+            await orderService.UpdateOrder(id, dto));
+
+        app.MapGet("/getOrders", async (OrderService orderService) =>
+            await orderService.GetOrders());
 
         //app.MapPatch("/updateAvailability", async (ProductService productService, string name, bool value) =>
         //    await productService.UpdateAvailability(name, value));
-
-        //app.MapGet("/getAllProducts", async (ProductService productService) =>
-        //    await productService.GetProducts());
 
         //app.MapGet("/getProductByName", async (ProductService productService, string name) =>
         //    await productService.GetProductByName(name));

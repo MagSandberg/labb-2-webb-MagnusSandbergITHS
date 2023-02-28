@@ -16,4 +16,14 @@ public class OrderService
     {
         await _orderRepository.CreateOrder(dto);
     }
+
+    public async Task UpdateOrder(string id, OrderDto dto)
+    {
+        await _orderRepository.UpdateOrder(id, dto);
+    }
+
+    public async Task<OrderDto[]> GetOrders()
+    {
+        return await _orderRepository.GetAllOrders();
+    }
 }
