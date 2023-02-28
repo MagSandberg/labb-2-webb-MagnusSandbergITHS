@@ -5,17 +5,15 @@ namespace WebbLabb2RestApi.Server.Services;
 
 public class OrderService
 {
-    private readonly ProductRepository _productRepository;
     private readonly OrderRepository _orderRepository;
 
-    public OrderService(ProductRepository productRepository, OrderRepository orderRepository)
+    public OrderService(OrderRepository orderRepository)
     {
-        _productRepository = productRepository;
         _orderRepository = orderRepository;
     }
 
-    public async Task<ProductDto[]> AddProductToList(string name)
+    public async Task CreateOrder(OrderDto dto)
     {
-        return await _productRepository.GetProductByName(name);
+        await _orderRepository.CreateOrder(dto);
     }
 }

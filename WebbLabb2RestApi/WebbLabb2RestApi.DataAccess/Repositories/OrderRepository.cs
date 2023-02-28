@@ -21,17 +21,17 @@ public class OrderRepository
                 new MongoCollectionSettings() { AssignIdOnInsert = true });
     }
 
-    public async Task CreateOrder(OrderDto dto, string email)
+    public async Task CreateOrder(OrderDto dto)
     {
         await _orderModelCollection.InsertOneAsync(ConvertToModel(dto));
     }
 
-    public async Task<OrderDto[]> GetAllOrders()
-    {
-        var getAllOrders = await _orderModelCollection.FindAsync(_ => true);
+    //public async Task<OrderDto[]> GetAllOrders()
+    //{
+    //    var getAllOrders = await _orderModelCollection.FindAsync(_ => true);
 
-        return getAllOrders.ToList().Select(ConvertToDto).ToArray();
-    }
+    //    return getAllOrders.ToList().Select(ConvertToDto).ToArray();
+    //}
 
     private OrderModel ConvertToModel(OrderDto dto)
     {
