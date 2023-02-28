@@ -41,12 +41,16 @@ public class ProductRepository
         return product.ToList().Select(ConvertToDto).ToArray();
     }
 
-    public async Task UpdateProduct(string name, string value)
+    public async Task UpdateProduct(string id, ProductDto dto)
     {
-        var filter = Builders<ProductModel>.Filter.Eq("ProductName", name);
+        var filter = Builders<ProductModel>.Filter.Eq("ProductId", id);
         var update = Builders<ProductModel>.Update
-            .Set("ProductName", $"{value}")
-            .Set("ProductNumber", 1337);
+            .Set("ProductNumber", $"{dto.ProductNumber}")
+            .Set("ProductName", $"{dto.ProductName}")
+            .Set("ProductDescription", $"{dto.ProductDescription}")
+            .Set("ProductPrice", $"{dto.ProductPrice}")
+            .Set("ProductCategory", $"{dto.ProductCategory}")
+            .Set("ProductStatus", $"{dto.ProductStatus}");
 
         await _productModelCollection.UpdateOneAsync(filter, update);
     }

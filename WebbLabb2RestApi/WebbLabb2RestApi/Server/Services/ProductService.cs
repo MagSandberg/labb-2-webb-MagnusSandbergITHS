@@ -17,9 +17,9 @@ public class ProductService
         await _productRepository.CreateProduct(productDto);
     }
 
-    public async Task UpdateProduct(string name, string value)
+    public async Task UpdateProduct(string id, ProductDto dto)
     {
-        await _productRepository.UpdateProduct(name, value);
+        await _productRepository.UpdateProduct(id, dto);
     }
 
     public async Task<ProductDto[]> GetProductByName(string name)

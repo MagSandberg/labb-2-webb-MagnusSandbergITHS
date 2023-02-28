@@ -22,4 +22,19 @@ public class CustomerService
     {
         return await _customerRepository.GetAllUsers();
     }
+
+    public async Task<CustomerDto> GetUser(Guid id)
+    {
+        return await _customerRepository.GetUser(id);
+    }
+
+    public async Task<CustomerDto> GetUserByEmail(string email)
+    {
+        return await _customerRepository.GetUserByEmail(email);
+    }
+
+    public async Task UpdateUser(Guid id, CustomerDto dto)
+    {
+        await _customerRepository.UpdateUser(id, dto);
+    }
 }

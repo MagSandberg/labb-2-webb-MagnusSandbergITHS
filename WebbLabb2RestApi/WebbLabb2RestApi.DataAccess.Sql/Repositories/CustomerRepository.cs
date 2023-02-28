@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Microsoft.EntityFrameworkCore;
 using WebbLabb2RestApi.DataAccess.Sql.Contexts;
 using WebbLabb2RestApi.DataAccess.Sql.Models;
 using WebbLabb2RestApi.Shared.DTOs;
@@ -21,10 +22,44 @@ public class CustomerRepository
         await _customerDbContext.SaveChangesAsync();
     }
 
-    //public Person GetPerson(Guid id)
-    //{
-    //    return _customerDbContext.People.FirstOrDefault(p => p.Id.Equals(id));
-    //}
+    public async Task<CustomerDto[]> GetAllUsers()
+    {
+        var users = await _customerDbContext.CustomerModel.ToListAsync();
+
+        return users.Select(ConvertToDto).ToArray();
+    }
+
+    public async Task<CustomerDto> GetUser(Guid id)
+    {
+        var user = await _customerDbContext.CustomerModel
+            .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
+
+        return ConvertToDto(user);
+    }
+
+    public async Task<CustomerDto> GetUserByEmail(string email)
+    {
+        var user = await _customerDbContext.CustomerModel
+            .FirstOrDefaultAsync(u => u.Email.Equals(email));
+
+        return ConvertToDto(user);
+    }
+
+    public async Task UpdateUser(Guid id, CustomerDto dto)
+    {
+        var user = await _customerDbContext.CustomerModel
+            .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
+
+        user.FirstName = dto.FirstName;
+        user.LastName = dto.LastName;
+        user.Email = dto.Email;
+        user.CellNumber = dto.CellNumber;
+        user.StreetAddress = dto.StreetAddress;
+        user.City = dto.City;
+        user.ZipCode = dto.ZipCode;
+        
+        await _customerDbContext.SaveChangesAsync();
+    }
 
     //public void UpdateName(Guid id, string name)
     //{
