@@ -46,6 +46,9 @@ public static class WebApplicationEndpointExtensions
         app.MapPatch("/updateUser", async (CustomerService customerService, Guid id, CustomerDto dto) =>
             await customerService.UpdateUser(id, dto));
 
+        app.MapDelete("/removeUser", async (CustomerService customerService, Guid id) =>
+            await customerService.RemoveUser(id));
+
         return app;
     }
 }

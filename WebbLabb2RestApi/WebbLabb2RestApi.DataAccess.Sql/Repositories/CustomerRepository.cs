@@ -61,26 +61,14 @@ public class CustomerRepository
         await _customerDbContext.SaveChangesAsync();
     }
 
-    //public void UpdateName(Guid id, string name)
-    //{
-    //    var person = _customerDbContext.People.FirstOrDefault(p => p.Id.Equals(id));
-    //    person.Name = name;
-    //    _customerDbContext.SaveChanges();
-    //}
+    public async Task RemoveUser(Guid id)
+    {
+        var user = await _customerDbContext.CustomerModel
+            .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
 
-    //public void UpdateAge(Guid id, int age)
-    //{
-    //    var person = _customerDbContext.People.FirstOrDefault(p => p.Id.Equals(id));
-    //    person.Age = age;
-    //    _customerDbContext.SaveChanges();
-    //}
-
-    //public void DeletePerson(Guid id)
-    //{
-    //    var person = _customerDbContext.People.FirstOrDefault(p => p.Id.Equals(id));
-    //    _customerDbContext.People.Remove(person);
-    //    _customerDbContext.SaveChanges();
-    //}
+        _customerDbContext.CustomerModel.Remove(user);
+        await _customerDbContext.SaveChangesAsync();
+    }
 
     private CustomerModel ConvertToModel(CustomerDto dto)
     {

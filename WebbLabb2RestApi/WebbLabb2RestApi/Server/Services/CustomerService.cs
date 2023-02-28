@@ -37,4 +37,9 @@ public class CustomerService
     {
         await _customerRepository.UpdateUser(id, dto);
     }
+
+    public async Task RemoveUser(Guid id)
+    {
+        await _customerRepository.RemoveUser(id);
+    }
 }
