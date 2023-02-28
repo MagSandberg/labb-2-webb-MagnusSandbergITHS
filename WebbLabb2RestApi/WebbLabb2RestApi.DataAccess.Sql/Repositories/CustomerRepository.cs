@@ -1,6 +1,4 @@
-﻿
-using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using WebbLabb2RestApi.DataAccess.Sql.Contexts;
 using WebbLabb2RestApi.DataAccess.Sql.Models;
 using WebbLabb2RestApi.Shared.DTOs;
@@ -11,9 +9,9 @@ public class CustomerRepository
 {
     private readonly CustomerDbContext _customerDbContext;
 
-    public CustomerRepository(CustomerDbContext storage)
+    public CustomerRepository(CustomerDbContext customerDbContext)
     {
-        _customerDbContext = storage;
+        _customerDbContext = customerDbContext;
     }
 
     public async Task AddUser(CustomerDto dto)
