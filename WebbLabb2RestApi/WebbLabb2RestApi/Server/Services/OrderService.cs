@@ -22,6 +22,11 @@ public class OrderService
         await _orderRepository.UpdateOrder(id, dto);
     }
 
+    public async Task<OrderDto[]> GetOrder(string id)
+    {
+        return await _orderRepository.GetOrder(id);
+    }
+
     public async Task<OrderDto[]> GetOrders()
     {
         return await _orderRepository.GetAllOrders();

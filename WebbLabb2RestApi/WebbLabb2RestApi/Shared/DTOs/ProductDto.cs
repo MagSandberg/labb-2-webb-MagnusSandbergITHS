@@ -8,5 +8,6 @@ public class ProductDto
     public string ProductDescription { get; set; } = string.Empty;
     public int ProductPrice { get; set; }
     public string ProductCategory { get; set; } = string.Empty;
+    public int OrderCount { get; set; }
     public bool ProductStatus { get; set; }
 }

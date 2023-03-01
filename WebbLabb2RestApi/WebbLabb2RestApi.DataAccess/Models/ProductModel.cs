@@ -19,5 +19,7 @@ public class ProductModel
     [BsonElement]
     public string ProductCategory { get; set; } = string.Empty;
     [BsonElement]
+    public int OrderCount { get; set; }
+    [BsonElement]
     public bool ProductStatus { get; set; }
 }

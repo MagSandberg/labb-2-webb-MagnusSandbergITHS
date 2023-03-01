@@ -35,6 +35,12 @@ public class OrderRepository
         await _orderModelCollection.UpdateOneAsync(filter, update);
     }
 
+    public async Task<OrderDto[]> GetOrder(string id)
+    {
+        var order = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id));
+        return order.ToList().Select(ConvertToDto).ToArray();
+    }
+
     public async Task<OrderDto[]> GetAllOrders()
     {
         var getAllOrders = await _orderModelCollection.FindAsync(_ => true);

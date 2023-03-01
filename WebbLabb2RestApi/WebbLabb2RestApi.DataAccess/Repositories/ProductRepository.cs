@@ -51,6 +51,7 @@ public class ProductRepository
             .Set("ProductDescription", $"{dto.ProductDescription}")
             .Set("ProductPrice", $"{dto.ProductPrice}")
             .Set("ProductCategory", $"{dto.ProductCategory}")
+            .Set("OrderCount", $"{dto.OrderCount}")
             .Set("ProductStatus", $"{dto.ProductStatus}");
 
         await _productModelCollection.UpdateOneAsync(filter, update);
@@ -80,6 +81,7 @@ public class ProductRepository
             ProductDescription = dto.ProductDescription,
             ProductPrice = dto.ProductPrice,
             ProductCategory = dto.ProductCategory,
+            OrderCount = dto.OrderCount,
             ProductStatus = dto.ProductStatus,
         };
     }
@@ -94,6 +96,7 @@ public class ProductRepository
             ProductDescription = dataModel.ProductDescription,
             ProductPrice = dataModel.ProductPrice,
             ProductCategory = dataModel.ProductCategory,
+            OrderCount = dataModel.OrderCount,
             ProductStatus = dataModel.ProductStatus,
         };
     }
