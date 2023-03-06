@@ -21,6 +21,86 @@
       "PackagePath": "staticwebassets\\service-worker.js"
     },
     {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Logo\\logo_icon.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Logo\\logo_icon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Logo\\logo_main.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Logo\\logo_main.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Logo\\logo_main_bw.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Logo\\logo_main_bw.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Perfume\\perfume_1.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Perfume\\perfume_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Perfume\\perfume_2.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Perfume\\perfume_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Perfume\\perfume_3.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Perfume\\perfume_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Perfume\\perfume_4.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Perfume\\perfume_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Perfume\\perfume_5.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Perfume\\perfume_5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Perfume\\perfume_6.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Perfume\\perfume_6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Soap\\soap_1.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Soap\\soap_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Soap\\soap_2.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Soap\\soap_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Soap\\soap_3.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Soap\\soap_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Soap\\soap_4.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Soap\\soap_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Soap\\soap_5.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Soap\\soap_5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Soap\\soap_6.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Soap\\soap_6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Vase\\vase_1.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Vase\\vase_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Vase\\vase_2.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Vase\\vase_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Vase\\vase_3.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Vase\\vase_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Vase\\vase_4.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Vase\\vase_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\Resources\\images\\Vase\\vase_5.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\Vase\\vase_5.jpg"
+    },
+    {
       "Id": "C:\\Users\\magnu\\OneDrive\\Dokument\\GitHub\\labb-2-webb-MagnusSandbergITHS\\WebbLabb2\\Client\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },

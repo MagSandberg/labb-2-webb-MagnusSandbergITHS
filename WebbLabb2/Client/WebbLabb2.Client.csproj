@@ -8,6 +8,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Resources\images\Logo\logo_icon.jpg" />
+    <None Include="wwwroot\Resources\images\Logo\logo_main.jpg" />
+    <None Include="wwwroot\Resources\images\Logo\logo_main_bw.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_1.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_2.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_3.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_4.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_5.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_6.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_1.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_2.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_3.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_4.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_5.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_6.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_1.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_2.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_3.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_4.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_5.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.3" />

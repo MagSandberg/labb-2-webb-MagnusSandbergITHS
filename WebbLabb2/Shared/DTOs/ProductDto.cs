@@ -10,4 +10,5 @@ public class ProductDto
     public string ProductCategory { get; set; } = string.Empty;
     public int OrderCount { get; set; }
     public bool ProductStatus { get; set; }
+    public string ProductImage { get; set; } = string.Empty;
 }

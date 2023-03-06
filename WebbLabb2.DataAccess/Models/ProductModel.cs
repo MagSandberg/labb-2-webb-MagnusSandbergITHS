@@ -22,4 +22,6 @@ public class ProductModel
     public int OrderCount { get; set; }
     [BsonElement]
     public bool ProductStatus { get; set; }
+    [BsonElement]
+    public string ProductImage { get; set; } = string.Empty;
 }

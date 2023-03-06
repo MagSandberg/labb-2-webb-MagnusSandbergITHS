@@ -45,14 +45,14 @@ public class ProductRepository
     {
         var filter = Builders<ProductModel>.Filter.Eq("ProductId", id);
         var update = Builders<ProductModel>.Update
-            .Set("ProductId", $"{dto.ProductId}")
             .Set("ProductNumber", $"{dto.ProductNumber}")
             .Set("ProductName", $"{dto.ProductName}")
             .Set("ProductDescription", $"{dto.ProductDescription}")
             .Set("ProductPrice", $"{dto.ProductPrice}")
             .Set("ProductCategory", $"{dto.ProductCategory}")
             .Set("OrderCount", $"{dto.OrderCount}")
-            .Set("ProductStatus", $"{dto.ProductStatus}");
+            .Set("ProductStatus", $"{dto.ProductStatus}")
+            .Set("ProductImage", $"{dto.ProductImage}");
 
         await _productModelCollection.UpdateOneAsync(filter, update);
     }
@@ -83,6 +83,7 @@ public class ProductRepository
             ProductCategory = dto.ProductCategory,
             OrderCount = dto.OrderCount,
             ProductStatus = dto.ProductStatus,
+            ProductImage = dto.ProductImage
         };
     }
 
@@ -98,6 +99,7 @@ public class ProductRepository
             ProductCategory = dataModel.ProductCategory,
             OrderCount = dataModel.OrderCount,
             ProductStatus = dataModel.ProductStatus,
+            ProductImage = dataModel.ProductImage
         };
     }
 }

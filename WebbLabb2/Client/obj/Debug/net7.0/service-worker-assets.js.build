@@ -69,6 +69,86 @@
       "url": "manifest.json"
     },
     {
+      "hash": "sha256-pkiYaH\/68+RPvSKCSW\/QNJITmaAq0fu\/rnkN8M5kZjE=",
+      "url": "Resources\/images\/Logo\/logo_icon.jpg"
+    },
+    {
+      "hash": "sha256-zGZz9hqmcZD1Pp9vRcYDHabmraVK\/uEggzJDgv3DD9o=",
+      "url": "Resources\/images\/Logo\/logo_main.jpg"
+    },
+    {
+      "hash": "sha256-yMuz2G8HUvt49fPTQZPm8KfGFeUeKwpbywuxa3x5uSE=",
+      "url": "Resources\/images\/Logo\/logo_main_bw.jpg"
+    },
+    {
+      "hash": "sha256-Ku2UB+uFVuKV6nav8rVKlflHKklApn2rbLGkDaxiU\/Y=",
+      "url": "Resources\/images\/Perfume\/perfume_1.jpg"
+    },
+    {
+      "hash": "sha256-5+JGftBA5bSEeS8jUiAxUPsgjtSnm3Ka8aIIQs5eJ8k=",
+      "url": "Resources\/images\/Perfume\/perfume_2.jpg"
+    },
+    {
+      "hash": "sha256-uk\/xO4gopnP5YQKnPqpZbk4OjF242vyZJyOX1HRlz4Q=",
+      "url": "Resources\/images\/Perfume\/perfume_3.jpg"
+    },
+    {
+      "hash": "sha256-dFanan58SAGTpsR+bRZ1CBoZHuZZ8eHoXEi9D6VaJ0M=",
+      "url": "Resources\/images\/Perfume\/perfume_4.jpg"
+    },
+    {
+      "hash": "sha256-hbE31QcnGoRhwTfhtIf4k\/PCRM340QGxi3NHtbAJUVo=",
+      "url": "Resources\/images\/Perfume\/perfume_5.jpg"
+    },
+    {
+      "hash": "sha256-SD920S\/2ldBhulMAgm3sXcSBaIPWqk80C7svJCKDRWY=",
+      "url": "Resources\/images\/Perfume\/perfume_6.jpg"
+    },
+    {
+      "hash": "sha256-yOvESz0rrd9Cjo+nD1JITYut1W15G0FWLHTJ\/DCw9Vw=",
+      "url": "Resources\/images\/Soap\/soap_1.jpg"
+    },
+    {
+      "hash": "sha256-Fk3MgdujvVx2Q17ePQFZ6fajqHTBLN5q4MpwruPwCVs=",
+      "url": "Resources\/images\/Soap\/soap_2.jpg"
+    },
+    {
+      "hash": "sha256-Gpu7Kiz63ymkR+WLRFRp8QgqoEoqupRyjkH91W5iT58=",
+      "url": "Resources\/images\/Soap\/soap_3.jpg"
+    },
+    {
+      "hash": "sha256-M1IvNVK12EnS+KpFGkkAa4h8zNPklvNF6LFaTegQ1ok=",
+      "url": "Resources\/images\/Soap\/soap_4.jpg"
+    },
+    {
+      "hash": "sha256-y89\/u7eQAxLyZ\/vQmbkm3Ub21WB1U+Xm2+esTleGXkw=",
+      "url": "Resources\/images\/Soap\/soap_5.jpg"
+    },
+    {
+      "hash": "sha256-2AtUtp31DZSGG+pAWqiC9nc1rkQ9Ss0QjTij7Sq3Vds=",
+      "url": "Resources\/images\/Soap\/soap_6.jpg"
+    },
+    {
+      "hash": "sha256-NAS8DbEZNVb99jd5K1rXa1kFywx0XoBFOYVGJTdT3BY=",
+      "url": "Resources\/images\/Vase\/vase_1.jpg"
+    },
+    {
+      "hash": "sha256-n\/K1c5uzKWJaSfXHiS6g9jSGGLDyovYmKWlyIfSGhLY=",
+      "url": "Resources\/images\/Vase\/vase_2.jpg"
+    },
+    {
+      "hash": "sha256-FuTeOBJhnVLXuhLSjiNOX8VoAX3YkfjUMFlRX\/\/bA6o=",
+      "url": "Resources\/images\/Vase\/vase_3.jpg"
+    },
+    {
+      "hash": "sha256-AY88AjEbgVtfTImoYC7+lZTED4o3QfpC1LZ93Cb\/JS8=",
+      "url": "Resources\/images\/Vase\/vase_4.jpg"
+    },
+    {
+      "hash": "sha256-ElMXFIA3rQkwRYaRiPCK1scWltaAjT53+65JakkmjHI=",
+      "url": "Resources\/images\/Vase\/vase_5.jpg"
+    },
+    {
       "hash": "sha256-4kbx4aDNm6qIE9i8EhcTB8C7uQtaVaE73GIrnSLioKc=",
       "url": "WebbLabb2.Client.styles.css"
     },
@@ -877,19 +957,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-ttLjIWe+LrKy938WcglihfDxrxS0DlZ7WC\/Q3RmHTXg=",
+      "hash": "sha256-5k\/UvTeqZ6syZKl8G6icIq2RDmGAEGHp203sBAnPnN4=",
       "url": "_framework\/WebbLabb2.Shared.dll"
     },
     {
-      "hash": "sha256-BnvvVLXPRXtHxEm\/IMpbVWQJyK6HkN5MLPo7FB3U62U=",
+      "hash": "sha256-JpQs8uZSqiGqZaG840WaDb0nmrbOwcr\/GmV7DaDhsno=",
       "url": "_framework\/WebbLabb2.Shared.pdb"
     },
     {
-      "hash": "sha256-MGMk0I2wb+AkbUsNe7hOw1VbHDm1mYOXiEPCgoAMeSA=",
+      "hash": "sha256-RauTVPw2GO0U45KhshRMxbyuLkQBb4Q6fYlfV8hsIwQ=",
       "url": "_framework\/WebbLabb2.Client.dll"
     },
     {
-      "hash": "sha256-WzJJFDRFJp4SZQm1J6FQ+sqhOM2RdxG2RSPXr7V\/2Jg=",
+      "hash": "sha256-YBpl7ygR2uGiomQ3fkbOVjmqj7aoY8ZMRPwNYThDS4Y=",
       "url": "_framework\/WebbLabb2.Client.pdb"
     },
     {
@@ -897,7 +977,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-JFQO67ayeUCMG9NPEs9Ad4cYmnn9K6J87vVFJvK9EbM=",
+      "hash": "sha256-pa746cS5rmOX3LaXekT5S02QJkgepX5XCb0fdbKnvuk=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -905,5 +985,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "K3QHUhTO"
+  "version": "7ZfOmyBC"
 };

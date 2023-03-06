@@ -6,6 +6,38 @@
 
 <h3>Products</h3>
 
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in AllProducts)
+    {
+        <tr>
+            <td min-width="100px"><img width="100px" alt="" class="img-thumbnail" src="@item.ProductImage" /></td>
+            <td>@item.ProductName</td>
+            <td>@item.ProductDescription</td>
+            <td>@item.ProductPrice</td>
+            <td>@item.ProductCategory</td>
+            <td>
+                <InputCheckbox class="form-check-input" style="opacity: 1;" Disabled="true" @bind-Value="@item.ProductStatus"/>
+            </td>
+            <td>
+                <button class="btn btn-primary">Add to Cart</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
 <EditForm Model="CurrentProduct" OnSubmit="SaveProduct">
     <div class="form-control">
         <label>Product number:</label>
@@ -30,6 +62,10 @@
     <div class="form-control mt-2">
         <label>Product available:</label>
         <InputCheckbox @bind-Value="CurrentProduct.ProductStatus"></InputCheckbox>
+    </div>
+    <div class="form-control mt-2">
+        <label>Product image link:</label>
+        <InputText @bind-Value="CurrentProduct.ProductImage"></InputText>
     </div>
     <button class="btn btn-primary mt-2">Save</button>
 </EditForm>
