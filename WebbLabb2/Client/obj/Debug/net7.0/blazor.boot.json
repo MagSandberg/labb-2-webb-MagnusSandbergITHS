@@ -202,14 +202,14 @@
       "netstandard.dll": "sha256-2\/SuexPFW8hizUgbgPcchYHfG\/zmGzzMN6ESSyefPRQ=",
       "System.Private.CoreLib.dll": "sha256-mcywrbK0VZXiOvZ4dxU1ocaPZFplCRSIPQ\/wFikcrus=",
       "WebbLabb2.Shared.dll": "sha256-ttLjIWe+LrKy938WcglihfDxrxS0DlZ7WC\/Q3RmHTXg=",
-      "WebbLabb2.Client.dll": "sha256-MGMk0I2wb+AkbUsNe7hOw1VbHDm1mYOXiEPCgoAMeSA="
+      "WebbLabb2.Client.dll": "sha256-PSyO\/hSfha+U6jsOjwxgAN6X79hSwmm5kCMDqsrtr50="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "WebbLabb2.Shared.pdb": "sha256-BnvvVLXPRXtHxEm\/IMpbVWQJyK6HkN5MLPo7FB3U62U=",
-      "WebbLabb2.Client.pdb": "sha256-WzJJFDRFJp4SZQm1J6FQ+sqhOM2RdxG2RSPXr7V\/2Jg="
+      "WebbLabb2.Client.pdb": "sha256-Num8MM0lfaf1gd+L9DV4KHVWpbaGR\/UV3eiOQ+f0EVk="
     },
     "runtime": {
       "dotnet.7.0.3.cfwteq18fd.js": "sha256-DxGvmbtUa6hGJpk3VyMEbkPZ653qWbQkh8X4ZVM9TWM=",

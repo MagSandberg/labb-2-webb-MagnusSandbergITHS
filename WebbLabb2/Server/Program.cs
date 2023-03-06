@@ -15,8 +15,6 @@ using WebbLabb2.Shared.DTOs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var configuration = builder.Configuration;
-
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<OrderRepository>();
 
@@ -26,12 +24,9 @@ builder.Services.AddScoped<CustomerRepository>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
 
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<UserManager<IdentityUser>>();
+//builder.Services.AddScoped<UserService>();
+//builder.Services.AddScoped<UserRepository>();
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("CustomerDb")
@@ -39,8 +34,8 @@ builder.Services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer
 
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    googleOptions.ClientId = configuration["Authentication:Google:ClientId"]!;
-    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"]!;
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
 });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -88,7 +83,7 @@ app.UseAuthorization();
 app.MapMongoDbProductEndpoints();
 app.MapMongoDbOrderEndpoints();
 app.MapSqlDbCustomerEndpoints();
-app.MapSqlDbUserEndpoints();
+//app.MapSqlDbUserEndpoints();
 
 app.MapRazorPages();
 app.MapControllers();
