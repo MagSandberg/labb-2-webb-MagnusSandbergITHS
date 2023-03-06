@@ -1,29 +1,23 @@
-﻿using WebbLabb2.Server.Services;
-using WebbLabb2.Shared.DTOs;
+﻿using Microsoft.AspNetCore.Identity;
+using WebbLabb2.Server.Services;
 
 namespace WebbLabb2.Server.Extensions;
 
 public static class WebApplicationUserEndpointExtensions
 {
-    public static WebApplication MapSqlDbEndpoints(this WebApplication app)
+    public static WebApplication MapSqlDbUserEndpoints(this WebApplication app)
     {
-        app.MapPost("/createUser", async (CustomerService customerService, CustomerDto dto) => 
-            await customerService.AddUser(dto));
+        app.MapGet("/getUser", async (UserService userService, string email) =>
+            await userService.GetUser(email));
 
-        app.MapGet("/getAllUsers", async (CustomerService customerService) =>
-            await customerService.GetUsers());
+        app.MapGet("/getUserRoles", async (UserService userService, IdentityUser user) =>
+            await userService.GetUserRoles(user));
 
-        app.MapGet("/getUser", async (CustomerService customerService, Guid id) =>
-            await customerService.GetUser(id));
+        app.MapPatch("/assignAdminRole", async (UserService userService, UserManager<IdentityUser> user, string email) =>
+            await userService.AssignAdmin(user, email));
 
-        app.MapGet("/getUserByEmail", async (CustomerService customerService, string email) =>
-            await customerService.GetUserByEmail(email));
-
-        app.MapPatch("/updateUser", async (CustomerService customerService, Guid id, CustomerDto dto) =>
-            await customerService.UpdateUser(id, dto));
-
-        app.MapDelete("/removeUser", async (CustomerService customerService, Guid id) =>
-            await customerService.RemoveUser(id));
+        app.MapPatch("/assignUserRole", async (UserService userService, UserManager<IdentityUser> user, string email) =>
+            await userService.AssignUser(user, email));
 
         return app;
     }

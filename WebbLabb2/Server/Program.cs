@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using WebbLabb2.DataAccess.Repositories;
@@ -7,6 +8,7 @@ using WebbLabb2.DataAccess.Sql.Repositories;
 using WebbLabb2.Server.Data;
 using WebbLabb2.Server.Extensions;
 using WebbLabb2.Server.Models;
+using WebbLabb2.Server.Repositories;
 using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
 
@@ -23,6 +25,10 @@ builder.Services.AddScoped<CustomerRepository>();
 
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
+
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<UserManager<IdentityUser>>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -79,10 +85,10 @@ app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthorization();
 
-
 app.MapMongoDbProductEndpoints();
 app.MapMongoDbOrderEndpoints();
-app.MapSqlDbEndpoints();
+app.MapSqlDbCustomerEndpoints();
+app.MapSqlDbUserEndpoints();
 
 app.MapRazorPages();
 app.MapControllers();
