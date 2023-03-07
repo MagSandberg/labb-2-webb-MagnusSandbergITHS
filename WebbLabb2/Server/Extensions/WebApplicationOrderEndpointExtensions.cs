@@ -8,10 +8,16 @@ public static class WebApplicationOrderEndpointExtensions
     public static WebApplication MapMongoDbOrderEndpoints(this WebApplication app)
     {
         app.MapPost("/createOrder", async (OrderService orderService, OrderDto dto) =>
-            await orderService.CreateOrder(dto));
+        {
+            await orderService.CreateOrder(dto);
+            return Results.Text("Order successfully added");
+        });
 
         app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>
-            await orderService.UpdateOrder(id, dto));
+        {
+            await orderService.UpdateOrder(id, dto);
+            return Results.Text("Order updated");
+        });
 
         app.MapGet("/getOrder", async (OrderService orderService, string id) =>
             await orderService.GetOrder(id));
@@ -20,7 +26,10 @@ public static class WebApplicationOrderEndpointExtensions
             await orderService.GetOrders());
 
         app.MapDelete("/removeOrder", async (OrderService orderService, string id) =>
-            await orderService.RemoveOrder(id));
+        {
+            await orderService.RemoveOrder(id);
+            return Results.Text("Order removed");
+        });
 
         return app;
     }

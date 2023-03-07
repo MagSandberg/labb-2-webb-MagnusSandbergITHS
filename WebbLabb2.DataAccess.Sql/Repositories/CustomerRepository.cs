@@ -20,30 +20,30 @@ public class CustomerRepository
         await _customerDbContext.SaveChangesAsync();
     }
 
-    public async Task<CustomerDto[]> GetAllUsers()
+    public async Task<CustomerDto[]> GetAllCustomers()
     {
         var users = await _customerDbContext.CustomerModel.ToListAsync();
 
         return users.Select(ConvertToDto).ToArray();
     }
 
-    public async Task<CustomerDto> GetUser(Guid id)
+    public async Task<CustomerDto> GetCustomer(Guid id)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
 
-        return ConvertToDto(user);
+        return ConvertToDto(user!);
     }
 
-    public async Task<CustomerDto> GetUserByEmail(string email)
+    public async Task<CustomerDto> GetCustomerByEmail(string email)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.Email.Equals(email));
 
-        return ConvertToDto(user);
+        return ConvertToDto(user!);
     }
 
-    public async Task UpdateUser(Guid id, CustomerDto dto)
+    public async Task UpdateCustomer(Guid id, CustomerDto dto)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(c => c.CustomerId.Equals(id));
@@ -59,12 +59,12 @@ public class CustomerRepository
         await _customerDbContext.SaveChangesAsync();
     }
 
-    public async Task RemoveUser(Guid id)
+    public async Task RemoveCustomer(Guid id)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
 
-        _customerDbContext.CustomerModel.Remove(user);
+        _customerDbContext.CustomerModel.Remove(user!);
         await _customerDbContext.SaveChangesAsync();
     }
 

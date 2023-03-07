@@ -10,13 +10,20 @@ public static class WebApplicationProductEndpointExtensions
         app.MapPost("/createProduct", async (ProductService productService, ProductDto dto) =>
         {
             await productService.AddProduct(dto);
+            return Results.Text("Product successfully added");
         });
 
         app.MapPatch("/updateProduct", async (ProductService productService, string id, ProductDto dto) =>
-            await productService.UpdateProduct(id, dto));
+        {
+            await productService.UpdateProduct(id, dto);
+            return Results.Text("Product updated");
+        });
 
         app.MapPatch("/updateAvailability", async (ProductService productService, string name, bool value) =>
-            await productService.UpdateAvailability(name, value));
+        {
+            await productService.UpdateAvailability(name, value);
+            return Results.Text("Availability updated");
+        });
 
         app.MapGet("/getAllProducts", async (ProductService productService) =>
             await productService.GetProducts());
@@ -25,7 +32,10 @@ public static class WebApplicationProductEndpointExtensions
             await productService.GetProductByName(name));
 
         app.MapDelete("/removeProduct", async (ProductService productService, string name) =>
-            await productService.RemoveProduct(name));
+        {
+            await productService.RemoveProduct(name);
+            return Results.Text("Product removed");
+        });
 
         return app;
     }

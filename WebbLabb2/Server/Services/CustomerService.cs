@@ -1,5 +1,4 @@
-﻿using WebbLabb2.DataAccess.Repositories;
-using WebbLabb2.DataAccess.Sql.Repositories;
+﻿using WebbLabb2.DataAccess.Sql.Repositories;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Server.Services;
@@ -18,28 +17,28 @@ public class CustomerService
         await _customerRepository.AddCustomer(customerDto);
     }
 
-    public async Task<CustomerDto[]> GetUsers()
+    public async Task<CustomerDto[]> GetCustomers()
     {
-        return await _customerRepository.GetAllUsers();
+        return await _customerRepository.GetAllCustomers();
     }
 
-    public async Task<CustomerDto> GetUser(Guid id)
+    public async Task<CustomerDto> GetCustomer(Guid id)
     {
-        return await _customerRepository.GetUser(id);
+        return await _customerRepository.GetCustomer(id);
     }
 
-    public async Task<CustomerDto> GetUserByEmail(string email)
+    public async Task<CustomerDto> GetCustomerByEmail(string email)
     {
-        return await _customerRepository.GetUserByEmail(email);
+        return await _customerRepository.GetCustomerByEmail(email);
     }
 
-    public async Task UpdateUser(Guid id, CustomerDto dto)
+    public async Task UpdateCustomer(Guid id, CustomerDto dto)
     {
-        await _customerRepository.UpdateUser(id, dto);
+        await _customerRepository.UpdateCustomer(id, dto);
     }
 
-    public async Task RemoveUser(Guid id)
+    public async Task RemoveCustomer(Guid id)
     {
-        await _customerRepository.RemoveUser(id);
+        await _customerRepository.RemoveCustomer(id);
     }
 }

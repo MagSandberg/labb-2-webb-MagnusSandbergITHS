@@ -1,40 +1,43 @@
-﻿using WebbLabb2.Server.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using WebbLabb2.DataAccess.Sql.Contexts;
+using WebbLabb2.DataAccess.Sql.Models;
+using WebbLabb2.DataAccess.Sql.Repositories;
+using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Server.Extensions;
 
 public static class WebApplicationCustomerEndpointExtensions
 {
-    private static readonly HttpClient? _httpClient = new ();
     public static WebApplication MapSqlDbCustomerEndpoints(this WebApplication app)
     {
+
         app.MapPost("/createCustomer", async (CustomerService customerService, CustomerDto dto) =>
         {
-            var response = await _httpClient.GetAsync("https://localhost:7062/createCustomer");
-
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                await customerService.AddCustomer(dto);
-                return Results.Text("Customer successfully added");
-            }
-
-            return Results.Text("Something went wrong");
+            await customerService.AddCustomer(dto);
+            return Results.Text("Customer successfully added");
         });
 
-        app.MapGet("/getAllUsers", async (CustomerService customerService) =>
-            await customerService.GetUsers());
+        app.MapGet("/getAllCustomers", async (CustomerService customerService) =>
+            await customerService.GetCustomers());
 
-        app.MapGet("/getUser", async (CustomerService customerService, Guid id) =>
-            await customerService.GetUser(id));
+        app.MapGet("/getCustomer", async (CustomerService customerService, Guid id) =>
+            await customerService.GetCustomer(id));
 
-        app.MapGet("/getUserByEmail", async (CustomerService customerService, string email) =>
-            await customerService.GetUserByEmail(email));
+        app.MapGet("/getCustomerByEmail", async (CustomerService customerService, string email) =>
+            await customerService.GetCustomerByEmail(email));
 
-        app.MapPatch("/updateUser", async (CustomerService customerService, Guid id, CustomerDto dto) =>
-            await customerService.UpdateUser(id, dto));
+        app.MapPatch("/updateCustomer", async (CustomerService customerService, Guid id, CustomerDto dto) =>
+        {
+            await customerService.UpdateCustomer(id, dto);
+            return Results.Text("Update complete");
+        });
 
-        app.MapDelete("/removeUser", async (CustomerService customerService, Guid id) =>
-            await customerService.RemoveUser(id));
+        app.MapDelete("/removeCustomer", async (CustomerService customerService, Guid id) =>
+        {
+            await customerService.RemoveCustomer(id);
+            return Results.Text("Customer removed");
+        });
 
         return app;
     }
