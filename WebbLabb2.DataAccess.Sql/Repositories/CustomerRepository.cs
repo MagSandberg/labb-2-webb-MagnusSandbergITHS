@@ -14,7 +14,7 @@ public class CustomerRepository
         _customerDbContext = customerDbContext;
     }
 
-    public async Task AddUser(CustomerDto dto)
+    public async Task AddCustomer(CustomerDto dto)
     {
         _customerDbContext.CustomerModel.Add(ConvertToModel(dto));
         await _customerDbContext.SaveChangesAsync();
@@ -46,7 +46,7 @@ public class CustomerRepository
     public async Task UpdateUser(Guid id, CustomerDto dto)
     {
         var user = await _customerDbContext.CustomerModel
-            .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
+            .FirstOrDefaultAsync(c => c.CustomerId.Equals(id));
 
         user!.FirstName = dto.FirstName;
         user.LastName = dto.LastName;

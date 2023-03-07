@@ -201,15 +201,15 @@
       "mscorlib.dll": "sha256-kgowZLZGyceaJo4bHvVY1kmm1GJuawa5rPO1RCfNYWc=",
       "netstandard.dll": "sha256-2\/SuexPFW8hizUgbgPcchYHfG\/zmGzzMN6ESSyefPRQ=",
       "System.Private.CoreLib.dll": "sha256-mcywrbK0VZXiOvZ4dxU1ocaPZFplCRSIPQ\/wFikcrus=",
-      "WebbLabb2.Shared.dll": "sha256-5k\/UvTeqZ6syZKl8G6icIq2RDmGAEGHp203sBAnPnN4=",
-      "WebbLabb2.Client.dll": "sha256-jhlp5+XFvSnY+4k9OHog8vHiyHkKMzlCfCKro1lakZA="
+      "WebbLabb2.Shared.dll": "sha256-w\/HMfX+RQ7cSlQt\/rttxCoL8UUFI1jxBlYAZgE697uU=",
+      "WebbLabb2.Client.dll": "sha256-PjcfjnpqrG0Lpu5lTqiT7\/NhHKT7p7ti1+NaVEU7Lm8="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "WebbLabb2.Shared.pdb": "sha256-JpQs8uZSqiGqZaG840WaDb0nmrbOwcr\/GmV7DaDhsno=",
-      "WebbLabb2.Client.pdb": "sha256-JrvdyS\/dDtZz+TDHlGd97ayRzWAPJnUuna2XJusYmdU="
+      "WebbLabb2.Shared.pdb": "sha256-+s5jWOVZB78kRwzXgZtYbQL3idlhZ3xGOKL5uRUBqw4=",
+      "WebbLabb2.Client.pdb": "sha256-0qrKiqtjmvJPlB+HsFsVyers0GEIFszPhGJxK1irqhk="
     },
     "runtime": {
       "dotnet.7.0.3.cfwteq18fd.js": "sha256-DxGvmbtUa6hGJpk3VyMEbkPZ653qWbQkh8X4ZVM9TWM=",

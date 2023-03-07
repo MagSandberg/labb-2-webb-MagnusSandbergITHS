@@ -8,7 +8,9 @@ public static class WebApplicationProductEndpointExtensions
     public static WebApplication MapMongoDbProductEndpoints(this WebApplication app)
     {
         app.MapPost("/createProduct", async (ProductService productService, ProductDto dto) =>
-            await productService.AddProduct(dto));
+        {
+            await productService.AddProduct(dto);
+        });
 
         app.MapPatch("/updateProduct", async (ProductService productService, string id, ProductDto dto) =>
             await productService.UpdateProduct(id, dto));

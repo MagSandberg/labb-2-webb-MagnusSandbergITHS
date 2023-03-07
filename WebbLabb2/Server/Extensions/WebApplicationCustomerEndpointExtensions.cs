@@ -5,10 +5,21 @@ namespace WebbLabb2.Server.Extensions;
 
 public static class WebApplicationCustomerEndpointExtensions
 {
+    private static readonly HttpClient? _httpClient = new ();
     public static WebApplication MapSqlDbCustomerEndpoints(this WebApplication app)
     {
-        app.MapPost("/createUser", async (CustomerService customerService, CustomerDto dto) => 
-            await customerService.AddUser(dto));
+        app.MapPost("/createCustomer", async (CustomerService customerService, CustomerDto dto) =>
+        {
+            var response = await _httpClient.GetAsync("https://localhost:7062/createCustomer");
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                await customerService.AddCustomer(dto);
+                return Results.Text("Customer successfully added");
+            }
+
+            return Results.Text("Something went wrong");
+        });
 
         app.MapGet("/getAllUsers", async (CustomerService customerService) =>
             await customerService.GetUsers());

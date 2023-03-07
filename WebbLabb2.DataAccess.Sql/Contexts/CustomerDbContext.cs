@@ -16,6 +16,7 @@ public class CustomerDbContext : DbContext
         modelBuilder.Entity<CustomerModel>(entity =>
         {
             entity.HasKey(e => e.CustomerId).HasName("PK_Customer_Model");
+            entity.HasAlternateKey(e => e.Email);
 
             entity.Property(e => e.CustomerId).ValueGeneratedOnAdd();
             entity.Property(e => e.FirstName).HasMaxLength(100).IsRequired();
