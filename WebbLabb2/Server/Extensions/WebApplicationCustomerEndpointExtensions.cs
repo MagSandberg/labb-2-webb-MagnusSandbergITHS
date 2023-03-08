@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebbLabb2.DataAccess.Sql.Contexts;
-using WebbLabb2.DataAccess.Sql.Models;
-using WebbLabb2.DataAccess.Sql.Repositories;
-using WebbLabb2.Server.Services;
+﻿using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Server.Extensions;
@@ -14,8 +10,8 @@ public static class WebApplicationCustomerEndpointExtensions
 
         app.MapPost("/createCustomer", async (CustomerService customerService, CustomerDto dto) =>
         {
-            await customerService.AddCustomer(dto);
-            return Results.Text("Customer successfully added");
+            var result = await customerService.AddCustomer(dto);
+            return result? Results.Ok("Customer successfully added") : Results.BadRequest("");
         });
 
         app.MapGet("/getAllCustomers", async (CustomerService customerService) =>

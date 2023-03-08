@@ -14,10 +14,17 @@ public class CustomerRepository
         _customerDbContext = customerDbContext;
     }
 
-    public async Task AddCustomer(CustomerDto dto)
+    public async Task<bool> AddCustomer(CustomerDto dto)
     {
+        if (await _customerDbContext.CustomerModel.AnyAsync(c=> c.Email == dto.Email))
+            return false;
+
+        // Lägg till bool som kollar om email redan finns
         _customerDbContext.CustomerModel.Add(ConvertToModel(dto));
+
         await _customerDbContext.SaveChangesAsync();
+
+        return true;
     }
 
     public async Task<CustomerDto[]> GetAllCustomers()

@@ -12,9 +12,9 @@ public class CustomerService
         _customerRepository = customerRepository;
     }
 
-    public async Task AddCustomer(CustomerDto customerDto)
+    public async Task<bool> AddCustomer(CustomerDto customerDto)
     {
-        await _customerRepository.AddCustomer(customerDto);
+        return await _customerRepository.AddCustomer(customerDto);
     }
 
     public async Task<CustomerDto[]> GetCustomers()
