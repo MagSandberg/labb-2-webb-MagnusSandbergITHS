@@ -19,9 +19,7 @@ public class CustomerRepository
         if (await _customerDbContext.CustomerModel.AnyAsync(c=> c.Email == dto.Email))
             return false;
 
-        // Lägg till bool som kollar om email redan finns
         _customerDbContext.CustomerModel.Add(ConvertToModel(dto));
-
         await _customerDbContext.SaveChangesAsync();
 
         return true;

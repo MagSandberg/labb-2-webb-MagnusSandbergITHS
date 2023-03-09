@@ -9,9 +9,23 @@ public static class WebApplicationProductEndpointExtensions
     {
         app.MapPost("/createProduct", async (ProductService productService, ProductDto dto) =>
         {
-            await productService.AddProduct(dto);
-            return Results.Text("Product successfully added");
+            var result = await productService.AddProduct(dto);
+
+            return result ? Results.Ok("Product successfully added") 
+                : Results.BadRequest("Product name already exists. Change the name to add the product.");
         });
+
+        //Skapa get med ID
+        app.MapGet("/getProductById", async (ProductService productService, string id) =>
+        {
+            return await productService.GetProductById(id);
+        });
+
+        app.MapGet("/getAllProducts", async (ProductService productService) =>
+            await productService.GetProducts());
+
+        app.MapGet("/getProductByName", async (ProductService productService, string name) =>
+            await productService.GetProductByName(name));
 
         app.MapPatch("/updateProduct", async (ProductService productService, string id, ProductDto dto) =>
         {
@@ -24,12 +38,6 @@ public static class WebApplicationProductEndpointExtensions
             await productService.UpdateAvailability(name, value);
             return Results.Text("Availability updated");
         });
-
-        app.MapGet("/getAllProducts", async (ProductService productService) =>
-            await productService.GetProducts());
-
-        app.MapGet("/getProductByName", async (ProductService productService, string name) =>
-            await productService.GetProductByName(name));
 
         app.MapDelete("/removeProduct", async (ProductService productService, string name) =>
         {

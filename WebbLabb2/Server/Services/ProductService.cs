@@ -12,14 +12,19 @@ public class ProductService
         _productRepository = productRepository;
     }
 
-    public async Task AddProduct(ProductDto productDto)
+    public async Task<bool> AddProduct(ProductDto productDto)
     {
-        await _productRepository.CreateProduct(productDto);
+        return await _productRepository.CreateProduct(productDto);
     }
 
-    public async Task UpdateProduct(string id, ProductDto dto)
+    public async Task<ProductDto[]> GetProducts()
     {
-        await _productRepository.UpdateProduct(id, dto);
+        return await _productRepository.GetAllProducts();
+    }
+
+    public async Task<ProductDto[]> GetProductById(string id)
+    {
+        return await _productRepository.GetProductById(id);
     }
 
     public async Task<ProductDto[]> GetProductByName(string name)
@@ -27,9 +32,9 @@ public class ProductService
         return await _productRepository.GetProductByName(name);
     }
 
-    public async Task<ProductDto[]> GetProducts()
+    public async Task UpdateProduct(string id, ProductDto dto)
     {
-        return await _productRepository.GetAllProducts();
+        await _productRepository.UpdateProduct(id, dto);
     }
 
     public async Task RemoveProduct(string name)

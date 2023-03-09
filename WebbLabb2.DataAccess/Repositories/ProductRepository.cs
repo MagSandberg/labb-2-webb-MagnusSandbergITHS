@@ -21,9 +21,24 @@ public class ProductRepository
                 new MongoCollectionSettings() { AssignIdOnInsert = true });
     }
 
-    public async Task CreateProduct(ProductDto dto)
+    public async Task<bool> CreateProduct(ProductDto dto)
     {
+        if (await _productModelCollection.FindAsync(p => p.ProductName == dto.ProductName).Result.AnyAsync())
+        {
+            return false;
+        }
+
         await _productModelCollection.InsertOneAsync(ConvertToModel(dto));
+
+        return true;
+    }
+
+    public async Task<ProductDto[]> GetProductById(string id)
+    {
+        var product = await _productModelCollection
+            .FindAsync(p => p.ProductId.Equals(id));
+
+        return product.ToList().Select(ConvertToDto).ToArray();
     }
 
     public async Task<ProductDto[]> GetAllProducts()
