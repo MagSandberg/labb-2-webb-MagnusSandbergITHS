@@ -16,15 +16,14 @@ public class CustomerService
     {
         return await _customerRepository.AddCustomer(customerDto);
     }
+    public async Task<CustomerDto> GetCustomer(Guid id)
+    {
+        return await _customerRepository.GetCustomer(id);
+    }
 
     public async Task<CustomerDto[]> GetCustomers()
     {
         return await _customerRepository.GetAllCustomers();
-    }
-
-    public async Task<CustomerDto> GetCustomer(Guid id)
-    {
-        return await _customerRepository.GetCustomer(id);
     }
 
     public async Task<CustomerDto> GetCustomerByEmail(string email)

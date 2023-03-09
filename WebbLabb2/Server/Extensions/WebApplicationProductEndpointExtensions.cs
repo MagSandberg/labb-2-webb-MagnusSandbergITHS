@@ -14,8 +14,7 @@ public static class WebApplicationProductEndpointExtensions
             return result ? Results.Ok("Product successfully added") 
                 : Results.BadRequest("Product name already exists. Change the name to add the product.");
         });
-
-        //Skapa get med ID
+        
         app.MapGet("/getProductById", async (ProductService productService, string id) =>
         {
             return await productService.GetProductById(id);

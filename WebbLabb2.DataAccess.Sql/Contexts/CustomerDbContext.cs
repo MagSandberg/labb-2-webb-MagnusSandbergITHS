@@ -18,6 +18,8 @@ public class CustomerDbContext : DbContext
             entity.HasKey(e => e.CustomerId).HasName("PK_Customer_Model");
             entity.HasAlternateKey(e => e.Email);
 
+
+            //Ta bort detta och lägg till via attribut i Models istället
             entity.Property(e => e.CustomerId).ValueGeneratedOnAdd();
             entity.Property(e => e.FirstName).HasMaxLength(100).IsRequired();
             entity.Property(e => e.LastName).HasMaxLength(100).IsRequired();

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WebbLabb2.DataAccess.Repositories;
 using WebbLabb2.DataAccess.Sql.Contexts;
 using WebbLabb2.DataAccess.Sql.Repositories;
+using WebbLabb2.DataAccess.Sql.Responses;
 using WebbLabb2.Server.Data;
 using WebbLabb2.Server.Extensions;
 using WebbLabb2.Server.Models;
@@ -17,15 +18,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<OrderRepository>();
 
+builder.Services.AddScoped<CustomerResponse>();
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<CustomerRepository>();
 
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
 
-builder.Services.AddScoped<UserManager<IdentityUser>>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<UserRepository>();
+//builder.Services.AddScoped<UserManager<IdentityUser>>();
+//builder.Services.AddScoped<UserService>();
+//builder.Services.AddScoped<UserRepository>();
 
 builder.Services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("CustomerDb")
@@ -82,7 +84,7 @@ app.UseAuthorization();
 app.MapMongoDbProductEndpoints();
 app.MapMongoDbOrderEndpoints();
 app.MapSqlDbCustomerEndpoints();
-app.MapSqlDbUserEndpoints();
+//app.MapSqlDbUserEndpoints();
 
 app.MapRazorPages();
 app.MapControllers();

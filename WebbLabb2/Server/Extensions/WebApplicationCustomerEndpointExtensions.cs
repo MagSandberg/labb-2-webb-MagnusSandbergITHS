@@ -14,11 +14,14 @@ public static class WebApplicationCustomerEndpointExtensions
             return result? Results.Ok("Customer successfully added") : Results.BadRequest("");
         });
 
+        app.MapGet("/getCustomer", async (CustomerService customerService, Guid id) =>
+        {
+            var result = await customerService.GetCustomer(id);
+            return result;
+        });
+
         app.MapGet("/getAllCustomers", async (CustomerService customerService) =>
             await customerService.GetCustomers());
-
-        app.MapGet("/getCustomer", async (CustomerService customerService, Guid id) =>
-            await customerService.GetCustomer(id));
 
         app.MapGet("/getCustomerByEmail", async (CustomerService customerService, string email) =>
             await customerService.GetCustomerByEmail(email));

@@ -8,33 +8,33 @@
 
 <table class="table table-striped">
     <thead>
-    <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Category</th>
-        <th>Status</th>
-        <th></th>
-    </tr>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in AllProducts)
-    {
-        <tr>
-            <td min-width="100px"><img width="100px" alt="" class="img-thumbnail" src="@item.ProductImage" /></td>
-            <td>@item.ProductName</td>
-            <td>@item.ProductDescription</td>
-            <td>@item.ProductPrice</td>
-            <td>@item.ProductCategory</td>
-            <td>
-                <InputCheckbox class="form-check-input" style="opacity: 1;" Disabled="true" @bind-Value="@item.ProductStatus"/>
-            </td>
-            <td>
-                <button class="btn btn-primary">Add to Cart</button>
-            </td>
-        </tr>
-    }
+        @foreach (var item in AllProducts)
+        {
+            <tr>
+                <td min-width="100px"><img width="100px" alt="" class="img-thumbnail" src="@item.ProductImage" /></td>
+                <td>@item.ProductName</td>
+                <td>@item.ProductDescription</td>
+                <td>@item.ProductPrice</td>
+                <td>@item.ProductCategory</td>
+                <td>
+                    <InputCheckbox class="form-check-input" style="opacity: 1;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                </td>
+                <td>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
@@ -76,7 +76,7 @@
             <span>Product id:</span> @product.ProductId.ToString()
         </li>
         <li class="p-2 mb-1">
-           <span>Product name:</span> @product.ProductName
+            <span>Product name:</span> @product.ProductName
         </li>
     </Virtualize>
 </ul>

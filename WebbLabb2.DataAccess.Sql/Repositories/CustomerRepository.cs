@@ -16,7 +16,7 @@ public class CustomerRepository
 
     public async Task<bool> AddCustomer(CustomerDto dto)
     {
-        if (await _customerDbContext.CustomerModel.AnyAsync(c=> c.Email == dto.Email))
+        if (await _customerDbContext.CustomerModel.AnyAsync(c => c.Email == dto.Email))
             return false;
 
         _customerDbContext.CustomerModel.Add(ConvertToModel(dto));
@@ -25,19 +25,12 @@ public class CustomerRepository
         return true;
     }
 
-    public async Task<CustomerDto[]> GetAllCustomers()
-    {
-        var users = await _customerDbContext.CustomerModel.ToListAsync();
-
-        return users.Select(ConvertToDto).ToArray();
-    }
-
     public async Task<CustomerDto> GetCustomer(Guid id)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
-
-        return ConvertToDto(user!);
+        
+        return ConvertToDto(user);
     }
 
     public async Task<CustomerDto> GetCustomerByEmail(string email)
@@ -46,6 +39,13 @@ public class CustomerRepository
             .FirstOrDefaultAsync(u => u.Email.Equals(email));
 
         return ConvertToDto(user!);
+    }
+
+    public async Task<CustomerDto[]> GetAllCustomers()
+    {
+        var users = await _customerDbContext.CustomerModel.ToListAsync();
+
+        return users.Select(ConvertToDto).ToArray();
     }
 
     public async Task UpdateCustomer(Guid id, CustomerDto dto)
@@ -60,7 +60,7 @@ public class CustomerRepository
         user.StreetAddress = dto.StreetAddress;
         user.City = dto.City;
         user.ZipCode = dto.ZipCode;
-        
+
         await _customerDbContext.SaveChangesAsync();
     }
 
