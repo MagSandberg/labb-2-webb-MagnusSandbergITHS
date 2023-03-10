@@ -20,9 +20,8 @@ public static class WebApplicationOrderEndpointExtensions
         app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>
         {
             //TODO Bryt ut till en metod som kollar guid eller skapa en helper-class med alla checkar
-            ObjectId objectId;
 
-            if (ObjectId.TryParse(id, out objectId))
+            if (ObjectId.TryParse(id, out var objectId))
             {
                 var result = await orderService.UpdateOrder(objectId.ToString(), dto);
                 return result == null ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
@@ -33,9 +32,7 @@ public static class WebApplicationOrderEndpointExtensions
 
         app.MapGet("/getOrder", async (OrderService orderService, string id) =>
         {
-            ObjectId objectId;
-
-            if (ObjectId.TryParse(id, out objectId))
+            if (ObjectId.TryParse(id, out var objectId))
             {
                 var result = await orderService.GetOrder(objectId.ToString());
                 return result == null ? Results.NotFound("Order ID doesn't exist") : Results.Ok(result);
@@ -49,9 +46,7 @@ public static class WebApplicationOrderEndpointExtensions
 
         app.MapDelete("/removeOrder", async (OrderService orderService, string id) =>
         {
-            ObjectId objectId;
-
-            if (ObjectId.TryParse(id, out objectId))
+            if (ObjectId.TryParse(id, out var objectId))
             {
                 var result = await orderService.RemoveOrder(objectId.ToString());
                 return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order removed");

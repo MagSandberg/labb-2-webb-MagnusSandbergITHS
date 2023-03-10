@@ -18,9 +18,8 @@ public static class WebApplicationCustomerEndpointExtensions
         app.MapGet("/getCustomer", async (CustomerService customerService, string id) =>
         {
             //TODO Bryt ut till en metod som kollar guid eller skapa en helper-class med alla checkar
-            Guid guid;
 
-            if (Guid.TryParse(id, out guid))
+            if (Guid.TryParse(id, out var guid))
             {
                 var result = await customerService.GetCustomer(guid);
                 return result == null ? Results.NotFound("ID doesn't exist.") : Results.Ok(result);
@@ -43,9 +42,7 @@ public static class WebApplicationCustomerEndpointExtensions
 
         app.MapPatch("/updateCustomer", async (CustomerService customerService, string id, CustomerDto dto) =>
         {
-            Guid guid;
-
-            if (Guid.TryParse(id, out guid))
+            if (Guid.TryParse(id, out var guid))
             {
                 var result = await customerService.UpdateCustomer(guid, dto);
                 return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Update complete");
@@ -56,9 +53,7 @@ public static class WebApplicationCustomerEndpointExtensions
 
         app.MapDelete("/removeCustomer", async (CustomerService customerService, string id) =>
         {
-            Guid guid;
-
-            if (Guid.TryParse(id, out guid))
+            if (Guid.TryParse(id, out var guid))
             {
                 var result = await customerService.RemoveCustomer(guid);
                 return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Customer removed");
