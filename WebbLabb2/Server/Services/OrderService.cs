@@ -12,14 +12,14 @@ public class OrderService
         _orderRepository = orderRepository;
     }
 
-    public async Task CreateOrder(OrderDto dto)
+    public async Task<bool> CreateOrder(OrderDto dto)
     {
-        await _orderRepository.CreateOrder(dto);
+        return await _orderRepository.CreateOrder(dto);
     }
 
-    public async Task UpdateOrder(string id, OrderDto dto)
+    public async Task<bool> UpdateOrder(string id, OrderDto dto)
     {
-        await _orderRepository.UpdateOrder(id, dto);
+        return await _orderRepository.UpdateOrder(id, dto);
     }
 
     public async Task<OrderDto[]> GetOrder(string id)
@@ -32,8 +32,8 @@ public class OrderService
         return await _orderRepository.GetAllOrders();
     }
 
-    public async Task RemoveOrder(string id)
+    public async Task<bool> RemoveOrder(string id)
     {
-        await _orderRepository.RemoveOrder(id);
+        return await _orderRepository.RemoveOrder(id);
     }
 }

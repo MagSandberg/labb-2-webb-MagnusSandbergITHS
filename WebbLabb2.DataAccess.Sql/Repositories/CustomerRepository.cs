@@ -30,8 +30,7 @@ public class CustomerRepository
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
 
-        if (user == null)
-            return null;
+        if (user == null) return null;
 
         return ConvertToDto(user);
     }

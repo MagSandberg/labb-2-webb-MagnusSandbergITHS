@@ -1,6 +1,4 @@
-﻿using Duende.IdentityServer.Extensions;
-using Humanizer;
-using WebbLabb2.Server.Services;
+﻿using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Server.Extensions;

@@ -1,5 +1,7 @@
-﻿using WebbLabb2.Server.Services;
+﻿using MongoDB.Bson;
+using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WebbLabb2.Server.Extensions;
 
@@ -9,26 +11,53 @@ public static class WebApplicationOrderEndpointExtensions
     {
         app.MapPost("/createOrder", async (OrderService orderService, OrderDto dto) =>
         {
-            await orderService.CreateOrder(dto);
-            return Results.Text("Order successfully added");
+            var result = await orderService.CreateOrder(dto);
+
+            return result ? Results.Ok("Order successfully added") :
+                Results.BadRequest("Email is not registered.");
         });
 
         app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>
         {
-            await orderService.UpdateOrder(id, dto);
-            return Results.Text("Order updated");
+            //TODO Bryt ut till en metod som kollar guid eller skapa en helper-class med alla checkar
+            ObjectId objectId;
+
+            if (ObjectId.TryParse(id, out objectId))
+            {
+                var result = await orderService.UpdateOrder(objectId.ToString(), dto);
+                return result == null ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
+            }
+
+            return Results.BadRequest("Not a valid ID.");
         });
 
         app.MapGet("/getOrder", async (OrderService orderService, string id) =>
-            await orderService.GetOrder(id));
+        {
+            ObjectId objectId;
+
+            if (ObjectId.TryParse(id, out objectId))
+            {
+                var result = await orderService.GetOrder(objectId.ToString());
+                return result == null ? Results.NotFound("Order ID doesn't exist") : Results.Ok(result);
+            }
+
+            return Results.BadRequest("Not a valid ID.");
+        });
 
         app.MapGet("/getOrders", async (OrderService orderService) =>
             await orderService.GetOrders());
 
         app.MapDelete("/removeOrder", async (OrderService orderService, string id) =>
         {
-            await orderService.RemoveOrder(id);
-            return Results.Text("Order removed");
+            ObjectId objectId;
+
+            if (ObjectId.TryParse(id, out objectId))
+            {
+                var result = await orderService.RemoveOrder(objectId.ToString());
+                return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order removed");
+            }
+
+            return Results.BadRequest("Not a valid ID.");
         });
 
         return app;
