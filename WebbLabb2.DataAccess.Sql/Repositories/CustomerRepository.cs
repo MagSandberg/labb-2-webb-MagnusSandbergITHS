@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WebbLabb2.DataAccess.Sql.Contexts;
 using WebbLabb2.DataAccess.Sql.Models;
 using WebbLabb2.Shared.DTOs;
@@ -32,7 +33,7 @@ public class CustomerRepository
         if (user == null)
             return null;
 
-        return ConvertToDto(user!);
+        return ConvertToDto(user);
     }
 
     public async Task<CustomerDto> GetCustomerByEmail(string email)
@@ -40,7 +41,9 @@ public class CustomerRepository
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.Email.Equals(email));
 
-        return ConvertToDto(user!);
+        if (user == null) return null;
+
+        return ConvertToDto(user);
     }
 
     public async Task<CustomerDto[]> GetAllCustomers()
@@ -50,20 +53,24 @@ public class CustomerRepository
         return users.Select(ConvertToDto).ToArray();
     }
 
-    public async Task UpdateCustomer(Guid id, CustomerDto dto)
+    public async Task<bool> UpdateCustomer(Guid id, CustomerDto dto)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(c => c.CustomerId.Equals(id));
 
-        user!.FirstName = dto.FirstName;
-        user.LastName = dto.LastName;
-        user.Email = dto.Email;
-        user.CellNumber = dto.CellNumber;
-        user.StreetAddress = dto.StreetAddress;
-        user.City = dto.City;
+        if (user == null) return false;
+
+        user.FirstName = dto.FirstName.IsNullOrEmpty() ? user.FirstName : dto.FirstName;
+        user.LastName = dto.LastName.IsNullOrEmpty() ? user.LastName : dto.LastName;
+        user.Email = user.Email;
+        user.CellNumber = dto.CellNumber.IsNullOrEmpty() ? user.CellNumber : dto.CellNumber;
+        user.StreetAddress = dto.StreetAddress.IsNullOrEmpty() ? user.StreetAddress : dto.StreetAddress;
+        user.City = dto.City.IsNullOrEmpty() ? user.City : dto.City;
         user.ZipCode = dto.ZipCode;
 
         await _customerDbContext.SaveChangesAsync();
+
+        return true;
     }
 
     public async Task RemoveCustomer(Guid id)
