@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using WebbLabb2.DataAccess.Repositories;
 using WebbLabb2.DataAccess.Sql.Contexts;
 using WebbLabb2.DataAccess.Sql.Repositories;
-using WebbLabb2.DataAccess.Sql.Responses;
 using WebbLabb2.Server.Data;
 using WebbLabb2.Server.Extensions;
 using WebbLabb2.Server.Models;
@@ -18,7 +17,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<OrderRepository>();
 
-builder.Services.AddScoped<CustomerResponse>();
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<CustomerRepository>();
 

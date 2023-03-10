@@ -24,13 +24,15 @@ public class CustomerRepository
 
         return true;
     }
-
     public async Task<CustomerDto> GetCustomer(Guid id)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
-        
-        return ConvertToDto(user);
+
+        if (user == null)
+            return null;
+
+        return ConvertToDto(user!);
     }
 
     public async Task<CustomerDto> GetCustomerByEmail(string email)

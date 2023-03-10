@@ -11,13 +11,29 @@ public static class WebApplicationCustomerEndpointExtensions
         app.MapPost("/createCustomer", async (CustomerService customerService, CustomerDto dto) =>
         {
             var result = await customerService.AddCustomer(dto);
-            return result? Results.Ok("Customer successfully added") : Results.BadRequest("");
+
+            return result? Results.Ok("Customer successfully added") : 
+                Results.BadRequest("Email is already in use. Please choose a different address.");
         });
 
-        app.MapGet("/getCustomer", async (CustomerService customerService, Guid id) =>
+        app.MapGet("/getCustomer", async (CustomerService customerService, string id) =>
         {
-            var result = await customerService.GetCustomer(id);
-            return result;
+            //TODO Bryt ut till en metod som kollar guid eller en helper-class
+            Guid guid;
+
+            if (Guid.TryParse(id, out guid))
+            {
+                var result = await customerService.GetCustomer(guid);
+
+                if (result == null)
+                {
+                    return Results.BadRequest("ID doesn't exist.");
+                }
+
+                return Results.Ok(result);
+            }
+
+            return Results.BadRequest("Not a valid ID.");
         });
 
         app.MapGet("/getAllCustomers", async (CustomerService customerService) =>
