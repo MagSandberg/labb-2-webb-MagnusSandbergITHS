@@ -1,4 +1,5 @@
 ﻿using Duende.IdentityServer.Extensions;
+using Humanizer;
 using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
 
@@ -28,7 +29,7 @@ public static class WebApplicationCustomerEndpointExtensions
 
                 if (result == null)
                 {
-                    return Results.BadRequest("ID doesn't exist.");
+                    return Results.NotFound("ID doesn't exist.");
                 }
 
                 return Results.Ok(result);
@@ -65,7 +66,7 @@ public static class WebApplicationCustomerEndpointExtensions
 
                 if (result == false)
                 {
-                    return Results.BadRequest("ID doesn't exist.");
+                    return Results.NotFound("ID doesn't exist.");
                 }
 
                 return Results.Ok("Update complete");
@@ -74,10 +75,23 @@ public static class WebApplicationCustomerEndpointExtensions
             return Results.BadRequest("Not a valid ID.");
         });
 
-        app.MapDelete("/removeCustomer", async (CustomerService customerService, Guid id) =>
+        app.MapDelete("/removeCustomer", async (CustomerService customerService, string id) =>
         {
-            await customerService.RemoveCustomer(id);
-            return Results.Text("Customer removed");
+            Guid guid;
+
+            if (Guid.TryParse(id, out guid))
+            {
+                var result = await customerService.RemoveCustomer(guid);
+
+                if (result == false)
+                {
+                    return Results.NotFound("ID doesn't exist.");
+                }
+
+                return Results.Ok("Customer removed");
+            }
+
+            return Results.BadRequest("Not a valid ID.");
         });
 
         return app;

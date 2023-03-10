@@ -73,13 +73,17 @@ public class CustomerRepository
         return true;
     }
 
-    public async Task RemoveCustomer(Guid id)
+    public async Task<bool> RemoveCustomer(Guid id)
     {
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.CustomerId.Equals(id));
 
+        if (user == null) return false;
+
         _customerDbContext.CustomerModel.Remove(user!);
         await _customerDbContext.SaveChangesAsync();
+
+        return true;
     }
 
     private CustomerModel ConvertToModel(CustomerDto dto)

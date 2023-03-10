@@ -35,8 +35,8 @@ public class CustomerService
         return await _customerRepository.UpdateCustomer(id, dto);
     }
 
-    public async Task RemoveCustomer(Guid id)
+    public async Task<bool> RemoveCustomer(Guid id)
     {
-        await _customerRepository.RemoveCustomer(id);
+        return await _customerRepository.RemoveCustomer(id);
     }
 }
