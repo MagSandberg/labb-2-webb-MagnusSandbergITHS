@@ -13,7 +13,6 @@ public static class WebApplicationCustomerEndpointExtensions
         app.MapPost("/createCustomer", async (CustomerService customerService, CustomerDto dto) =>
         {
             var result = await customerService.AddCustomer(dto);
-
             return result? Results.Ok("Customer successfully added") : 
                 Results.BadRequest("Email is already in use. Please choose a different address.");
         });
@@ -26,13 +25,7 @@ public static class WebApplicationCustomerEndpointExtensions
             if (Guid.TryParse(id, out guid))
             {
                 var result = await customerService.GetCustomer(guid);
-
-                if (result == null)
-                {
-                    return Results.NotFound("ID doesn't exist.");
-                }
-
-                return Results.Ok(result);
+                return result == null ? Results.NotFound("ID doesn't exist.") : Results.Ok(result);
             }
 
             return Results.BadRequest("Not a valid ID.");
@@ -41,13 +34,7 @@ public static class WebApplicationCustomerEndpointExtensions
         app.MapGet("/getCustomerByEmail", async (CustomerService customerService, string email) =>
         {
             var result = await customerService.GetCustomerByEmail(email);
-
-            if (result == null)
-            {
-                return Results.NotFound("Email doesn't exist.");
-            }
-
-            return Results.Ok(result);
+            return result == null ? Results.NotFound("Email doesn't exist.") : Results.Ok(result);
         });
 
         app.MapGet("/getAllCustomers", async (CustomerService customerService) =>
@@ -63,13 +50,7 @@ public static class WebApplicationCustomerEndpointExtensions
             if (Guid.TryParse(id, out guid))
             {
                 var result = await customerService.UpdateCustomer(guid, dto);
-
-                if (result == false)
-                {
-                    return Results.NotFound("ID doesn't exist.");
-                }
-
-                return Results.Ok("Update complete");
+                return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Update complete");
             }
 
             return Results.BadRequest("Not a valid ID.");
@@ -82,13 +63,7 @@ public static class WebApplicationCustomerEndpointExtensions
             if (Guid.TryParse(id, out guid))
             {
                 var result = await customerService.RemoveCustomer(guid);
-
-                if (result == false)
-                {
-                    return Results.NotFound("ID doesn't exist.");
-                }
-
-                return Results.Ok("Customer removed");
+                return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Customer removed");
             }
 
             return Results.BadRequest("Not a valid ID.");
