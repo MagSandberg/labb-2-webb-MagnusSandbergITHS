@@ -19,15 +19,15 @@ public class CustomerDbContext : DbContext
             entity.HasAlternateKey(e => e.Email);
 
 
-            //Ta bort detta och lägg till via attribut i Models istället
-            entity.Property(e => e.CustomerId).ValueGeneratedOnAdd();
-            entity.Property(e => e.FirstName).HasMaxLength(100).IsRequired();
-            entity.Property(e => e.LastName).HasMaxLength(100).IsRequired();
-            entity.Property(e => e.Email).HasMaxLength(255).IsRequired();
-            entity.Property(e => e.CellNumber).HasMaxLength(20).IsRequired();
-            entity.Property(e => e.StreetAddress).HasMaxLength(100);
-            entity.Property(e => e.City).HasMaxLength(100);
-            entity.Property(e => e.ZipCode).HasMaxLength(5);
+            //TODO Ta bort detta och lägg till via attribut i Models istället
+            //entity.Property(e => e.CustomerId).ValueGeneratedOnAdd();
+            //entity.Property(e => e.FirstName).HasMaxLength(100).IsRequired();
+            //entity.Property(e => e.LastName).HasMaxLength(100).IsRequired();
+            //entity.Property(e => e.Email).HasMaxLength(255).IsRequired();
+            //entity.Property(e => e.CellNumber).HasMaxLength(20).IsRequired();
+            //entity.Property(e => e.StreetAddress).HasMaxLength(100);
+            //entity.Property(e => e.City).HasMaxLength(100);
+            //entity.Property(e => e.ZipCode).HasMaxLength(5);
         });
     }
 }
