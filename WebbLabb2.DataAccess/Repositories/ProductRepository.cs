@@ -39,7 +39,7 @@ public class ProductRepository
 
         var productIdExists = await _productModelCollection.FindAsync(o => o.ProductId.Equals(id)).Result.AnyAsync();
 
-        return !productIdExists ? null : ConvertToDto(product.FirstOrDefault());
+        return !productIdExists ? null! : ConvertToDto(product.FirstOrDefault());
     }
 
     public async Task<ProductDto> GetProductByName(string name)
@@ -49,7 +49,7 @@ public class ProductRepository
 
         var productIdExists = await _productModelCollection.FindAsync(o => o.ProductName.Equals(name)).Result.AnyAsync();
 
-        return !productIdExists ? null : ConvertToDto(product.FirstOrDefault());
+        return !productIdExists ? null! : ConvertToDto(product.FirstOrDefault());
     }
 
     public async Task<ProductDto[]> GetAllProducts()

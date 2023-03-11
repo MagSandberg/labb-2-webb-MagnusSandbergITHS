@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using WebbLabb2.DataAccess.Models;
 using WebbLabb2.DataAccess.Sql.Contexts;
@@ -55,7 +54,7 @@ public class OrderRepository
         
         var orderIdExists = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id)).Result.AnyAsync();
         
-        return !orderIdExists ? null : ConvertToDto(order.FirstOrDefault());
+        return !orderIdExists ? null! : ConvertToDto(order.FirstOrDefault());
     }
 
     public async Task<OrderDto[]> GetAllOrders()

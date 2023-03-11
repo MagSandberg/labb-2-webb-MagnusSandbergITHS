@@ -1,7 +1,6 @@
 ﻿using MongoDB.Bson;
 using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WebbLabb2.Server.Extensions;
 
@@ -24,7 +23,7 @@ public static class WebApplicationOrderEndpointExtensions
             if (ObjectId.TryParse(id, out var objectId))
             {
                 var result = await orderService.UpdateOrder(objectId.ToString(), dto);
-                return result == null ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
+                return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
             }
 
             return Results.BadRequest("Not a valid ID.");
