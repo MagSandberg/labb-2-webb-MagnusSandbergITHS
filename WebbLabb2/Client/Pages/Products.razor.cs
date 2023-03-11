@@ -13,7 +13,7 @@ public partial class Products : ComponentBase
     {
         AllProducts = new List<ProductDto>();
 
-        var response = await HttpClient
+        var response = await PublicClient.Client
             .GetFromJsonAsync<ProductDto[]>("getAllProducts");
 
         if (response != null)
@@ -26,6 +26,6 @@ public partial class Products : ComponentBase
 
     private async Task SaveProduct()
     {
-        await HttpClient.PostAsJsonAsync("createProduct", CurrentProduct);
+        await PublicClient.Client.PostAsJsonAsync("createProduct", CurrentProduct);
     }
 }

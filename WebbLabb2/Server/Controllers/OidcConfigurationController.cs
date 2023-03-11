@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Mvc;
-
+//TODO Kan man ändra denna controllern för att slippa MVC?
 namespace WebbLabb2.Server.Controllers
 {
     public class OidcConfigurationController : Controller

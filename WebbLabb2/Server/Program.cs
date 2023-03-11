@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebbLabb2.DataAccess.Repositories;
 using WebbLabb2.DataAccess.Sql.Contexts;
@@ -7,9 +6,7 @@ using WebbLabb2.DataAccess.Sql.Repositories;
 using WebbLabb2.Server.Data;
 using WebbLabb2.Server.Extensions;
 using WebbLabb2.Server.Models;
-using WebbLabb2.Server.Repositories;
 using WebbLabb2.Server.Services;
-using WebbLabb2.Shared.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 

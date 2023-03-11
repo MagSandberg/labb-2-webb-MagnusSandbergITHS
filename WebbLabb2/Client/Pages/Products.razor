@@ -1,6 +1,7 @@
 ﻿@page "/products"
+@using WebbLabb2.Client.PublicClient
 
-@inject HttpClient HttpClient
+@inject PublicClient PublicClient
 
 <PageTitle>Products</PageTitle>
 
@@ -14,7 +15,7 @@
         <th>Description</th>
         <th>Price</th>
         <th>Category</th>
-        <th>Status</th>
+        <th>In stock</th>
         <th></th>
     </tr>
     </thead>
