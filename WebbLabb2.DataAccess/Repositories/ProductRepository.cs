@@ -77,8 +77,6 @@ public class ProductRepository
 
         await _productModelCollection.UpdateOneAsync(filter, update);
         return true;
-
-        //await _productModelCollection.UpdateOneAsync(filter, update);
     }
 
     public async Task<bool> UpdateAvailability(string name, bool value)
