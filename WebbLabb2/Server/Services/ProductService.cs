@@ -22,28 +22,28 @@ public class ProductService
         return await _productRepository.GetAllProducts();
     }
 
-    public async Task<ProductDto[]> GetProductById(string id)
+    public async Task<ProductDto> GetProductById(string id)
     {
         return await _productRepository.GetProductById(id);
     }
 
-    public async Task<ProductDto[]> GetProductByName(string name)
+    public async Task<ProductDto> GetProductByName(string name)
     {
         return await _productRepository.GetProductByName(name);
     }
 
-    public async Task UpdateProduct(string id, ProductDto dto)
+    public async Task<bool> UpdateProduct(string id, ProductDto dto)
     {
-        await _productRepository.UpdateProduct(id, dto);
+        return await _productRepository.UpdateProduct(id, dto);
     }
 
-    public async Task RemoveProduct(string name)
+    public async Task<bool> RemoveProduct(string id)
     {
-        await _productRepository.RemoveProduct(name);
+        return await _productRepository.RemoveProduct(id);
     }
 
-    public async Task UpdateAvailability(string name, bool value)
+    public async Task<bool> UpdateAvailability(string name, bool value)
     {
-        await _productRepository.UpdateAvailability(name, value);
+        return await _productRepository.UpdateAvailability(name, value);
     }
 }

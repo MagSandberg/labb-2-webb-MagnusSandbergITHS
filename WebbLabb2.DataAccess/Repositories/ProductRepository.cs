@@ -29,16 +29,27 @@ public class ProductRepository
         }
 
         await _productModelCollection.InsertOneAsync(ConvertToModel(dto));
-
         return true;
     }
 
-    public async Task<ProductDto[]> GetProductById(string id)
+    public async Task<ProductDto> GetProductById(string id)
     {
         var product = await _productModelCollection
             .FindAsync(p => p.ProductId.Equals(id));
 
-        return product.ToList().Select(ConvertToDto).ToArray();
+        var productIdExists = await _productModelCollection.FindAsync(o => o.ProductId.Equals(id)).Result.AnyAsync();
+
+        return !productIdExists ? null : ConvertToDto(product.FirstOrDefault());
+    }
+
+    public async Task<ProductDto> GetProductByName(string name)
+    {
+        var product = await _productModelCollection
+            .FindAsync(p => p.ProductName.Equals(name));
+
+        var productIdExists = await _productModelCollection.FindAsync(o => o.ProductName.Equals(name)).Result.AnyAsync();
+
+        return !productIdExists ? null : ConvertToDto(product.FirstOrDefault());
     }
 
     public async Task<ProductDto[]> GetAllProducts()
@@ -48,15 +59,7 @@ public class ProductRepository
         return products.ToList().Select(ConvertToDto).ToArray();
     }
 
-    public async Task<ProductDto[]> GetProductByName(string name)
-    {
-        var product = await _productModelCollection
-            .FindAsync(p => p.ProductName.Equals(name));
-
-        return product.ToList().Select(ConvertToDto).ToArray();
-    }
-
-    public async Task UpdateProduct(string id, ProductDto dto)
+    public async Task<bool> UpdateProduct(string id, ProductDto dto)
     {
         var filter = Builders<ProductModel>.Filter.Eq("ProductId", id);
         var update = Builders<ProductModel>.Update
@@ -69,21 +72,35 @@ public class ProductRepository
             .Set("ProductStatus", $"{dto.ProductStatus}")
             .Set("ProductImage", $"{dto.ProductImage}");
 
+        var productIdExists = await _productModelCollection.Find(filter).AnyAsync();
+        if (!productIdExists) return false;
+
         await _productModelCollection.UpdateOneAsync(filter, update);
+        return true;
+
+        //await _productModelCollection.UpdateOneAsync(filter, update);
     }
 
-    public async Task UpdateAvailability(string name, bool value)
+    public async Task<bool> UpdateAvailability(string name, bool value)
     {
         var filter = Builders<ProductModel>.Filter.Eq("ProductName", name);
         var update = Builders<ProductModel>.Update
             .Set("ProductStatus", $"{value}");
 
+        var productNameExists = await _productModelCollection.Find(filter).AnyAsync();
+        if (!productNameExists) return false;
+
         await _productModelCollection.UpdateOneAsync(filter, update);
+        return true;
     }
 
-    public async Task RemoveProduct(string name)
+    public async Task<bool> RemoveProduct(string id)
     {
-        await _productModelCollection.DeleteOneAsync(p => p.ProductName.Equals(name));
+        var orderIdExists = await _productModelCollection.FindAsync(o => o.ProductId.Equals(id)).Result.AnyAsync();
+        if (orderIdExists == false) return false;
+
+        await _productModelCollection.DeleteOneAsync(p => p.ProductId.Equals(id));
+        return true;
     }
 
     private ProductModel ConvertToModel(ProductDto dto)

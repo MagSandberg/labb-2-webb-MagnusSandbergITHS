@@ -49,13 +49,13 @@ public class OrderRepository
         return true;
     }
 
-    public async Task<OrderDto[]> GetOrder(string id)
+    public async Task<OrderDto> GetOrder(string id)
     {
         var order = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id));
         
         var orderIdExists = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id)).Result.AnyAsync();
         
-        return !orderIdExists ? null : order.ToList().Select(ConvertToDto).ToArray();
+        return !orderIdExists ? null : ConvertToDto(order.FirstOrDefault());
     }
 
     public async Task<OrderDto[]> GetAllOrders()

@@ -19,7 +19,7 @@ public static class WebApplicationOrderEndpointExtensions
 
         app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>
         {
-            //TODO Bryt ut till en metod som kollar guid eller skapa en helper-class med alla checkar
+            //TODO Bryt ut till en metod som kollar ObjectId eller skapa en helper-class med alla checkar
 
             if (ObjectId.TryParse(id, out var objectId))
             {
