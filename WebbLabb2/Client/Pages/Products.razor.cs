@@ -13,8 +13,7 @@ public partial class Products : ComponentBase
     {
         AllProducts = new List<ProductDto>();
 
-        var response = await PublicClient.Client
-            .GetFromJsonAsync<ProductDto[]>("getAllProducts");
+        var response = await PublicClient.Client.GetFromJsonAsync<ProductDto[]>("getAllProducts");
 
         if (response != null)
         {
