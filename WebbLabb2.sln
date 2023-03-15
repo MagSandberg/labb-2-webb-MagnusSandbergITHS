@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebbLabb2.Client", "WebbLab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebbLabb2.Shared", "WebbLabb2\Shared\WebbLabb2.Shared.csproj", "{A3F93FA0-21FD-430B-B778-E6A1C08EDDBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebbLabb2.DataAccess.Sql", "WebbLabb2.DataAccess.Sql\WebbLabb2.DataAccess.Sql.csproj", "{03F0C2FE-8C11-4D2B-8B01-3B41E29F042C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebbLabb2.DataAccess.Sql", "WebbLabb2.DataAccess.Sql\WebbLabb2.DataAccess.Sql.csproj", "{03F0C2FE-8C11-4D2B-8B01-3B41E29F042C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebbLabb2.DataAccess", "WebbLabb2.DataAccess\WebbLabb2.DataAccess.csproj", "{1FCF3BB5-82A5-4ABB-85EA-2D154F569E9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebbLabb2.DataAccess", "WebbLabb2.DataAccess\WebbLabb2.DataAccess.csproj", "{1FCF3BB5-82A5-4ABB-85EA-2D154F569E9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

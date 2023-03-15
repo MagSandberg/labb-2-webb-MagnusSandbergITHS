@@ -1,4 +1,6 @@
-﻿namespace WebbLabb2.Shared.DTOs;
+﻿using System.Runtime.InteropServices;
+
+namespace WebbLabb2.Shared.DTOs;
 
 public class CustomerDto
 {

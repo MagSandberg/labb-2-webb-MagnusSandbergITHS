@@ -1,0 +1,46 @@
+﻿@page "/admin"
+@using WebbLabb2.Client.PublicClient
+@using System.Runtime.InteropServices
+@using System.ComponentModel
+@inject PublicClient PublicClient
+
+<PageTitle>Admin</PageTitle>
+
+<h3>Admin</h3>
+
+<h4 style="margin-top: 50px;">All customers</h4>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="color-store-primary">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody class="align-middle">
+        @foreach (var item in AllCustomers)
+        {
+            <tr class="tr-hover">
+                <td>@item.FirstName @item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.CellNumber</td>
+                <td>
+                    @item.StreetAddress<br />
+                    @item.City, @item.ZipCode
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<h4 style="margin-top: 50px;">Search customer by Email</h4>
+<EditForm Model="Customer" OnSubmit="GetCustomerByEmail">
+    <div class="form-control">
+        <label>Enter customer ID:</label>
+        <InputText @bind-Value="Customer.Email"></InputText>
+    </div>
+    <button class="btn btn-primary mt-2">Search</button>
+</EditForm>

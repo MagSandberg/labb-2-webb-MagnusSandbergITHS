@@ -8,32 +8,41 @@
 <h3>Products</h3>
 
 <div class="table-responsive">
-    <table class="table table-striped p-2">
-        <thead>
+    <table class="table table-striped">
+        <thead class="color-store-primary">
             <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Description</th>
+                <th>Item</th>
                 <th>Price</th>
                 <th>Category</th>
                 <th>In stock</th>
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="align-middle">
             @foreach (var item in AllProducts)
             {
-                <tr>
-                    <td min-width="100px"><img width="100px" alt="" class="img-thumbnail" src="@item.ProductImage" /></td>
-                    <td>@item.ProductName</td>
-                    <td>@item.ProductDescription</td>
-                    <td>@item.ProductPrice</td>
+                <tr class="tr-hover">
+                    <td>
+                        <div class="modal-dialog modal-dialog-centered img-fluid-container">
+                            <img alt="" class="img-fluid-store" src="@item.ProductImage"/>
+                        </div>
+                    </td>
+                    <td>@item.ProductName<br /><span class="text-secondary">@item.ProductDescription</span></td>
+                    <td>$@item.ProductPrice</td>
                     <td>@item.ProductCategory</td>
                     <td>
-                        <InputCheckbox class="form-check-input" style="opacity: 1;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                        @if (item.ProductStatus)
+                        {
+                            <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus"/>
+                        }
+                        else
+                        {
+                            <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                        }
                     </td>
                     <td>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-store-primary"><span class="oi oi-cart"></span></button>
                     </td>
                 </tr>
             }
@@ -72,14 +81,3 @@
     </div>
     <button class="btn btn-primary mt-2">Save</button>
 </EditForm>
-
-<ul class="container list-unstyled">
-    <Virtualize Items="AllProducts.ToArray()" Context="product">
-        <li class="p-2 mb-1">
-            <span>Product id:</span> @product.ProductId.ToString()
-        </li>
-        <li class="p-2 mb-1">
-            <span>Product name:</span> @product.ProductName
-        </li>
-    </Virtualize>
-</ul>

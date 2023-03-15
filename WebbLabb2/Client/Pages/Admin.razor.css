@@ -1,14 +1,4 @@
-﻿.color-store-primary {
-    color: #FFF;
-    background-color: indianred;
-}
-
-.btn-store-primary {
-    color: #FFF;
-    background-color: indianred;
-}
-
-.btn-store-primary:hover {
+﻿.btn-store-primary:hover {
     color: #FFF;
     background-color: #fa8072;
 }
