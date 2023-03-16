@@ -1,10 +1,10 @@
-﻿@page "/admin-products"
+﻿@page "/adminproductsearch"
 
 @using WebbLabb2.Client.PublicClient
 
 @inject PublicClient PublicClient
 
-<PageTitle>Admin Products</PageTitle>
+<PageTitle>Search Product By Name</PageTitle>
 
 <h3>Admin products</h3>
 
@@ -55,7 +55,7 @@
         </table>
     </div>
 </EditForm>
-
+<h4 class="mt-5">Edit current product</h4>
 <EditForm Model="CurrentProduct" OnSubmit="UpdateProduct">
     <div class="form-control">
         <label class="fw-bold">Product number:</label>

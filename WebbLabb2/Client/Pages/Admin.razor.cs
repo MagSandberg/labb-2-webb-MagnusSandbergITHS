@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.Http.Json;
-using System.Reflection;
+﻿using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
 using WebbLabb2.Shared.DTOs;
 
@@ -11,7 +9,7 @@ public partial class Admin : ComponentBase
     public List<CustomerDto> AllCustomers { get; set; }
     public CustomerDto Customer { get; set; } = new();
     public string Email { get; set; } = string.Empty;
-
+    //TODO När man går in på admin all products länkas man vidare med currentproduct till edit product
     protected override async Task OnInitializedAsync()
     {
         AllCustomers = new List<CustomerDto>();

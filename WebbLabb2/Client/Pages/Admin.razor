@@ -3,14 +3,73 @@
 @using WebbLabb2.Client.PublicClient
 
 @inject PublicClient PublicClient
-<div class="nav-item px-3">
-    <NavLink class="nav-link" href="admin-products">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Admin Products
-    </NavLink>
-</div>
+
 <PageTitle>Admin</PageTitle>
 
-<h3>Admin</h3>
+<h4>Product options</h4>
+
+<div class="mb-3">
+    <NavLink class="nav-link" href="adminproductadd">
+        <button class="btn btn-outline-danger">
+            <span class="oi oi-plus" aria-hidden="true"></span> Add Product
+        </button>
+    </NavLink>
+    <NavLink class="nav-link" href="adminproductsearch">
+        <button class="btn btn-outline-danger">
+        <span class="oi oi-magnifying-glass" aria-hidden="true"></span> Search / Edit Product By Name
+    </button>
+    </NavLink>
+    <NavLink class="nav-link" href="adminproductedit">
+        <button class="btn btn-outline-danger">
+            <span class="oi oi-wrench" aria-hidden="true"></span> Edit / Remove Product
+        </button>
+    </NavLink>
+    <NavLink class="nav-link" href="adminproductsall">
+    <button class="btn btn-outline-danger">
+        <span class="oi oi-list" aria-hidden="true"></span> Products
+    </button>
+    </NavLink>
+</div>
+
+<h4>Customer options</h4>
+
+<div class="mb-3">
+    <NavLink class="nav-link" href="#">
+        <button class="btn btn-outline-danger">
+            <span class="oi oi-magnifying-glass" aria-hidden="true"></span> Search / Edit Customer By Email
+        </button>
+    </NavLink>
+    <NavLink class="nav-link" href="#">
+        <button class="btn btn-outline-danger">
+            <span class="oi oi-wrench" aria-hidden="true"></span> Edit / Remove Customer
+        </button>
+    </NavLink>
+    <NavLink class="nav-link" href="#">
+    <button class="btn btn-outline-danger">
+        <span class="oi oi-list" aria-hidden="true"></span> Customers
+    </button>
+    </NavLink>
+</div>
+
+<h4>Order options</h4>
+
+<div class="mb-3">
+    <NavLink class="nav-link" href="#">
+    <button class="btn btn-outline-danger">
+        <span class="oi oi-magnifying-glass" aria-hidden="true"></span> Search / Edit Order By Customer Email
+    </button>
+    </NavLink>
+    <NavLink class="nav-link" href="#">
+    <button class="btn btn-outline-danger">
+        <span class="oi oi-wrench" aria-hidden="true"></span> Edit / Remove Order
+    </button>
+    </NavLink>
+    <NavLink class="nav-link" href="#">
+    <button class="btn btn-outline-danger">
+        <span class="oi oi-list" aria-hidden="true"></span> Orders
+    </button>
+    </NavLink>
+</div>
 
 <h4 style="margin-top: 50px;">All customers</h4>
 <div class="table-responsive">
@@ -63,7 +122,11 @@
                     <td>@Customer.CellNumber</td>
                     <td>
                         @Customer.StreetAddress<br />
-                        @if (@Customer.ZipCode == 0){}else{@Customer.ZipCode} @Customer.City
+                        @if (@Customer.ZipCode == 0) { }
+                        else
+                        {
+                            @Customer.ZipCode
+                        } @Customer.City
                     </td>
                 </tr>
             </tbody>

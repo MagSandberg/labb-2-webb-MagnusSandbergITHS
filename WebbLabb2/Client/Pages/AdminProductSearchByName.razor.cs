@@ -4,7 +4,7 @@ using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Client.Pages;
 
-public partial class AdminProducts : ComponentBase
+public partial class AdminProductSearchByName : ComponentBase
 {
     public ProductDto CurrentProduct { get; set; } = new();
     public ProductDto SaveProductDto { get; set; } = new();
