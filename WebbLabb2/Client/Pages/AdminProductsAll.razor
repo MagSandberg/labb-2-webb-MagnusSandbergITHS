@@ -6,6 +6,47 @@
 
 <h3>AdminAllProducts</h3>
 
-@code {
-
-}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="color-store-primary">
+        <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>In stock</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody class="align-middle">
+        @foreach (var item in AllProducts)
+        {
+            <tr class="tr-hover">
+                <td>
+                    <div class="modal-dialog modal-dialog-centered img-fluid-container">
+                        <img alt="" class="img-fluid-store" src="@item.ProductImage"/>
+                    </div>
+                </td>
+                <td>@item.ProductName<br /><span class="text-secondary">@item.ProductDescription</span></td>
+                <td>$@item.ProductPrice</td>
+                <td>@item.ProductCategory</td>
+                <td>
+                    @if (item.ProductStatus)
+                    {
+                        <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus"/>
+                    }
+                    else
+                    {
+                        <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                    }
+                </td>
+                <td>
+                    <NavLink class="nav-link" href="adminproductedit">
+                        <button class="btn btn-store-primary"><span class="oi oi-wrench"></span>Edit</button>
+                    </NavLink>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

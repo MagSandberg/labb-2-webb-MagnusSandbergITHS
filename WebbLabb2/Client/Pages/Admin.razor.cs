@@ -7,8 +7,6 @@ namespace WebbLabb2.Client.Pages;
 public partial class Admin : ComponentBase
 {
     public List<CustomerDto> AllCustomers { get; set; }
-    public CustomerDto Customer { get; set; } = new();
-    public string Email { get; set; } = string.Empty;
     //TODO När man går in på admin all products länkas man vidare med currentproduct till edit product
     protected override async Task OnInitializedAsync()
     {
@@ -22,20 +20,5 @@ public partial class Admin : ComponentBase
         }
 
         await base.OnInitializedAsync();
-    }
-
-    public async Task GetCustomerByEmail()
-    {
-        var response = new CustomerDto();
-
-        if (string.IsNullOrEmpty(Email))
-        {
-            Email = "Please enter a valid email";
-        }
-        else
-        {
-            response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{Email}");
-            Customer = response;
-        }
     }
 }
