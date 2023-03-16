@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net;
+using System.Net.Http.Json;
+using System.Reflection;
 using Microsoft.AspNetCore.Components;
 using WebbLabb2.Shared.DTOs;
 
@@ -8,6 +10,7 @@ public partial class Admin : ComponentBase
 {
     public List<CustomerDto> AllCustomers { get; set; }
     public CustomerDto Customer { get; set; } = new();
+    public string Email { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -23,8 +26,18 @@ public partial class Admin : ComponentBase
         await base.OnInitializedAsync();
     }
 
-    private async Task GetCustomerByEmail()
+    public async Task GetCustomerByEmail()
     {
-        await PublicClient.Client.PostAsJsonAsync("getCustomerByEmail", Customer.Email);
+        var response = new CustomerDto();
+
+        if (string.IsNullOrEmpty(Email))
+        {
+            Email = "Please enter a valid email";
+        }
+        else
+        {
+            response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{Email}");
+            Customer = response;
+        }
     }
 }

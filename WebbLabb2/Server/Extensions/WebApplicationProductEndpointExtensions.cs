@@ -27,7 +27,7 @@ public static class WebApplicationProductEndpointExtensions
             return Results.BadRequest("Not a valid ID.");
         });
 
-        app.MapGet("/getProductByName", async (ProductService productService, string name) =>
+        app.MapGet("/getProductByName/{name}", async (ProductService productService, string name) =>
         {
                 var result = await productService.GetProductByName(name);
                 return result == null ? Results.NotFound("Product name doesn't exist.") : Results.Ok(result);

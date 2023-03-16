@@ -6,7 +6,6 @@ namespace WebbLabb2.Client.Pages;
 
 public partial class Products : ComponentBase
 {
-    public ProductDto CurrentProduct { get; set; } = new();
     public List<ProductDto> AllProducts { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -21,10 +20,5 @@ public partial class Products : ComponentBase
         }
 
         await base.OnInitializedAsync();
-    }
-
-    private async Task SaveProduct()
-    {
-        await PublicClient.Client.PostAsJsonAsync("createProduct", CurrentProduct);
     }
 }

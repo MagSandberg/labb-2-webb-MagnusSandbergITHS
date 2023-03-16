@@ -1,9 +1,13 @@
 ﻿@page "/admin"
-@using WebbLabb2.Client.PublicClient
-@using System.Runtime.InteropServices
-@using System.ComponentModel
-@inject PublicClient PublicClient
 
+@using WebbLabb2.Client.PublicClient
+
+@inject PublicClient PublicClient
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="admin-products">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Admin Products
+    </NavLink>
+</div>
 <PageTitle>Admin</PageTitle>
 
 <h3>Admin</h3>
@@ -12,35 +16,57 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead class="color-store-primary">
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-        </tr>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
         </thead>
         <tbody class="align-middle">
-        @foreach (var item in AllCustomers)
-        {
-            <tr class="tr-hover">
-                <td>@item.FirstName @item.LastName</td>
-                <td>@item.Email</td>
-                <td>@item.CellNumber</td>
-                <td>
-                    @item.StreetAddress<br />
-                    @item.City, @item.ZipCode
-                </td>
-            </tr>
-        }
+            @foreach (var item in AllCustomers)
+            {
+                <tr class="tr-hover">
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.CellNumber</td>
+                    <td>
+                        @item.StreetAddress<br />
+                        @item.ZipCode, @item.City
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
 
 <h4 style="margin-top: 50px;">Search customer by Email</h4>
-<EditForm Model="Customer" OnSubmit="GetCustomerByEmail">
+<EditForm Model="Customer" OnValidSubmit="GetCustomerByEmail">
     <div class="form-control">
-        <label>Enter customer ID:</label>
-        <InputText @bind-Value="Customer.Email"></InputText>
+        <InputText @bind-Value="Email"></InputText>
+        <button class="btn btn-primary">Search</button>
     </div>
-    <button class="btn btn-primary mt-2">Search</button>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="color-store-primary">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                <tr class="tr-hover">
+                    <td>@Customer.FirstName @Customer.LastName</td>
+                    <td>@Customer.Email</td>
+                    <td>@Customer.CellNumber</td>
+                    <td>
+                        @Customer.StreetAddress<br />
+                        @if (@Customer.ZipCode == 0){}else{@Customer.ZipCode} @Customer.City
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </EditForm>

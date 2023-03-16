@@ -28,7 +28,7 @@ public static class WebApplicationCustomerEndpointExtensions
             return Results.BadRequest("Not a valid ID.");
         });
 
-        app.MapGet("/getCustomerByEmail", async (CustomerService customerService, string email) =>
+        app.MapGet("/getCustomerByEmail/{email}", async (CustomerService customerService, string email) =>
         {
             var result = await customerService.GetCustomerByEmail(email);
             return result == null ? Results.NotFound("Email doesn't exist.") : Results.Ok(result);

@@ -40,9 +40,19 @@ public class CustomerRepository
         var user = await _customerDbContext.CustomerModel
             .FirstOrDefaultAsync(u => u.Email.Equals(email));
 
-        if (user == null) return null!;
-
+        if (user != null) return ConvertToDto(user);
+        user = new CustomerModel
+        {
+            FirstName = string.Empty,
+            LastName = string.Empty,
+            Email = "Not found",
+            CellNumber = string.Empty,
+            StreetAddress = string.Empty,
+            City = string.Empty,
+            ZipCode = 0
+        };
         return ConvertToDto(user);
+
     }
 
     public async Task<CustomerDto[]> GetAllCustomers()

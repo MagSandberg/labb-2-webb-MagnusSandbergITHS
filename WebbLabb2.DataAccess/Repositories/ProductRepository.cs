@@ -1,5 +1,7 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Core.Operations;
 using WebbLabb2.DataAccess.Models;
+using WebbLabb2.DataAccess.Sql.Models;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.DataAccess.Repositories;
@@ -47,9 +49,13 @@ public class ProductRepository
         var product = await _productModelCollection
             .FindAsync(p => p.ProductName.Equals(name));
 
-        var productIdExists = await _productModelCollection.FindAsync(o => o.ProductName.Equals(name)).Result.AnyAsync();
+        var productNameExists = await _productModelCollection.FindAsync(o => o.ProductName.Equals(name)).Result.AnyAsync();
 
-        return !productIdExists ? null! : ConvertToDto(product.FirstOrDefault());
+        var emptyProduct = new ProductDto();
+
+        emptyProduct.ProductName = "Not found";
+
+        return !productNameExists ? emptyProduct : ConvertToDto(product.FirstOrDefault());
     }
 
     public async Task<ProductDto[]> GetAllProducts()

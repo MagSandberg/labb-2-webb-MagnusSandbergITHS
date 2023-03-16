@@ -1,0 +1,89 @@
+﻿@page "/admin-products"
+
+@using WebbLabb2.Client.PublicClient
+
+@inject PublicClient PublicClient
+
+<PageTitle>Admin Products</PageTitle>
+
+<h3>Admin products</h3>
+
+<h4 class="mt-5">Search product by Name</h4>
+<EditForm Model="CurrentProduct" OnValidSubmit="GetProductByName">
+    <div class="form-control">
+        <InputText @bind-Value="ProductNameSearch"></InputText>
+        <button class="btn btn-primary">Search</button>
+    </div>
+    <h5 style="margin-top: 20px;">Preview</h5>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="color-store-primary">
+                <tr>
+                    <th></th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>In stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                <tr class="tr-hover">
+                    <td>
+                        <div class="modal-dialog modal-dialog-centered img-fluid-container">
+                            <img alt="" class="img-fluid-store" src="@CurrentProduct.ProductImage" />
+                        </div>
+                    </td>
+                    <td>@CurrentProduct.ProductName<br /><span class="text-secondary">@CurrentProduct.ProductDescription</span></td>
+                    <td>$@CurrentProduct.ProductPrice</td>
+                    <td>@CurrentProduct.ProductCategory</td>
+                    <td>
+                        @if (CurrentProduct.ProductStatus)
+                        {
+                            <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@CurrentProduct.ProductStatus" />
+                        }
+                        else
+                        {
+                            <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@CurrentProduct.ProductStatus" />
+                        }
+                    </td>
+                    <td>
+                        <button class="btn btn-store-primary"><span class="oi oi-cart"></span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</EditForm>
+
+<EditForm Model="CurrentProduct" OnSubmit="UpdateProduct">
+    <div class="form-control">
+        <label class="fw-bold">Product number:</label>
+        <InputNumber class="w-100" @bind-Value="CurrentProduct.ProductNumber"></InputNumber>
+    </div>
+    <div class="form-control mt-2">
+        <label class="fw-bold">Product name:</label>
+        <InputText class="w-100" @bind-Value="CurrentProduct.ProductName"></InputText>
+    </div>
+    <div class="form-control mt-2">
+        <label class="fw-bold">Product description:</label>
+        <InputTextArea class="w-100" @bind-Value="CurrentProduct.ProductDescription"></InputTextArea>
+    </div>
+    <div class="form-control mt-2">
+        <label class="fw-bold">Product price:</label>
+        <InputNumber class="w-100" @bind-Value="CurrentProduct.ProductPrice"></InputNumber>
+    </div>
+    <div class="form-control mt-2">
+        <label class="fw-bold">Product category:</label>
+        <InputText class="w-100" @bind-Value="CurrentProduct.ProductCategory"></InputText>
+    </div>
+    <div class="form-control mt-2">
+        <label class="fw-bold">Product available:</label>
+        <InputCheckbox class="w-100" @bind-Value="CurrentProduct.ProductStatus"></InputCheckbox>
+    </div>
+    <div class="form-control mt-2">
+        <label class="fw-bold">Product image link:</label>
+        <InputText class="w-100" @bind-Value="CurrentProduct.ProductImage"></InputText>
+    </div>
+    <button class="btn btn-primary mt-2 mb-5">Save</button>
+</EditForm>
