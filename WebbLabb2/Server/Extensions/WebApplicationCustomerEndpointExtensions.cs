@@ -40,15 +40,10 @@ public static class WebApplicationCustomerEndpointExtensions
             return Results.Ok(result);
         });
 
-        app.MapPatch("/updateCustomer", async (CustomerService customerService, string id, CustomerDto dto) =>
+        app.MapPatch("/updateCustomer", async (CustomerService customerService, Guid id, CustomerDto dto) =>
         {
-            if (Guid.TryParse(id, out var guid))
-            {
-                var result = await customerService.UpdateCustomer(guid, dto);
-                return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Update complete");
-            }
-
-            return Results.BadRequest("Not a valid ID.");
+            var result = await customerService.UpdateCustomer(id, dto);
+            return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Update complete");
         });
 
         app.MapDelete("/removeCustomer/{id}", async (CustomerService customerService, Guid id) =>

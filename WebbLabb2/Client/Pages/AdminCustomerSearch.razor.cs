@@ -9,21 +9,24 @@ public partial class AdminCustomerSearch : ComponentBase
 {
     public CustomerDto Customer { get; set; } = new();
     public string Email { get; set; } = string.Empty;
+    public string SelectedCustomerEmail { get; set; } = string.Empty;
     public Guid SelectedCustomerId { get; set; } = Guid.Empty;
     private bool ShowDialog { get; set; }
 
-    public async Task GetCustomerByEmail()
+    private async Task GetCustomerByEmail()
     {
         var response = new CustomerDto();
 
         if (string.IsNullOrEmpty(Email))
         {
             Email = "Please enter a valid email";
+            Customer = new CustomerDto();
         }
         else
         {
             response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{Email}");
-            Customer = response;
+            Customer = response!;
+            SelectedCustomerEmail = response!.Email;
         }
     }
 
@@ -38,7 +41,7 @@ public partial class AdminCustomerSearch : ComponentBase
         ShowDialog = false;
     }
 
-    private async Task Close(bool confirmed)
+    private void Close(bool confirmed)
     {
         ShowDialog = false;
     }

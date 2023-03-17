@@ -1,5 +1,50 @@
-﻿<h3>AdminCustomerEdit</h3>
+﻿@page "/admincustomeredit"
+
+@using WebbLabb2.Client.PublicClient
+@inject PublicClient PublicClient
+
+<h4 class="mt-5">Edit customer</h4>
+
+@if (SelectedCustomer != string.Empty)
+{
+    <EditForm Model="CurrentSelectedCustomer" OnSubmit="UpdateCustomer">
+        <div class="form-control">
+            <label class="fw-bold">First Name:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.FirstName"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Last Name:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.LastName"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Email:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.Email" disabled="disabled"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Cell Number:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.CellNumber"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Street Address:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.StreetAddress"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">City:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.City"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Zip Code:</label>
+            <InputNumber class="w-100" @bind-Value="CurrentSelectedCustomer.ZipCode"></InputNumber>
+        </div>
+        <button class="btn btn-primary mt-2 mb-5">Save</button>
+    </EditForm>
+}
 
 @code {
-
+    [Parameter] public string SelectedCustomer { get; set; }
+    //TODO Lista ut hur CurrentCustomer ska uppdateras
+    //private async Task NewCustomer()
+    //{
+    //    @GetCustomerByEmail(SelectedCustomer);
+    //}
 }
