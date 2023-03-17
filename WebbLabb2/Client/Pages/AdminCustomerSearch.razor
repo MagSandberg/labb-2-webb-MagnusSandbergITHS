@@ -1,10 +1,11 @@
 ﻿@page "/admincustomersearch"
 
 @using WebbLabb2.Client.PublicClient
-
 @inject PublicClient PublicClient
 
-<h3>AdminCustomerSearch</h3>
+<link href="css/CommonStyles.css" rel="stylesheet" />
+
+<h3>Search Customer</h3>
 
 <h4 style="margin-top: 50px;">Search customer by Email</h4>
 <EditForm Model="Customer" OnValidSubmit="GetCustomerByEmail">
@@ -15,28 +16,41 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="color-store-primary">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-            </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
+                </tr>
             </thead>
             <tbody class="align-middle">
-            <tr class="tr-hover">
-                <td>@Customer.FirstName @Customer.LastName</td>
-                <td>@Customer.Email</td>
-                <td>@Customer.CellNumber</td>
-                <td>
-                    @Customer.StreetAddress<br />
-                    @if (@Customer.ZipCode == 0) { }
-                    else
-                    {
-                        @Customer.ZipCode
-                    } @Customer.City
-                </td>
-            </tr>
+                <tr class="tr-hover">
+                    <td>@Customer.FirstName @Customer.LastName</td>
+                    <td>@Customer.Email</td>
+                    <td>@Customer.CellNumber</td>
+                    <td>
+                        @Customer.StreetAddress<br />
+                        @if (@Customer.ZipCode == 0) { }
+                        else
+                        {
+                            @Customer.ZipCode
+                        } @Customer.City
+                    </td>
+                    <td>
+                        <button class="btn btn-store-primary"><span class="oi oi-wrench ms-1"></span></button>
+                    </td>
+                    <td>
+                        <button class="btn btn-close" @onclick="() => ShowDialog = true"></button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </EditForm>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+}

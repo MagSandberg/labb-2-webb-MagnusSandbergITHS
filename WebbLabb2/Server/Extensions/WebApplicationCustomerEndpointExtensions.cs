@@ -11,7 +11,7 @@ public static class WebApplicationCustomerEndpointExtensions
         app.MapPost("/createCustomer", async (CustomerService customerService, CustomerDto dto) =>
         {
             var result = await customerService.AddCustomer(dto);
-            return result? Results.Ok("Customer successfully added") : 
+            return result ? Results.Ok("Customer successfully added") :
                 Results.BadRequest("Email is already in use. Please choose a different address.");
         });
 
@@ -51,15 +51,10 @@ public static class WebApplicationCustomerEndpointExtensions
             return Results.BadRequest("Not a valid ID.");
         });
 
-        app.MapDelete("/removeCustomer", async (CustomerService customerService, string id) =>
+        app.MapDelete("/removeCustomer/{id}", async (CustomerService customerService, Guid id) =>
         {
-            if (Guid.TryParse(id, out var guid))
-            {
-                var result = await customerService.RemoveCustomer(guid);
-                return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Customer removed");
-            }
-
-            return Results.BadRequest("Not a valid ID.");
+            var result = await customerService.RemoveCustomer(id);
+            return result == false ? Results.NotFound("ID doesn't exist.") : Results.Ok("Customer removed");
         });
 
         return app;

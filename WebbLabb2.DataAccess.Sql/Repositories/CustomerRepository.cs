@@ -99,6 +99,7 @@ public class CustomerRepository
     {
         return new CustomerModel()
         {
+            CustomerId = dto.Id,
             FirstName = dto.FirstName,
             LastName = dto.LastName,
             Email = dto.Email,
@@ -113,6 +114,7 @@ public class CustomerRepository
     {
         return new CustomerDto()
         {
+            Id = dataModel.CustomerId,
             FirstName = dataModel.FirstName,
             LastName = dataModel.LastName,
             Email = dataModel.Email,

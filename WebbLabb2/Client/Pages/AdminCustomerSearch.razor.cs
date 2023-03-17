@@ -9,6 +9,8 @@ public partial class AdminCustomerSearch : ComponentBase
 {
     public CustomerDto Customer { get; set; } = new();
     public string Email { get; set; } = string.Empty;
+    public Guid SelectedCustomerId { get; set; } = Guid.Empty;
+    private bool ShowDialog { get; set; }
 
     public async Task GetCustomerByEmail()
     {
@@ -23,5 +25,21 @@ public partial class AdminCustomerSearch : ComponentBase
             response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{Email}");
             Customer = response;
         }
+    }
+
+    private async Task OnConfirmed(bool confirmed)
+    {
+        if (confirmed)
+        {
+            SelectedCustomerId = Customer.Id;
+            await PublicClient.Client.DeleteAsync($"removeCustomer/{SelectedCustomerId}");
+        }
+
+        ShowDialog = false;
+    }
+
+    private async Task Close(bool confirmed)
+    {
+        ShowDialog = false;
     }
 }

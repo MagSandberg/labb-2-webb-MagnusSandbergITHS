@@ -1,8 +1,6 @@
 ﻿@page "/admin"
 
-@using WebbLabb2.Client.PublicClient
-
-@inject PublicClient PublicClient
+<link href="css/CommonStyles.css" rel="stylesheet" />
 
 <PageTitle>Admin</PageTitle>
 
@@ -39,12 +37,12 @@
             <span class="oi oi-magnifying-glass" aria-hidden="true"></span> Search / Edit Customer By Email
         </button>
     </NavLink>
-    <NavLink class="nav-link" href="#">
+    <NavLink class="nav-link" href="admincustomersall">
         <button class="btn btn-outline-danger">
             <span class="oi oi-wrench" aria-hidden="true"></span> Edit / Remove Customer
         </button>
     </NavLink>
-    <NavLink class="nav-link" href="#">
+    <NavLink class="nav-link" href="admincustomersall">
     <button class="btn btn-outline-danger">
         <span class="oi oi-list" aria-hidden="true"></span> Customers
     </button>
@@ -69,32 +67,4 @@
         <span class="oi oi-list" aria-hidden="true"></span> Orders
     </button>
     </NavLink>
-</div>
-
-<h4 style="margin-top: 50px;">All customers</h4>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead class="color-store-primary">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody class="align-middle">
-            @foreach (var item in AllCustomers)
-            {
-                <tr class="tr-hover">
-                    <td>@item.FirstName @item.LastName</td>
-                    <td>@item.Email</td>
-                    <td>@item.CellNumber</td>
-                    <td>
-                        @item.StreetAddress<br />
-                        @item.ZipCode, @item.City
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 </div>
