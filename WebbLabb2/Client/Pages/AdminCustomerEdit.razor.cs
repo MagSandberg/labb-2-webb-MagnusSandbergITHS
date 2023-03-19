@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
-using System.Runtime.InteropServices;
 using WebbLabb2.Shared.DTOs;
+using WebbLabb2.Shared.Services;
 
 namespace WebbLabb2.Client.Pages;
 
@@ -9,10 +9,12 @@ public partial class AdminCustomerEdit : ComponentBase
 {
     public CustomerDto CurrentSelectedCustomer { get; set; } = new();
     public Guid CurrentCustomerId { get; set; } = new();
+    public string Email { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await GetCustomerByEmail(SelectedCustomer);
+        Email = CurrentSelectedCustomer.Email;
+        await GetCustomerByEmail(Email);
 
         await base.OnInitializedAsync();
     }
@@ -27,7 +29,7 @@ public partial class AdminCustomerEdit : ComponentBase
         }
         else
         {
-            response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{SelectedCustomer}");
+            response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{Email}");
             CurrentSelectedCustomer = response!;
         }
     }

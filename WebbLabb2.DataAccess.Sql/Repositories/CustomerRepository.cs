@@ -41,6 +41,7 @@ public class CustomerRepository
             .FirstOrDefaultAsync(u => u.Email.Equals(email));
 
         if (user != null) return ConvertToDto(user);
+
         user = new CustomerModel
         {
             FirstName = string.Empty,

@@ -17,6 +17,8 @@ public partial class AdminCustomerSearch : ComponentBase
     {
         var response = new CustomerDto();
 
+        SelectedCustomerEmail = string.Empty;
+
         if (string.IsNullOrEmpty(Email))
         {
             Email = "Please enter a valid email";
@@ -25,6 +27,7 @@ public partial class AdminCustomerSearch : ComponentBase
         else
         {
             response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{Email}");
+
             Customer = response!;
             SelectedCustomerEmail = response!.Email;
         }

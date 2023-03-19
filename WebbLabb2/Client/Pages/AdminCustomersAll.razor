@@ -1,6 +1,7 @@
 ﻿@page "/admincustomersall"
 
 @using WebbLabb2.Client.PublicClient
+
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
@@ -16,6 +17,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
+            <th></th>
         </tr>
         </thead>
         <tbody class="align-middle">
@@ -28,6 +30,11 @@
                 <td>
                     @item.StreetAddress<br />
                     @item.ZipCode, @item.City
+                </td>
+                <td>
+                    <NavLink class="nav-link" href="admincustomeredit">
+                        <button class="btn btn-store-primary" @onclick="() => CurrentCustomerService.CurrentCustomerEmail = item.Email"><span class="oi oi-wrench"></span>Edit</button>
+                    </NavLink>
                 </td>
             </tr>
         }
