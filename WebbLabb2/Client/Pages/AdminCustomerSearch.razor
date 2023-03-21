@@ -1,6 +1,7 @@
 ﻿@page "/admincustomersearch"
 
 @using WebbLabb2.Client.PublicClient
+@using Microsoft.IdentityModel.Tokens
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
@@ -21,7 +22,6 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
-                    <th>Edit</th>
                     <th>Remove</th>
                 </tr>
             </thead>
@@ -39,30 +39,53 @@
                         }&nbsp;@Customer.City
                     </td>
                     <td>
-                        @if (@Customer.FirstName != string.Empty)
+                        @if (Customer.Email == "Not found")
                         {
-                            <button class="btn btn-store-primary"><span class="oi oi-wrench ms-1"></span></button>
+                            <button class="btn btn-close" disabled="disabled"></button>
                         }
                         else
                         {
-                            <button class="btn btn-store-primary" disabled="disabled"><span class="oi oi-wrench ms-1"></span></button>
+                            <button class="btn btn-close" @onclick="() => ShowDialog = true"></button>
+                            @if (ShowDialog)
+                            {
+                                <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close"/>
+                            }
                         }
-                    </td>
-                    <td>
-                        <button class="btn btn-close" @onclick="() => ShowDialog = true"></button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </EditForm>
-
-@if (ShowDialog)
+@if (SelectedCustomerEmail.IsNullOrEmpty()) { }
+else
 {
-    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
-}
+    <div>
+        <EditForm Model="SelectedCustomerEmail" OnSubmit="UpdateCustomer">
 
-@if (SelectedCustomerEmail != string.Empty)
-{
-    <AdminCustomerEdit SelectedCustomer="@SelectedCustomerEmail" />
+            <label class="fw-bold">First Name:</label>
+            <InputText class="w-100" @bind-Value="Customer.FirstName"></InputText>
+
+            <label class="fw-bold mt-2">Last Name:</label>
+            <InputText class="w-100" @bind-Value="Customer.LastName"></InputText>
+
+            <label class="fw-bold mt-2">Email:</label>
+            <InputText class="w-100" @bind-Value="Customer.Email" disabled="disabled"></InputText>
+
+            <label class="fw-bold mt-2">Cell Number:</label>
+            <InputText class="w-100" @bind-Value="Customer.CellNumber"></InputText>
+
+            <label class="fw-bold mt-2">Street Address:</label>
+            <InputText class="w-100" @bind-Value="Customer.StreetAddress"></InputText>
+
+            <label class="fw-bold mt-2">City:</label>
+            <InputText class="w-100" @bind-Value="Customer.City"></InputText>
+
+            <label class="fw-bold mt-2">Zip Code:</label>
+            <InputNumber class="w-100" @bind-Value="Customer.ZipCode"></InputNumber>
+
+            <button class="btn btn-primary mt-2 mb-5">Save</button>
+
+        </EditForm>
+    </div>
 }

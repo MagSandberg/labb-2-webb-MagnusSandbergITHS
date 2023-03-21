@@ -2,5 +2,5 @@
 
 public class CurrentCustomerService
 {
-    public string CurrentCustomerEmail { get; set; } = string.Empty;
+    public static string CurrentCustomerEmail { get; set; }
 }

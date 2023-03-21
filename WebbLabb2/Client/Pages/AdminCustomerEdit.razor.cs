@@ -8,12 +8,12 @@ namespace WebbLabb2.Client.Pages;
 public partial class AdminCustomerEdit : ComponentBase
 {
     public CustomerDto CurrentSelectedCustomer { get; set; } = new();
-    public Guid CurrentCustomerId { get; set; } = new();
-    public string Email { get; set; }
+    public Guid CurrentCustomerId { get; set; }
+    public string Email { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
-        Email = CurrentSelectedCustomer.Email;
+        Email = CurrentCustomerService.CurrentCustomerEmail;
         await GetCustomerByEmail(Email);
 
         await base.OnInitializedAsync();
