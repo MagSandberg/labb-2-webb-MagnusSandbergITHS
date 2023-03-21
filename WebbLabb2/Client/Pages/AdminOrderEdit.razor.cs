@@ -12,7 +12,7 @@ public partial class AdminOrderEdit : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        RetrieveValue();
+        await RetrieveValue();
         await GetOrderById(CurrentOrderId);
         await base.OnInitializedAsync();
     }
