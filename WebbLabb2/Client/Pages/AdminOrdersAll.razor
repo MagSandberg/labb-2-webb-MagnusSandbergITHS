@@ -1,5 +1,48 @@
-﻿<h3>AdminOrdersAll</h3>
+﻿@page "/adminordersall"
 
-@code {
+@using WebbLabb2.Client.PublicClient
 
-}
+@inject PublicClient PublicClient
+
+<link href="css/CommonStyles.css" rel="stylesheet" />
+
+<PageTitle>All Orders</PageTitle>
+
+<h4 style="margin-top: 50px;">All orders</h4>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="color-store-primary">
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            @foreach (var item in AllOrders)
+            {
+                <tr class="tr-hover">
+                    <td>@item.OrderId</td>
+                    <td>@item.CustomerEmail</td>
+                    <td><button class="btn btn-primary">View order</button></td>
+                    <td>
+                        @if (item.CustomerEmail == "Not found")
+                        {
+                            <button class="btn btn-close" disabled="disabled"></button>
+                        }
+                        else
+                        {
+                            SetCurrentOrderId(item.OrderId);
+                            <button class="btn btn-close" @onclick="() => ShowDialog = true"></button>
+                            @if (ShowDialog)
+                            {
+                                <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected order." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

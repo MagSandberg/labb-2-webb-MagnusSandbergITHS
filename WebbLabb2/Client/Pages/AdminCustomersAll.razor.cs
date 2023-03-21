@@ -10,7 +10,6 @@ public partial class AdminCustomersAll : ComponentBase
     public List<CustomerDto> AllCustomers { get; set; }
     public string Email { get; set; }
     public Guid SelectedCustomerId { get; set; } = Guid.Empty;
-    public string SelectedCustomerEmail { get; set; } = string.Empty;
     private bool ShowDialog { get; set; }
 
     //TODO När man går in på admin all products länkas man vidare med currentproduct till edit product
@@ -46,7 +45,6 @@ public partial class AdminCustomersAll : ComponentBase
 
     public void SetCurrentCustomerId(Guid id)
     {
-        //Guid.TryParse(id, out var guid);
         SelectedCustomerId = id;
     }
     public void SetCurrentCustomerEmail(string email)
