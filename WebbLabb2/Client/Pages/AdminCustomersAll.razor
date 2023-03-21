@@ -1,14 +1,14 @@
 ﻿@page "/admincustomersall"
 
 @using WebbLabb2.Client.PublicClient
-
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
 
 <PageTitle>All Customers</PageTitle>
 
-<h4 style="margin-top: 50px;">All customers</h4>
+<h4>All customers</h4>
+
 <div class="table-responsive">
     <table class="table table-striped">
         <thead class="color-store-primary">
@@ -18,7 +18,7 @@
                 <th>Phone</th>
                 <th>Address</th>
                 <th>Edit</th>
-                <th></th>
+                <th>Remove</th>
             </tr>
         </thead>
         <tbody class="align-middle">
@@ -50,8 +50,7 @@
                         }
                         else
                         {
-                            SetCurrentCustomerId(item.Id);
-                            <button class="btn btn-close"  @onclick="() => ShowDialog = true"></button>
+                            <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentCustomerId(item.Id)" />
                             @if (ShowDialog)
                             {
                                 <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />

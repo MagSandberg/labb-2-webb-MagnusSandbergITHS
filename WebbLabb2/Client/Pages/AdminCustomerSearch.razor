@@ -45,7 +45,8 @@
                         }
                         else
                         {
-                            <button class="btn btn-close" @onclick="() => ShowDialog = true"></button>
+                            <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentCustomerId(Customer.Id)" />
+
                             @if (ShowDialog)
                             {
                                 <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close"/>

@@ -55,7 +55,6 @@ public partial class AdminCustomerSearch : ComponentBase
     {
         if (confirmed)
         {
-            SelectedCustomerId = Customer.Id;
             await PublicClient.Client.DeleteAsync($"removeCustomer/{SelectedCustomerId}");
         }
 
@@ -65,5 +64,10 @@ public partial class AdminCustomerSearch : ComponentBase
     private void Close(bool confirmed)
     {
         ShowDialog = false;
+    }
+
+    public void SetCurrentCustomerId(Guid id)
+    {
+        SelectedCustomerId = id;
     }
 }

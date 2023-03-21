@@ -29,29 +29,19 @@ public static class WebApplicationOrderEndpointExtensions
             return Results.BadRequest("Not a valid ID.");
         });
 
-        app.MapGet("/getOrder", async (OrderService orderService, string id) =>
+        app.MapGet("/getOrder/{id}", async (OrderService orderService, string id) =>
         {
-            if (ObjectId.TryParse(id, out var objectId))
-            {
-                var result = await orderService.GetOrder(objectId.ToString());
-                return result == null ? Results.NotFound("Order ID doesn't exist") : Results.Ok(result);
-            }
-
-            return Results.BadRequest("Not a valid ID.");
+            var result = await orderService.GetOrder(id);
+            return result == null ? Results.NotFound("Order ID doesn't exist") : Results.Ok(result);
         });
 
         app.MapGet("/getOrders", async (OrderService orderService) =>
             await orderService.GetOrders());
 
-        app.MapDelete("/removeOrder", async (OrderService orderService, string id) =>
+        app.MapDelete("/removeOrder/{id}", async (OrderService orderService, string id) =>
         {
-            if (ObjectId.TryParse(id, out var objectId))
-            {
-                var result = await orderService.RemoveOrder(objectId.ToString());
-                return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order removed");
-            }
-
-            return Results.BadRequest("Not a valid ID.");
+            var result = await orderService.RemoveOrder(id);
+            return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order removed");
         });
 
         return app;
