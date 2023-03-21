@@ -1,9 +1,20 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <Authorized>
+        <NavLink href="customerregistration">
+            <button class="btn btn-primary">First login?</button>
+            <p>Fill in the blanks please.</p>
+        </NavLink>
+    </Authorized>
+    <NotAuthorized>
+        <NavLink href="/authentication/register">
+            <button class="btn btn-primary">Register</button>
+        </NavLink>
+        <NavLink href="/authentication/login">
+            <button class="btn btn-primary">Login</button>
+        </NavLink>
+    </NotAuthorized>
+</AuthorizeView>

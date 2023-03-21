@@ -1,7 +1,38 @@
 ﻿@page "/customerregistration"
 
+@using WebbLabb2.Client.PublicClient
+@using Microsoft.AspNetCore.Components
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject PublicClient PublicClient
+
 <h3>CustomerRegistration</h3>
 
-@code {
+<div>
+    <EditForm Model="Customer" OnValidSubmit="CreateCustomer">
+        <DataAnnotationsValidator />
+        <label class="fw-bold">First Name:</label>
+        <InputText class="w-100" @bind-Value="Customer.FirstName"></InputText>
 
-}
+        <label class="fw-bold mt-2">Last Name:</label>
+        <InputText class="w-100" @bind-Value="Customer.LastName"></InputText>
+
+        <label class="fw-bold mt-2">Email:</label>
+        <InputText class="w-100" @bind-Value="Email" disabled="disabled"></InputText>
+
+        <label class="fw-bold mt-2">Cell Number:</label>
+        <InputText class="w-100" @bind-Value="Customer.CellNumber"></InputText>
+
+        <label class="fw-bold mt-2">Street Address:</label>
+        <InputText class="w-100" @bind-Value="Customer.StreetAddress"></InputText>
+
+        <label class="fw-bold mt-2">City:</label>
+        <InputText class="w-100" @bind-Value="Customer.City"></InputText>
+
+        <label class="fw-bold mt-2">Zip Code:</label>
+        <InputNumber class="w-100" @bind-Value="Customer.ZipCode"></InputNumber>
+
+        <button class="btn btn-primary mt-2 mb-5">Save</button>
+        <ValidationSummary />
+    </EditForm>
+</div>

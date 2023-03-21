@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using WebbLabb2.Shared.Services
+@using System.Security.Principal
+@using Microsoft.EntityFrameworkCore.Diagnostics
+@using System.Security.Claims
 @inject NavigationManager Navigation
 
 <AuthorizeView>
@@ -13,7 +17,7 @@
     </NotAuthorized>
 </AuthorizeView>
 
-@code{
+@code {
     private void BeginLogOut()
     {
         Navigation.NavigateToLogout("authentication/logout");
