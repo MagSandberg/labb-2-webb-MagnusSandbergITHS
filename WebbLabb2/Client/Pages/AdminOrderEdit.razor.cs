@@ -1,25 +1,46 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
+using Microsoft.IdentityModel.Tokens;
 using WebbLabb2.Shared.DTOs;
-using WebbLabb2.Shared.Services;
 
 namespace WebbLabb2.Client.Pages;
 
 public partial class AdminOrderEdit : ComponentBase
 {
     public OrderDto CurrentSelectedOrder { get; set; } = new();
-    public string CurrentOrderId { get; set; }
+    public string CurrentOrderId { get; set; } = string.Empty;
+    private bool ShouldShowContent { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await RetrieveValue();
-        await GetOrderById(CurrentOrderId);
+        CurrentOrderId = await SessionStorage.GetItemAsync<string>("orderID");
+
+        while (true)
+        {
+            ShouldShowContent = false;
+            await GetOrderById(CurrentOrderId);
+
+            await Task.Delay(1000);
+            if (!CurrentOrderId.IsNullOrEmpty())
+            {
+                ShouldShowContent = true;
+                break;
+            }
+        }
+
+        ShowContent = ShouldShowContent;
+
         await base.OnInitializedAsync();
     }
 
     public async Task GetOrderById(string id)
     {
         var response = new OrderDto();
+        var value = string.Empty;
+
+        value = await SessionStorage.GetItemAsync<string>("orderId");
+        id = value;
+        CurrentOrderId = id;
 
         if (string.IsNullOrEmpty(id))
         {

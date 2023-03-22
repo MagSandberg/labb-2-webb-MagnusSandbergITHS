@@ -8,24 +8,26 @@
 
 <h4>Edit customer</h4>
 
-<div>
-    <EditForm Model="CurrentSelectedOrder" OnSubmit="UpdateOrder">
+@if (ShowContent)
+{
+    <div>
+        <EditForm Model="CurrentSelectedOrder" OnSubmit="UpdateOrder">
 
-        <label class="fw-bold">Order ID:</label>
-        <InputText class="w-100" @bind-Value="CurrentSelectedOrder.OrderId"></InputText>
+            <label class="fw-bold">Order ID:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedOrder.OrderId"></InputText>
 
-        <label class="fw-bold mt-2">Customer E-mail:</label>
-        <InputText class="w-100" @bind-Value="CurrentSelectedOrder.CustomerEmail"></InputText>
+            <label class="fw-bold mt-2">Customer E-mail:</label>
+            <InputText class="w-100" @bind-Value="CurrentSelectedOrder.CustomerEmail"></InputText>
 
-        <button class="btn btn-primary mt-2 mb-5">Save</button>
-    </EditForm>
-</div>
+            <button class="btn btn-primary mt-2 mb-5">Save</button>
+        </EditForm>
+    </div>
+}
+else
+{
+    <p>Loading...</p>
+}
 
 @code {
-    private async Task RetrieveValue()
-    {
-        var value = await SessionStorage.GetItemAsync<string>("orderId");
-        CurrentOrderId = value;
-        Console.WriteLine(value);
-    }
+    private bool ShowContent { get; set; }
 }
