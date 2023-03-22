@@ -56,7 +56,7 @@ public partial class AdminOrderEdit : ComponentBase
         
         if (CurrentSelectedOrder.CustomerEmail == string.Empty) { CurrentSelectedOrder.CustomerEmail = safetyDto.CustomerEmail; }
 
-        //await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id={CurrentOrderId}", CurrentSelectedOrder);
+        await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id={CurrentOrderId}", CurrentSelectedOrder);
     }
 
     private async Task OnConfirmed(bool confirmed)
@@ -74,9 +74,9 @@ public partial class AdminOrderEdit : ComponentBase
         ShowDialog = false;
     }
 
-    public void SetCurrentProductName(string productName)
+    public void RemoveProductAtIndex(string productName)
     {
-        CurrentSelectedOrder.ProductList.FindIndex(p => p.ProductName == productName);
-        Console.WriteLine(productName);
+        var filter = CurrentSelectedOrder.ProductList!.FindIndex(p => p.ProductName == productName);
+        CurrentSelectedOrder.ProductList.RemoveAt(filter);
     }
 }

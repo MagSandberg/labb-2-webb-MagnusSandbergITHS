@@ -6,11 +6,18 @@ namespace WebbLabb2.Client.Pages;
 
 public partial class AdminOrdersAll : ComponentBase
 {
-    public List<OrderDto> AllOrders { get; set; }
+    public List<OrderDto>? AllOrders { get; set; }
     private bool ShowDialog { get; set; }
     public string SelectedOrderId { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
+    {
+        await GetAllOrdersAndPopulateList();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task GetAllOrdersAndPopulateList()
     {
         AllOrders = new List<OrderDto>();
         var response = await PublicClient.Client.GetFromJsonAsync<OrderDto[]>("getOrders");
@@ -19,8 +26,6 @@ public partial class AdminOrdersAll : ComponentBase
         {
             AllOrders.AddRange(response);
         }
-
-        await base.OnInitializedAsync();
     }
 
     private async Task OnConfirmed(bool confirmed)
@@ -28,6 +33,7 @@ public partial class AdminOrdersAll : ComponentBase
         if (confirmed)
         {
             await PublicClient.Client.DeleteAsync($"removeOrder/{SelectedOrderId}");
+            await GetAllOrdersAndPopulateList();
         }
 
         ShowDialog = false;
