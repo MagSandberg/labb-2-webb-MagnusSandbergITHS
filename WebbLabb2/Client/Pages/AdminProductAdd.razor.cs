@@ -12,6 +12,8 @@ public partial class AdminProductAdd : ComponentBase
     {
         if (Product.ProductImage.IsNullOrEmpty()) 
         { Product.ProductImage = "resources/images/noimage.png"; }
+        if (Product.ProductCategory.IsNullOrEmpty())
+        { Product.ProductCategory = "Uncategorized"; }
 
         await PublicClient.Client.PostAsJsonAsync("createProduct", Product);
     }

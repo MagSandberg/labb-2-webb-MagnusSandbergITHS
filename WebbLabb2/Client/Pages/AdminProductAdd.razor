@@ -10,8 +10,8 @@
 <h3>Add new product</h3>
 
 <div>
-    <EditForm Model="Product" OnSubmit="CreateProduct">
-
+    <EditForm Model="Product" OnValidSubmit="CreateProduct">
+        <DataAnnotationsValidator />
         <label class="fw-bold">Product name:</label>
         <InputText class="w-100" @bind-Value="Product.ProductName"></InputText>
 
@@ -34,6 +34,6 @@
         <InputText class="w-100" @bind-Value="Product.ProductImage"></InputText>
 
         <button class="btn btn-primary mt-2 mb-5">Save</button>
-
+        <ValidationSummary />
     </EditForm>
 </div>

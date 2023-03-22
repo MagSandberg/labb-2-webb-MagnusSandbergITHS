@@ -13,10 +13,8 @@ public class ProductDto
     public string ProductDescription { get; set; } = string.Empty;
     [Required]
     public float ProductPrice { get; set; }
-    [Required]
     public string ProductCategory { get; set; } = string.Empty;
     public int OrderCount { get; set; }
-    [Required]
     public bool ProductStatus { get; set; }
     public string ProductImage { get; set; } = string.Empty;
 }

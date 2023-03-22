@@ -6,7 +6,7 @@ namespace WebbLabb2.Client.Pages;
 
 public partial class Products : ComponentBase
 {
-    public List<ProductDto> AllProducts { get; set; }
+    public List<ProductDto>? AllProducts { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
