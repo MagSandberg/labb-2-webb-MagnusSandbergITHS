@@ -15,7 +15,7 @@ public class ProductModel
     [BsonElement]
     public string ProductDescription { get; set; } = string.Empty;
     [BsonElement]
-    public int ProductPrice { get; set; }
+    public float ProductPrice { get; set; }
     [BsonElement]
     public string ProductCategory { get; set; } = string.Empty;
     [BsonElement]

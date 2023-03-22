@@ -6,21 +6,83 @@
 @inject PublicClient PublicClient
 @inject ISessionStorageService SessionStorage
 
-<h4>Edit customer</h4>
+<h4>Edit Order</h4>
 
 @if (ShowContent)
 {
     <div>
         <EditForm Model="CurrentSelectedOrder" OnSubmit="UpdateOrder">
 
-            <label class="fw-bold">Order ID:</label>
-            <InputText class="w-100" @bind-Value="CurrentSelectedOrder.OrderId" disabled="disabled"></InputText>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="color-store-primary">
+                        <tr>
+                            <th>Customer E-mail</th>
+                            <th>Order ID</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        <tr class="tr-hover">
+                            <td>@CurrentSelectedOrder.CustomerEmail</td>
+                            <td>@CurrentSelectedOrder.OrderId</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <label class="fw-bold mt-2">Customer E-mail:</label>
-            <InputText class="w-100" @bind-Value="CurrentSelectedOrder.CustomerEmail"></InputText>
+            <h5 class="mt-4">Order Items</h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="color-store-primary">
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>In stock</th>
+                            <th>Order Count</th>
+                            <th>Product Total</th>
+                            <th>Remove Item</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        @foreach (var item in CurrentSelectedOrder.ProductList)
+                        {
+                            <tr class="tr-hover">
+                                <td>@item.ProductName<br /><span class="text-secondary">@item.ProductDescription</span></td>
+                                <td>$@item.ProductPrice</td>
+                                <td>@item.ProductCategory</td>
+                                <td>
+                                    @if (item.ProductStatus)
+                                    {
+                                        <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                                    }
+                                    else
+                                    {
+                                        <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                                    }
+                                </td>
+                                <td><InputNumber @bind-Value="item.OrderCount"></InputNumber></td>
+                                <td>@ProductTotal(@item.ProductPrice, @item.OrderCount)</td>
+                                <td>
+                                    @if (CurrentSelectedOrder.CustomerEmail == "Not found")
+                                    {
+                                        <button class="btn btn-close" disabled="disabled"></button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentOrderId(CurrentSelectedOrder.OrderId)" />
+                                        @if (ShowDialog)
+                                        {
+                                            <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected order." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
-            <label class="fw-bold mt-2">Products:</label>
-            <InputSelect class="w-100" @bind-Value="CurrentSelectedOrder.ProductList"></InputSelect>
             <button class="btn btn-primary mt-2 mb-5">Save</button>
         </EditForm>
     </div>
@@ -32,4 +94,10 @@ else
 
 @code {
     private bool ShowContent { get; set; }
+
+    private float ProductTotal(float price, int orderCount)
+    {
+        var total = price * orderCount;
+        return total;
+    }
 }
