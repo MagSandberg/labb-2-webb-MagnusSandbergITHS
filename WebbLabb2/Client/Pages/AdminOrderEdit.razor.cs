@@ -10,6 +10,7 @@ public partial class AdminOrderEdit : ComponentBase
     public OrderDto CurrentSelectedOrder { get; set; } = new();
     public string CurrentOrderId { get; set; } = string.Empty;
     private bool ShouldShowContent { get; set; }
+    private bool ShowDialog { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -56,5 +57,26 @@ public partial class AdminOrderEdit : ComponentBase
         if (CurrentSelectedOrder.CustomerEmail == string.Empty) { CurrentSelectedOrder.CustomerEmail = safetyDto.CustomerEmail; }
 
         //await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id={CurrentOrderId}", CurrentSelectedOrder);
+    }
+
+    private async Task OnConfirmed(bool confirmed)
+    {
+        if (confirmed)
+        {
+            await PublicClient.Client.DeleteAsync($"removeOrder/{CurrentOrderId}");
+        }
+
+        ShowDialog = false;
+    }
+
+    private void Close(bool confirmed)
+    {
+        ShowDialog = false;
+    }
+
+    public void SetCurrentProductName(string productName)
+    {
+        CurrentSelectedOrder.ProductList.FindIndex(p => p.ProductName == productName);
+        Console.WriteLine(productName);
     }
 }

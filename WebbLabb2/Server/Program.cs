@@ -1,6 +1,6 @@
-using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using WebbLabb2.Client.Shared;
 using WebbLabb2.DataAccess.Repositories;
 using WebbLabb2.DataAccess.Sql.Contexts;
 using WebbLabb2.DataAccess.Sql.Repositories;
@@ -8,7 +8,6 @@ using WebbLabb2.Server.Data;
 using WebbLabb2.Server.Extensions;
 using WebbLabb2.Server.Models;
 using WebbLabb2.Server.Services;
-using WebbLabb2.Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +21,7 @@ builder.Services.AddScoped<CustomerRepository>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ProductRepository>();
 
-builder.Services.AddScoped<CurrentCustomerService>();
-
+//builder.Services.AddScoped<CurrentCustomerService>();
 //builder.Services.AddScoped<UserManager<IdentityUser>>();
 //builder.Services.AddScoped<UserService>();
 //builder.Services.AddScoped<UserRepository>();

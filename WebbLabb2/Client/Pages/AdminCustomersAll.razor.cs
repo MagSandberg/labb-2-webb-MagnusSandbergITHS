@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
+using WebbLabb2.Client.Shared;
 using WebbLabb2.Shared.DTOs;
-using WebbLabb2.Shared.Services;
 
 namespace WebbLabb2.Client.Pages;
 
@@ -47,6 +47,7 @@ public partial class AdminCustomersAll : ComponentBase
     {
         SelectedCustomerId = id;
     }
+
     public void SetCurrentCustomerEmail(string email)
     {
         CurrentCustomerService.CurrentCustomerEmail = email;
