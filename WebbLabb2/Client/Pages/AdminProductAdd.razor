@@ -33,7 +33,11 @@
         <label class="fw-bold mt-2">Image link:</label>
         <InputText class="w-100" @bind-Value="Product.ProductImage"></InputText>
 
-        <button class="btn btn-primary mt-2 mb-5">Save</button>
+        <button class="btn btn-primary mt-2 mb-5" @onmouseup="() => ShowDialog = true">Save</button>
+        @if (ShowDialog)
+        {
+            <ConfirmationDialogAdd Title="Product Added" Message="You succefully added a new product!" OnConfirmed="@OnConfirmed" />
+        }
         <ValidationSummary />
     </EditForm>
 </div>

@@ -8,6 +8,7 @@ namespace WebbLabb2.Client.Pages;
 public partial class AdminProductAdd : ComponentBase
 {
     public ProductDto Product { get; set; } = new ();
+    private bool ShowDialog { get; set; }
     public async Task CreateProduct()
     {
         if (Product.ProductImage.IsNullOrEmpty()) 
@@ -16,5 +17,15 @@ public partial class AdminProductAdd : ComponentBase
         { Product.ProductCategory = "Uncategorized"; }
 
         await PublicClient.Client.PostAsJsonAsync("createProduct", Product);
+    }
+
+    private void OnConfirmed(bool confirmed)
+    {
+        if (confirmed)
+        {
+            ShowDialog = false;
+        }
+
+        ShowDialog = false;
     }
 }
