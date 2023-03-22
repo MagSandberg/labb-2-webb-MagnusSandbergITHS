@@ -18,7 +18,7 @@ public partial class AdminOrderEdit : ComponentBase
         while (true)
         {
             ShouldShowContent = false;
-            await GetOrderById(CurrentOrderId);
+            await GetOrderById();
 
             await Task.Delay(1000);
             if (!CurrentOrderId.IsNullOrEmpty())
@@ -33,40 +33,28 @@ public partial class AdminOrderEdit : ComponentBase
         await base.OnInitializedAsync();
     }
 
-    public async Task GetOrderById(string id)
+    public async Task GetOrderById()
     {
-        var response = new OrderDto();
-        var value = string.Empty;
+        var value = await SessionStorage.GetItemAsync<string>("orderId");
+        CurrentOrderId = value;
 
-        value = await SessionStorage.GetItemAsync<string>("orderId");
-        id = value;
-        CurrentOrderId = id;
-
-        if (string.IsNullOrEmpty(id))
+        if (string.IsNullOrEmpty(CurrentOrderId))
         {
             CurrentSelectedOrder = new OrderDto();
         }
         else
         {
-            response = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/{CurrentOrderId}");
-            CurrentSelectedOrder = response!;
+            CurrentSelectedOrder = (await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/{CurrentOrderId}"))!;
         }
     }
 
     public async Task UpdateOrder()
     {
         CurrentOrderId = CurrentSelectedOrder.OrderId;
-
         var safetyDto = CurrentSelectedOrder;
+        
+        if (CurrentSelectedOrder.CustomerEmail == string.Empty) { CurrentSelectedOrder.CustomerEmail = safetyDto.CustomerEmail; }
 
-        //if (CurrentSelectedOrder.FirstName == string.Empty) { CurrentSelectedOrder.FirstName = safetyDto.FirstName; }
-        //if (CurrentSelectedOrder.OrderId == string.Empty) { CurrentSelectedOrder.LastName = safetyDto.LastName; }
-        //if (CurrentSelectedOrder.OrderId == string.Empty) { CurrentSelectedOrder.OrderId = safetyDto.Email; }
-        //if (CurrentSelectedOrder.OrderId == string.Empty) { CurrentSelectedOrder = safetyDto.CellNumber; }
-        //if (CurrentSelectedOrder.ZipCode == 0) { CurrentSelectedOrder.OrderId = safetyDto.ZipCode; }
-        //if (CurrentSelectedOrder.City == string.Empty) { CurrentSelectedOrder.City = safetyDto.City; }
-        //if (CurrentSelectedOrder.StreetAddress == string.Empty) { CurrentSelectedOrder.StreetAddress = safetyDto.StreetAddress; }
-
-        //await PublicClient.Client.PatchAsJsonAsync($"updateCustomer?id={CurrentCustomerId}", CurrentSelectedCustomer);
+        await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id={CurrentOrderId}", CurrentSelectedOrder);
     }
 }

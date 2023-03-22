@@ -18,15 +18,8 @@ public static class WebApplicationOrderEndpointExtensions
 
         app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>
         {
-            //TODO Bryt ut till en metod som kollar ObjectId eller skapa en helper-class med alla checkar
-
-            if (ObjectId.TryParse(id, out var objectId))
-            {
-                var result = await orderService.UpdateOrder(objectId.ToString(), dto);
-                return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
-            }
-
-            return Results.BadRequest("Not a valid ID.");
+            var result = await orderService.UpdateOrder(id, dto);
+            return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
         });
 
         app.MapGet("/getOrder/{id}", async (OrderService orderService, string id) =>

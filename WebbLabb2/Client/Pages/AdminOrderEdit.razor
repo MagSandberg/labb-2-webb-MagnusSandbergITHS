@@ -14,11 +14,13 @@
         <EditForm Model="CurrentSelectedOrder" OnSubmit="UpdateOrder">
 
             <label class="fw-bold">Order ID:</label>
-            <InputText class="w-100" @bind-Value="CurrentSelectedOrder.OrderId"></InputText>
+            <InputText class="w-100" @bind-Value="CurrentSelectedOrder.OrderId" disabled="disabled"></InputText>
 
             <label class="fw-bold mt-2">Customer E-mail:</label>
             <InputText class="w-100" @bind-Value="CurrentSelectedOrder.CustomerEmail"></InputText>
 
+            <label class="fw-bold mt-2">Products:</label>
+            <InputSelect class="w-100" @bind-Value="CurrentSelectedOrder.ProductList"></InputSelect>
             <button class="btn btn-primary mt-2 mb-5">Save</button>
         </EditForm>
     </div>
