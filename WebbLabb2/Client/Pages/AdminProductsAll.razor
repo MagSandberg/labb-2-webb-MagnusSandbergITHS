@@ -5,7 +5,9 @@
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
 
-<h3>AdminAllProducts</h3>
+<PageTitle>Admin - All Products</PageTitle>
+
+<h4>All Products</h4>
 
 <div class="table-responsive">
     <table class="table table-striped">
@@ -34,11 +36,11 @@
                 <td>
                     @if (item.ProductStatus)
                     {
-                        <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus"/>
+                        <button class="btn btn-store-primary" @onclick="() => UpdateAvailabilityStatus(item.ProductName, item.ProductStatus = false)"><span class="oi oi-check"></span></button>
                     }
                     else
                     {
-                        <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                        <button class="btn btn-store-primary" style="background-color: darkgrey" @onclick="() => UpdateAvailabilityStatus(item.ProductName, item.ProductStatus = true)"><span class="oi oi-x"></span></button>
                     }
                 </td>
                 <td>

@@ -28,6 +28,11 @@ public partial class AdminProductsAll : ComponentBase
         }
     }
 
+    private async Task UpdateAvailabilityStatus(string name, bool status)
+    {
+       await PublicClient.Client.PatchAsJsonAsync($"updateAvailability?name={name}&value={status}", AllProducts);
+    }
+
     public void SetCurrentProductName(string name)
     {
         CurrentProductService.CurrentName = name;

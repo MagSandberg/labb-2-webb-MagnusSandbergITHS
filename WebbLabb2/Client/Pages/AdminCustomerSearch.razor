@@ -6,7 +6,10 @@
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
 
-<h4>Search customer by Email</h4>
+<PageTitle>Admin - Search / Edit Customer</PageTitle>
+
+<h4>Search / Edit Customer</h4>
+
 <EditForm Model="Customer" OnValidSubmit="GetCustomerByEmail">
     <div class="form-control">
         <InputText @bind-Value="Email"></InputText>
