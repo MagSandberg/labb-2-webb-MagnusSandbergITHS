@@ -16,7 +16,7 @@
             <th>Price</th>
             <th>Category</th>
             <th>In stock</th>
-            <th></th>
+            <th>Edit</th>
         </tr>
         </thead>
         <tbody class="align-middle">
@@ -42,8 +42,8 @@
                     }
                 </td>
                 <td>
-                    <NavLink class="nav-link" href="adminproductedit">
-                        <button class="btn btn-store-primary"><span class="oi oi-wrench"></span>Edit</button>
+                    <NavLink href="adminproductedit">
+                            <button class="btn btn-store-primary" @onclick="() => SetCurrentProductName(item.ProductName)"><span class="oi oi-wrench"></span></button>
                     </NavLink>
                 </td>
             </tr>

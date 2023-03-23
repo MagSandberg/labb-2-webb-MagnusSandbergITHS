@@ -1,6 +1,7 @@
 ﻿@page "/adminproductsearch"
 
 @using WebbLabb2.Client.PublicClient
+@using Microsoft.IdentityModel.Tokens
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
@@ -48,43 +49,63 @@
                             <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@CurrentProduct.ProductStatus" />
                         }
                     </td>
-                    <td>
-                        <button class="btn btn-store-primary"><span class="oi oi-cart"></span></button>
-                    </td>
+                    @if (CurrentProduct.ProductName == "Not found")
+                    {
+                        <td>
+                            <button class="btn btn-store-primary" disabled="disabled"><span class="oi oi-cart"></span></button>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <button class="btn btn-store-primary"><span class="oi oi-cart"></span></button>
+                        </td>
+                    }
                 </tr>
             </tbody>
         </table>
     </div>
 </EditForm>
-<h4 class="mt-5">Edit current product</h4>
-<EditForm Model="CurrentProduct" OnSubmit="UpdateProduct">
-    <div class="form-control">
-        <label class="fw-bold">Product number:</label>
-        <InputNumber class="w-100" @bind-Value="CurrentProduct.ProductNumber"></InputNumber>
-    </div>
-    <div class="form-control mt-2">
-        <label class="fw-bold">Product name:</label>
-        <InputText class="w-100" @bind-Value="CurrentProduct.ProductName"></InputText>
-    </div>
-    <div class="form-control mt-2">
-        <label class="fw-bold">Product description:</label>
-        <InputTextArea class="w-100" @bind-Value="CurrentProduct.ProductDescription"></InputTextArea>
-    </div>
-    <div class="form-control mt-2">
-        <label class="fw-bold">Product price:</label>
-        <InputNumber class="w-100" @bind-Value="CurrentProduct.ProductPrice"></InputNumber>
-    </div>
-    <div class="form-control mt-2">
-        <label class="fw-bold">Product category:</label>
-        <InputText class="w-100" @bind-Value="CurrentProduct.ProductCategory"></InputText>
-    </div>
-    <div class="form-control mt-2">
-        <label class="fw-bold">Product available:</label>
-        <InputCheckbox class="w-100" @bind-Value="CurrentProduct.ProductStatus"></InputCheckbox>
-    </div>
-    <div class="form-control mt-2">
-        <label class="fw-bold">Product image link:</label>
-        <InputText class="w-100" @bind-Value="CurrentProduct.ProductImage"></InputText>
-    </div>
-    <button class="btn btn-primary mt-2 mb-5">Save</button>
-</EditForm>
+@if (ProductNameSearch.IsNullOrEmpty() || ProductNameSearch == "Please enter a name") { }
+else
+{
+    <h4 class="mt-5">Edit current product</h4>
+    <EditForm Model="CurrentProduct" OnSubmit="UpdateProduct">
+        <div class="form-control">
+            <label class="fw-bold">Product number:</label>
+            <InputNumber class="w-100" @bind-Value="CurrentProduct.ProductNumber"></InputNumber>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Product name:</label>
+            <InputText class="w-100" @bind-Value="CurrentProduct.ProductName"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Product description:</label>
+            <InputTextArea class="w-100" @bind-Value="CurrentProduct.ProductDescription"></InputTextArea>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Product price:</label>
+            <InputNumber class="w-100" @bind-Value="CurrentProduct.ProductPrice"></InputNumber>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Product category:</label>
+            <InputText class="w-100" @bind-Value="CurrentProduct.ProductCategory"></InputText>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Product available:</label>
+            <InputCheckbox class="w-100" @bind-Value="CurrentProduct.ProductStatus"></InputCheckbox>
+        </div>
+        <div class="form-control mt-2">
+            <label class="fw-bold">Product image link:</label>
+            <InputText class="w-100" @bind-Value="CurrentProduct.ProductImage"></InputText>
+        </div>
+        @if (CurrentProduct.ProductName == "Not found")
+        {
+            <button class="btn btn-primary mt-2 mb-5" disabled="disabled">Save</button>
+        }
+        else
+        {
+            <button class="btn btn-primary mt-2 mb-5">Save</button>
+        }
+    </EditForm>
+}

@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using WebbLabb2.DataAccess.Models;
 using WebbLabb2.DataAccess.Sql.Contexts;
+using WebbLabb2.DataAccess.Sql.Models;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.DataAccess.Repositories;
@@ -51,12 +52,16 @@ public class OrderRepository
     public async Task<OrderDto> GetOrder(string id)
     {
         var order = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id));
-        var orderIdExists = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id)).Result.AnyAsync();
-        if (orderIdExists == false)
+
+        if (order != null) return ConvertToDto(await order.FirstOrDefaultAsync());
+
+        var nullDto = new OrderDto
         {
-            return null;
-        }
-        return ConvertToDto(order.FirstOrDefault());
+            CustomerEmail = string.Empty,
+            OrderId = "Not found",
+            ProductList = new List<ProductDto>()
+        };
+        return nullDto;
     }
 
     public async Task<OrderDto[]> GetAllOrders()

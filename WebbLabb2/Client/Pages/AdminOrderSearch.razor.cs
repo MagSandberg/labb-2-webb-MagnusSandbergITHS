@@ -25,7 +25,10 @@ public partial class AdminOrderSearch : ComponentBase
         else
         {
             response = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/{OrderId}");
-
+            if (response == null)
+            {
+                //Order;
+            }
             Order = response!;
             SelectedOrderId = response!.OrderId;
         }
@@ -48,23 +51,23 @@ public partial class AdminOrderSearch : ComponentBase
     //    await PublicClient.Client.PatchAsJsonAsync($"updateCustomer?id={SelectedCustomerId}", Customer);
     //}
 
-    //private async Task OnConfirmed(bool confirmed)
-    //{
-    //    if (confirmed)
-    //    {
-    //        await PublicClient.Client.DeleteAsync($"removeCustomer/{SelectedCustomerId}");
-    //    }
+    private async Task OnConfirmed(bool confirmed)
+    {
+        if (confirmed)
+        {
+            await PublicClient.Client.DeleteAsync($"removeOrder/{SelectedOrderId}");
+        }
 
-    //    ShowDialog = false;
-    //}
+        ShowDialog = false;
+    }
 
-    //private void Close(bool confirmed)
-    //{
-    //    ShowDialog = false;
-    //}
+    private void Close(bool confirmed)
+    {
+        ShowDialog = false;
+    }
 
-    //public void SetCurrentCustomerId(Guid id)
-    //{
-    //    SelectedCustomerId = id;
-    //}
+    public void SetCurrentOrderId(string id)
+    {
+        SelectedOrderId = id;
+    }
 }

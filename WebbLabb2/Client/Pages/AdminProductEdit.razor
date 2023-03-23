@@ -7,6 +7,30 @@
 
 <h3>AdminEditProduct</h3>
 
-@code {
+<div>
+    <EditForm Model="CurrentName" OnSubmit="UpdateProduct">
 
-}
+        <label class="fw-bold">Product Name:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedProduct.ProductName"></InputText>
+
+        <label class="fw-bold mt-2">Description:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedProduct.ProductDescription"></InputText>
+
+        <label class="fw-bold mt-2">Category:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedProduct.ProductCategory"></InputText>
+
+        <label class="fw-bold mt-2">Product Number:</label>
+        <InputNumber class="w-100" @bind-Value="CurrentSelectedProduct.ProductNumber"></InputNumber>
+
+        <label class="fw-bold mt-2">Price:</label>
+        <InputNumber class="w-100" @bind-Value="CurrentSelectedProduct.ProductPrice"></InputNumber>
+
+        <label class="fw-bold mt-2">Availability:</label>
+        <InputCheckbox class="w-100" @bind-Value="CurrentSelectedProduct.ProductStatus"></InputCheckbox>
+
+        <label class="fw-bold mt-2">Image link:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedProduct.ProductImage"></InputText>
+
+        <button class="btn btn-primary mt-2 mb-5">Save</button>
+    </EditForm>
+</div>

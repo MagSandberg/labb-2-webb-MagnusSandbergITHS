@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
+using WebbLabb2.Client.Shared;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Client.Pages;
@@ -10,6 +11,13 @@ public partial class AdminProductsAll : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
+        await GetAllProductsAndPopulateList();
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task GetAllProductsAndPopulateList()
+    {
         AllProducts = new List<ProductDto>();
 
         var response = await PublicClient.Client.GetFromJsonAsync<ProductDto[]>("getAllProducts");
@@ -18,7 +26,10 @@ public partial class AdminProductsAll : ComponentBase
         {
             AllProducts.AddRange(response);
         }
+    }
 
-        await base.OnInitializedAsync();
+    public void SetCurrentProductName(string name)
+    {
+        CurrentProductService.CurrentName = name;
     }
 }
