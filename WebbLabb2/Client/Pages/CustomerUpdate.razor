@@ -1,4 +1,4 @@
-﻿@page "/customerregistration"
+﻿@page "/customerupdate"
 
 @using WebbLabb2.Client.PublicClient
 @using Microsoft.AspNetCore.Components
@@ -6,15 +6,10 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject PublicClient PublicClient
 
-<h3>Customer Registration</h3>
-
-<p>You need to login to register your account details.</p>
-<NavLink href="/authentication/login">
-    <button class="btn btn-primary">Login</button>
-</NavLink>
+<h3>Customer Update</h3>
 
 <div class="mt-5">
-    <EditForm Model="Customer" OnValidSubmit="CreateCustomer">
+    <EditForm Model="Customer" OnValidSubmit="UpdateCustomer">
         <DataAnnotationsValidator />
         <label class="fw-bold">First Name:</label>
         <InputText class="w-100" @bind-Value="Customer.FirstName"></InputText>
@@ -37,7 +32,11 @@
         <label class="fw-bold mt-2">Zip Code:</label>
         <InputNumber class="w-100" @bind-Value="Customer.ZipCode"></InputNumber>
 
-        <button class="btn btn-primary mt-2 mb-5">Save</button>
+        <button class="btn btn-primary mt-2" @onmouseup="() => ShowDialog = true">Save</button>
+        @if (ShowDialog)
+        {
+            <ConfirmationDialogAdd Title="Update Credentials" Message="You succefully updated your credentials!" OnConfirmed="@OnConfirmed" />
+        }
         <ValidationSummary />
     </EditForm>
 </div>
