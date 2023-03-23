@@ -2,7 +2,6 @@
 using System.Net.Http.Json;
 using Microsoft.IdentityModel.Tokens;
 using WebbLabb2.Shared.DTOs;
-using Microsoft.JSInterop;
 
 namespace WebbLabb2.Client.Pages;
 

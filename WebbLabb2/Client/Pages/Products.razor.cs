@@ -21,4 +21,9 @@ public partial class Products : ComponentBase
 
         await base.OnInitializedAsync();
     }
+
+    private async Task AddProductToCart()
+    {
+        throw new NotImplementedException();
+    }
 }
