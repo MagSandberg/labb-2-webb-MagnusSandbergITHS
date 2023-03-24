@@ -6,16 +6,18 @@ namespace WebbLabb2.Client.Pages;
 
 public partial class Products : ComponentBase
 {
-    public Index _setPlaceholder = new();
+    public Index SetPlaceholder = new();
     public OrderDto Order { get; set; } = new();
+    public ProductDto Product { get; set; } = new();
     public List<ProductDto>? AllProducts { get; set; }
     public string PlaceholderEmail = string.Empty;
+    public string PlaceholderÍd = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
         await GetAllProductsAndPopulateList();
-        PlaceholderEmail = _setPlaceholder.PlaceholderEmail;
-
+        PlaceholderEmail = SetPlaceholder.PlaceholderEmail;
+        PlaceholderÍd = SetPlaceholder.CurrentOrderId;
         await base.OnInitializedAsync();
     }
 
@@ -30,9 +32,16 @@ public partial class Products : ComponentBase
             AllProducts.AddRange(response);
         }
     }
-    //TODO Fixa så att produkter läggs till i rätt order
-    private async Task AddProductToCart()
+    //TODO UNIT OF WORK HÄR?
+    private async Task AddProductToCart(string productName)
     {
+        var product = await PublicClient.Client.GetFromJsonAsync<ProductDto>($"getProductByName/{productName}");
+
+        if (product != null)
+        {
+            Order.ProductList.Add(product);
+        }
+
         await PublicClient.Client.PatchAsJsonAsync($"updatePlaceholderOrder?email={PlaceholderEmail}", Order);
     }
 }

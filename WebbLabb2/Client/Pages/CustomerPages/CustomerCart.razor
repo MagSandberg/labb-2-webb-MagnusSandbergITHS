@@ -12,7 +12,7 @@
 <h4>Customer Cart</h4>
 
 <div>
-    <EditForm Model="Order" OnSubmit="UpdateOrder">
+    <EditForm Model="Order" OnSubmit="UpdatePlaceholderOrder">
 
         <div class="table-responsive">
             <table class="table table-striped">
@@ -71,8 +71,6 @@
 </div>
 
 @code {
-    private bool ShowContent { get; set; }
-
     private float ProductTotal(float price, int orderCount)
     {
         var total = price * orderCount;

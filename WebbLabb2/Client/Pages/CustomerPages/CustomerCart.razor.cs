@@ -7,32 +7,36 @@ namespace WebbLabb2.Client.Pages.CustomerPages;
 
 public partial class CustomerCart : ComponentBase
 {
+    public Index SetPlaceholder = new();
     public OrderDto Order { get; set; } = new();
+    public string CurrentOrderEmail { get; set; } = string.Empty;
     public string CurrentOrderId { get; set; } = string.Empty;
-    private bool ShouldShowContent { get; set; }
     private bool ShowDialog { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        CurrentOrderEmail = SetPlaceholder.PlaceholderEmail;
+        CurrentOrderId = SetPlaceholder.CurrentOrderId;
 
-        if (CurrentOrderId.IsNullOrEmpty())
-        {
-            CurrentOrderId = Order.OrderId;
-        }
-
-        ShowContent = ShouldShowContent;
-
+        await GetPlaceholderOrder(CurrentOrderId);
         await base.OnInitializedAsync();
     }
+
     //TODO Lägg till get order placeholderorder
-    public async Task UpdateOrder()
+    private async Task GetPlaceholderOrder(string id)
     {
-        CurrentOrderId = Order.OrderId;
-        var safetyDto = Order;
+        await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/{id}");
+    }
 
-        if (Order.CustomerEmail == string.Empty) { Order.CustomerEmail = safetyDto.CustomerEmail; }
+    public void RemoveProductAtIndex(string productName)
+    {
+        var filter = Order.ProductList!.FindIndex(p => p.ProductName == productName);
+        Order.ProductList.RemoveAt(filter);
+    }
 
-        await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id={CurrentOrderId}", Order);
+    public async Task UpdatePlaceholderOrder()
+    {
+        await PublicClient.Client.PatchAsJsonAsync($"updatePlaceholderOrder?email={CurrentOrderEmail}", Order);
     }
 
     private async Task OnConfirmed(bool confirmed)
@@ -48,11 +52,5 @@ public partial class CustomerCart : ComponentBase
     private void Close(bool confirmed)
     {
         ShowDialog = false;
-    }
-
-    public void RemoveProductAtIndex(string productName)
-    {
-        var filter = Order.ProductList!.FindIndex(p => p.ProductName == productName);
-        Order.ProductList.RemoveAt(filter);
     }
 }
