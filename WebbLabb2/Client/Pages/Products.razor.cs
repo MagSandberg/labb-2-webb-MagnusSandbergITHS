@@ -8,17 +8,28 @@ public partial class Products : ComponentBase
 {
     public Index SetPlaceholder = new();
     public OrderDto Order { get; set; } = new();
-    public ProductDto Product { get; set; } = new();
     public List<ProductDto>? AllProducts { get; set; }
     public string PlaceholderEmail = string.Empty;
-    public string PlaceholderÍd = string.Empty;
+    public string CurrentOrderId { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
         await GetAllProductsAndPopulateList();
+        await GetPlaceholderOrder();
+
         PlaceholderEmail = SetPlaceholder.PlaceholderEmail;
-        PlaceholderÍd = SetPlaceholder.CurrentOrderId;
+
         await base.OnInitializedAsync();
+    }
+    //TODO Varför måste just detta api-anropet ha en JSON token???
+    private async Task GetPlaceholderOrder()
+    {
+        var result = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getPlaceholderOrder/{PlaceholderEmail}");
+
+        if (result != null)
+        {
+            CurrentOrderId = result.OrderId;
+        }
     }
 
     private async Task GetAllProductsAndPopulateList()

@@ -77,6 +77,21 @@ public class OrderRepository
         return nullDto;
     }
 
+    public async Task<OrderDto> GetPlaceholderOrder(string email)
+    {
+        var order = await _orderModelCollection.FindAsync(o => o.CustomerEmail.Equals(email));
+
+        if (order != null) return ConvertToDto(await order.FirstOrDefaultAsync());
+
+        var nullDto = new OrderDto
+        {
+            CustomerEmail = "Not found",
+            OrderId = "Not found",
+            ProductList = new List<ProductDto>()
+        };
+        return nullDto;
+    }
+
     public async Task<OrderDto[]> GetAllOrders()
     {
         var getAllOrders = await _orderModelCollection.FindAsync(_ => true);

@@ -43,6 +43,11 @@ public static class WebApplicationOrderEndpointExtensions
             return Results.BadRequest("Not a valid ID.");
         });
 
+        app.MapGet("/getPlaceholderOrder/{email}", async (OrderService orderService, string email) =>
+        {
+            await orderService.GetPlaceholderOrder(email);
+        });
+
         app.MapGet("/getOrders", async (OrderService orderService) =>
             await orderService.GetOrders());
 

@@ -16,16 +16,21 @@ public partial class CustomerCart : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         CurrentOrderEmail = SetPlaceholder.PlaceholderEmail;
-        CurrentOrderId = SetPlaceholder.CurrentOrderId;
 
-        await GetPlaceholderOrder(CurrentOrderId);
+        await GetPlaceholderOrder();
+
         await base.OnInitializedAsync();
     }
 
     //TODO Lägg till get order placeholderorder
-    private async Task GetPlaceholderOrder(string id)
+    public async Task GetPlaceholderOrder()
     {
-        await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/{id}");
+        var result = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getPlaceholderOrder/{CurrentOrderEmail}");
+
+        if (result != null)
+        {
+            CurrentOrderId = result.OrderId;
+        }
     }
 
     public void RemoveProductAtIndex(string productName)
