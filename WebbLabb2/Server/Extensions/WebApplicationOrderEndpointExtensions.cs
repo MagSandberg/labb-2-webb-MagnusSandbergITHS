@@ -1,5 +1,4 @@
 ﻿using MongoDB.Bson;
-using WebbLabb2.Client;
 using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
 
@@ -15,6 +14,11 @@ public static class WebApplicationOrderEndpointExtensions
 
             return result ? Results.Ok("Order successfully added") :
                 Results.BadRequest("Email is not registered.");
+        });
+
+        app.MapPost("/createPlaceHolderOrder", async (OrderService orderService, OrderDto dto) =>
+        {
+            await orderService.CreatePlaceholderOrder(dto);
         });
 
         app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>

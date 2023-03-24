@@ -11,10 +11,11 @@ public partial class CustomerCart : ComponentBase
     private bool ShouldShowContent { get; set; }
     private bool ShowDialog { get; set; }
 
-    const string placeholderEmail = "placeholder@email.com";
+    const string PlaceholderEmail = "placeholder@order.page";
 
     protected override async Task OnInitializedAsync()
     {
+        await DeletePlaceholderOrder(PlaceholderEmail);
         await CreatePlaceholderOrder();
 
         ShowContent = ShouldShowContent;
@@ -24,17 +25,17 @@ public partial class CustomerCart : ComponentBase
 
     private async Task DeletePlaceholderOrder(string email)
     {
-
+        await PublicClient.Client.DeleteAsync($"removeOrder/{email}");
     }
 
     private async Task CreatePlaceholderOrder()
     {
         var placeholderList = new List<ProductDto>();
 
-        Order.CustomerEmail = placeholderEmail;
+        Order.CustomerEmail = PlaceholderEmail;
         Order.ProductList = placeholderList;
 
-        await PublicClient.Client.PostAsJsonAsync("createOrder", Order);
+        await PublicClient.Client.PostAsJsonAsync("createPlaceholderOrder", Order);
     }
 
     public async Task UpdateOrder()

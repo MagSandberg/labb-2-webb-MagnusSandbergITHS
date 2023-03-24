@@ -17,6 +17,11 @@ public class OrderService
         return await _orderRepository.CreateOrder(dto);
     }
 
+    public async Task CreatePlaceholderOrder(OrderDto dto)
+    {
+        await _orderRepository.CreatePlaceholderOrder(dto);
+    }
+
     public async Task<bool> UpdateOrder(string id, OrderDto dto)
     {
         return await _orderRepository.UpdateOrder(id, dto);

@@ -35,6 +35,11 @@ public class OrderRepository
         return true;
     }
 
+    public async Task CreatePlaceholderOrder(OrderDto dto)
+    {
+        await _orderModelCollection.InsertOneAsync(ConvertToModel(dto));
+    }
+
     public async Task<bool> UpdateOrder(string id, OrderDto dto)
     {
         var filter = Builders<OrderModel>.Filter.Eq("OrderId", id);
