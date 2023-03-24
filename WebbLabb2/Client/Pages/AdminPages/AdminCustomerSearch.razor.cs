@@ -3,7 +3,7 @@ using WebbLabb2.Shared.DTOs;
 using System.Net.Http.Json;
 
 
-namespace WebbLabb2.Client.Pages;
+namespace WebbLabb2.Client.Pages.AdminPages;
 
 public partial class AdminCustomerSearch : ComponentBase
 {

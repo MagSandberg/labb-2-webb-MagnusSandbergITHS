@@ -17,8 +17,6 @@ public static class WebApplicationCustomerEndpointExtensions
 
         app.MapGet("/getCustomer", async (CustomerService customerService, string id) =>
         {
-            //TODO Bryt ut till en metod som kollar guid eller skapa en helper-class med alla checkar
-
             if (Guid.TryParse(id, out var guid))
             {
                 var result = await customerService.GetCustomer(guid);

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using WebbLabb2.Shared.DTOs;
 
-namespace WebbLabb2.Client.Pages;
+namespace WebbLabb2.Client.Pages.CustomerPages;
 
 public partial class CustomerRegistration : ComponentBase
 {

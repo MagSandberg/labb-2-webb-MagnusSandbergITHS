@@ -2,6 +2,7 @@
 
 @using WebbLabb2.Client.PublicClient
 @using Blazored.SessionStorage
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
 
 @inject PublicClient PublicClient
 @inject ISessionStorageService SessionStorage
@@ -30,7 +31,7 @@
                 <td>@item.CustomerEmail</td>
                 <td>
                     <NavLink href="adminorderedit">
-                        <button class="btn btn-primary"@onclick="() => SaveOrderId(item.OrderId)">View order</button>
+                        <button class="btn btn-primary" @onclick="() => SaveOrderId(item.OrderId)">View order</button>
                     </NavLink>
                 </td>
                 <td>

@@ -15,7 +15,6 @@ public class CustomerModel
     public string LastName { get; set; } = string.Empty;
     [EmailAddress, Required]
     public string Email { get; set; } = string.Empty;
-    //TODO Kolla vilken datatyp Phone vill använda, just nu köper den allt
     [Phone, Required]
     public string CellNumber { get; set; } = string.Empty;
     [MaxLength(100), Required]

@@ -1,4 +1,4 @@
-﻿namespace WebbLabb2.Client.Shared;
+﻿namespace WebbLabb2.Client.Shared.Services;
 
 public class CurrentCustomerService
 {

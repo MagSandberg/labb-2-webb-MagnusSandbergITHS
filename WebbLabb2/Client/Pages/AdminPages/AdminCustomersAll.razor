@@ -1,6 +1,8 @@
 ﻿@page "/admincustomersall"
 
 @using WebbLabb2.Client.PublicClient
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
@@ -50,7 +52,7 @@
                         }
                         else
                         {
-                            <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentCustomerId(item.Id)" />
+                            <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentCustomerId(item.Id)"></button>
                             @if (ShowDialog)
                             {
                                 <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />

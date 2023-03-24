@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using Microsoft.IdentityModel.Tokens;
 using WebbLabb2.Shared.DTOs;
 
-namespace WebbLabb2.Client.Pages;
+namespace WebbLabb2.Client.Pages.AdminPages;
 
 public partial class AdminOrderEdit : ComponentBase
 {
@@ -53,7 +53,7 @@ public partial class AdminOrderEdit : ComponentBase
     {
         CurrentOrderId = CurrentSelectedOrder.OrderId;
         var safetyDto = CurrentSelectedOrder;
-        
+
         if (CurrentSelectedOrder.CustomerEmail == string.Empty) { CurrentSelectedOrder.CustomerEmail = safetyDto.CustomerEmail; }
 
         await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id={CurrentOrderId}", CurrentSelectedOrder);
