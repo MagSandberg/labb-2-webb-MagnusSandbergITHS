@@ -53,6 +53,15 @@ public class OrderRepository
         return true;
     }
 
+    public async Task UpdatePlaceholderOrder(string email, OrderDto dto)
+    {
+        var filter = Builders<OrderModel>.Filter.Eq("CustomerEmail", email);
+        var update = Builders<OrderModel>.Update
+            .Set(o => o.ProductList, dto.ProductList);
+
+        await _orderModelCollection.UpdateOneAsync(filter, update);
+    }
+
     public async Task<OrderDto> GetOrder(string id)
     {
         var order = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id));

@@ -27,6 +27,11 @@ public class OrderService
         return await _orderRepository.UpdateOrder(id, dto);
     }
 
+    public async Task UpdatePlaceholderOrder(string email, OrderDto dto)
+    {
+        await _orderRepository.UpdatePlaceholderOrder(email, dto);
+    }
+
     public async Task<OrderDto> GetOrder(string id)
     {
         return await _orderRepository.GetOrder(id);

@@ -27,6 +27,11 @@ public static class WebApplicationOrderEndpointExtensions
             return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
         });
 
+        app.MapPatch("/updatePlaceholderOrder", async (OrderService orderService, string email, OrderDto dto) =>
+        {
+            await orderService.UpdatePlaceholderOrder(email, dto);
+        });
+
         app.MapGet("/getOrder/{id}", async (OrderService orderService, string id) =>
         {
             if (ObjectId.TryParse(id, out var objectId))

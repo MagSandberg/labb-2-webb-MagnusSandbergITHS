@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
+using Microsoft.IdentityModel.Tokens;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Client.Pages.CustomerPages;
@@ -11,33 +12,19 @@ public partial class CustomerCart : ComponentBase
     private bool ShouldShowContent { get; set; }
     private bool ShowDialog { get; set; }
 
-    const string PlaceholderEmail = "placeholder@order.page";
-
     protected override async Task OnInitializedAsync()
     {
-        await DeletePlaceholderOrder(PlaceholderEmail);
-        await CreatePlaceholderOrder();
+
+        if (CurrentOrderId.IsNullOrEmpty())
+        {
+            CurrentOrderId = Order.OrderId;
+        }
 
         ShowContent = ShouldShowContent;
 
         await base.OnInitializedAsync();
     }
-
-    private async Task DeletePlaceholderOrder(string email)
-    {
-        await PublicClient.Client.DeleteAsync($"removeOrder/{email}");
-    }
-
-    private async Task CreatePlaceholderOrder()
-    {
-        var placeholderList = new List<ProductDto>();
-
-        Order.CustomerEmail = PlaceholderEmail;
-        Order.ProductList = placeholderList;
-
-        await PublicClient.Client.PostAsJsonAsync("createPlaceholderOrder", Order);
-    }
-
+    //TODO Lägg till get order placeholderorder
     public async Task UpdateOrder()
     {
         CurrentOrderId = Order.OrderId;
