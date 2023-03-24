@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using WebbLabb2.Client;
 using WebbLabb2.Server.Services;
 using WebbLabb2.Shared.DTOs;
 
@@ -40,6 +41,12 @@ public static class WebApplicationOrderEndpointExtensions
         {
             var result = await orderService.RemoveOrder(id);
             return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order removed");
+        });
+
+        app.MapDelete("/removePlaceholderOrder/{email}", async (OrderService orderService, string email) =>
+        {
+            var result = await orderService.RemovePlaceHolderOrder(email);
+            return result == false ? Results.NotFound("Order Email doesn't exist") : Results.Ok("Order removed");
         });
 
         return app;

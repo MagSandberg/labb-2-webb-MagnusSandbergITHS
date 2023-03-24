@@ -36,4 +36,9 @@ public class OrderService
     {
         return await _orderRepository.RemoveOrder(id);
     }
+
+    public async Task<bool> RemovePlaceHolderOrder(string email)
+    {
+        return await _orderRepository.RemovePlaceHolderOrder(email);
+    }
 }

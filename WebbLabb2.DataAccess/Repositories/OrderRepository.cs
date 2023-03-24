@@ -2,7 +2,6 @@
 using MongoDB.Driver;
 using WebbLabb2.DataAccess.Models;
 using WebbLabb2.DataAccess.Sql.Contexts;
-using WebbLabb2.DataAccess.Sql.Models;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.DataAccess.Repositories;
@@ -77,6 +76,15 @@ public class OrderRepository
         if (orderIdExists == false) return false;
 
         await _orderModelCollection.DeleteOneAsync(p => p.OrderId.Equals(id));
+        return true;
+    }
+
+    public async Task<bool> RemovePlaceHolderOrder(string email)
+    {
+        var orderIdExists = await _orderModelCollection.FindAsync(o => o.CustomerEmail.Equals(email)).Result.AnyAsync();
+        if (orderIdExists == false) return false;
+
+        await _orderModelCollection.DeleteOneAsync(p => p.CustomerEmail.Equals(email));
         return true;
     }
 

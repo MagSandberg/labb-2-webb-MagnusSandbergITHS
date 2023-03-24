@@ -11,19 +11,30 @@ public partial class CustomerCart : ComponentBase
     private bool ShouldShowContent { get; set; }
     private bool ShowDialog { get; set; }
 
+    const string placeholderEmail = "placeholder@email.com";
+
     protected override async Task OnInitializedAsync()
     {
-        CurrentOrderId = await SessionStorage.GetItemAsync<string>("orderID");
+        await CreatePlaceholderOrder();
 
         ShowContent = ShouldShowContent;
 
         await base.OnInitializedAsync();
     }
 
-    private async Task CreateOrder()
+    private async Task DeletePlaceholderOrder(string email)
     {
-        //Order.CustomerEmail = SessionStorage.
-        var response = PublicClient.Client.PostAsJsonAsync("createOrder", Order);
+
+    }
+
+    private async Task CreatePlaceholderOrder()
+    {
+        var placeholderList = new List<ProductDto>();
+
+        Order.CustomerEmail = placeholderEmail;
+        Order.ProductList = placeholderList;
+
+        await PublicClient.Client.PostAsJsonAsync("createOrder", Order);
     }
 
     public async Task UpdateOrder()
