@@ -2,6 +2,7 @@
 
 @using WebbLabb2.Client.PublicClient
 @using Microsoft.IdentityModel.Tokens
+
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
@@ -19,52 +20,53 @@
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="color-store-primary">
-                <tr>
-                    <th></th>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>In stock</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th></th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>In stock</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody class="align-middle">
-                <tr class="tr-hover">
-                    <td>
-                        <div class="modal-dialog modal-dialog-centered img-fluid-container">
-                            <img alt="" class="img-fluid-store" src="@CurrentProduct.ProductImage" />
-                        </div>
-                    </td>
-                    <td>@CurrentProduct.ProductName<br /><span class="text-secondary">@CurrentProduct.ProductDescription</span></td>
-                    <td>$@CurrentProduct.ProductPrice</td>
-                    <td>@CurrentProduct.ProductCategory</td>
-                    <td>
-                        @if (CurrentProduct.ProductStatus)
-                        {
-                            <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@CurrentProduct.ProductStatus" />
-                        }
-                        else
-                        {
-                            <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@CurrentProduct.ProductStatus" />
-                        }
-                    </td>
-                    @if (CurrentProduct.ProductName == "Not found")
+            <tr class="tr-hover">
+                <td>
+                    <div class="modal-dialog modal-dialog-centered img-fluid-container">
+                        <img alt="" class="img-fluid-store" src="@CurrentProduct.ProductImage" />
+                    </div>
+                </td>
+                <td>@CurrentProduct.ProductName<br /><span class="text-secondary">@CurrentProduct.ProductDescription</span></td>
+                <td>$@CurrentProduct.ProductPrice</td>
+                <td>@CurrentProduct.ProductCategory</td>
+                <td>
+                    @if (CurrentProduct.ProductStatus)
                     {
-                        <td>
-                            <button class="btn btn-store-primary" disabled="disabled"><span class="oi oi-cart"></span></button>
-                        </td>
+                        <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@CurrentProduct.ProductStatus" />
                     }
                     else
                     {
-                        <td>
-                            <button class="btn btn-store-primary"><span class="oi oi-cart"></span></button>
-                        </td>
+                        <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@CurrentProduct.ProductStatus" />
                     }
-                </tr>
+                </td>
+                @if (CurrentProduct.ProductName == "Not found")
+                {
+                    <td>
+                        <button class="btn btn-store-primary" disabled="disabled"><span class="oi oi-cart"></span></button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button class="btn btn-store-primary"><span class="oi oi-cart"></span></button>
+                    </td>
+                }
+            </tr>
             </tbody>
         </table>
     </div>
 </EditForm>
+
 @if (ProductNameSearch.IsNullOrEmpty() || ProductNameSearch == "Please enter a name") { }
 else
 {

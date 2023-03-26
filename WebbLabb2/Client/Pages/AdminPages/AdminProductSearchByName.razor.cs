@@ -40,15 +40,43 @@ public partial class AdminProductSearchByName : ComponentBase
     {
         CurrentProductId = CurrentProduct.ProductId;
 
-        var safetyDto = CurrentProduct;
-
-        if (CurrentProduct.ProductNumber == 0) { CurrentProduct.ProductNumber = safetyDto.ProductNumber; }
-        if (CurrentProduct.ProductName == string.Empty) { CurrentProduct.ProductName = safetyDto.ProductName; }
-        if (CurrentProduct.ProductDescription == string.Empty) { CurrentProduct.ProductDescription = safetyDto.ProductDescription; }
-        if (CurrentProduct.ProductPrice == 0) { CurrentProduct.ProductPrice = safetyDto.ProductPrice; }
-        if (CurrentProduct.ProductCategory == string.Empty) { CurrentProduct.ProductCategory = safetyDto.ProductCategory; }
-        if (CurrentProduct.ProductImage == string.Empty) { CurrentProduct.ProductImage = "resources/images/noimage.png"; }
+        GetSafetyDto();
 
         await PublicClient.Client.PatchAsJsonAsync($"updateProduct?id={CurrentProductId}", CurrentProduct);
+    }
+
+    private void GetSafetyDto()
+    {
+        var safetyDto = CurrentProduct;
+
+        if (CurrentProduct.ProductNumber == 0)
+        {
+            CurrentProduct.ProductNumber = safetyDto.ProductNumber;
+        }
+
+        if (CurrentProduct.ProductName == string.Empty)
+        {
+            CurrentProduct.ProductName = safetyDto.ProductName;
+        }
+
+        if (CurrentProduct.ProductDescription == string.Empty)
+        {
+            CurrentProduct.ProductDescription = safetyDto.ProductDescription;
+        }
+
+        if (CurrentProduct.ProductPrice == 0)
+        {
+            CurrentProduct.ProductPrice = safetyDto.ProductPrice;
+        }
+
+        if (CurrentProduct.ProductCategory == string.Empty)
+        {
+            CurrentProduct.ProductCategory = safetyDto.ProductCategory;
+        }
+
+        if (CurrentProduct.ProductImage == string.Empty)
+        {
+            CurrentProduct.ProductImage = "resources/images/noimage.png";
+        }
     }
 }
