@@ -5,7 +5,7 @@
 
 @inject PublicClient PublicClient
 
-<link href="css/CommonStyles.css" rel="stylesheet" />
+<link href="css/commonstyles.css" rel="stylesheet" />
 
 <PageTitle>Admin - Search / Edit Products</PageTitle>
 
@@ -14,7 +14,7 @@
 <EditForm Model="CurrentProduct" OnValidSubmit="GetProductByName">
     <div class="form-control">
         <InputText @bind-Value="ProductNameSearch"></InputText>
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-store-primary">Search</button>
     </div>
     <h5 style="margin-top: 20px;">Preview</h5>
     <div class="table-responsive">

@@ -8,7 +8,7 @@
 @inject PublicClient PublicClient
 @inject ISessionStorageService SessionStorage
 
-<link href="css/CommonStyles.css" rel="stylesheet" />
+<link href="css/commonstyles.css" rel="stylesheet" />
 
 <PageTitle>Admin - Search Order</PageTitle>
 
@@ -17,7 +17,7 @@
 <EditForm Model="Order" OnValidSubmit="GetOrderById">
     <div class="form-control">
         <InputText @bind-Value="OrderId"></InputText>
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-store-primary">Search</button>
     </div>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -36,14 +36,14 @@
                 <td>
                     @if (@Order.OrderId.IsNullOrEmpty())
                     {
-                        <button class="btn btn-primary" disabled="disabled" @onclick="() => SaveOrderId(Order.OrderId)">
+                        <button class="btn btn-store-primary" disabled="disabled" @onclick="() => SaveOrderId(Order.OrderId)">
                             <span class="oi oi-wrench"></span>
                         </button>
                     }
                     else
                     {
                         <NavLink href="adminorderedit">
-                            <button class="btn btn-primary" @onclick="() => SaveOrderId(Order.OrderId)">
+                            <button class="btn btn-store-primary" @onclick="() => SaveOrderId(Order.OrderId)">
                                 <span class="oi oi-wrench"></span>
                             </button>
                         </NavLink>

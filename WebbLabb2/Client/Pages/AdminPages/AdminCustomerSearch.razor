@@ -6,7 +6,7 @@
 
 @inject PublicClient PublicClient
 
-<link href="css/CommonStyles.css" rel="stylesheet" />
+<link href="css/commonstyles.css" rel="stylesheet" />
 
 <PageTitle>Admin - Search / Edit Customer</PageTitle>
 
@@ -15,7 +15,7 @@
 <EditForm Model="Customer" OnValidSubmit="GetCustomerByEmail">
     <div class="form-control">
         <InputText @bind-Value="Email"></InputText>
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-store-primary">Search</button>
     </div>
     <div class="table-responsive">
         <table class="table table-striped">

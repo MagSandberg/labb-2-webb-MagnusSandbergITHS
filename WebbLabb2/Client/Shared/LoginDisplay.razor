@@ -11,8 +11,12 @@
         <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
     </Authorized>
     <NotAuthorized>
-        <a href="authentication/register">Register</a>
-        <a href="authentication/login">Log in</a>
+        <NavLink href="authentication/register">
+            <button class="btn btn-outline-light">Register</button>
+        </NavLink>
+        <NavLink href="authentication/login">
+            <button class="btn btn-outline-light">Log in</button>
+        </NavLink>
     </NotAuthorized>
 </AuthorizeView>
 

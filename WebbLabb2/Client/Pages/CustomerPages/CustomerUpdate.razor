@@ -8,9 +8,11 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject PublicClient PublicClient
 
-<h3>Customer Update</h3>
+<link href="css/commonstyles.css" rel="stylesheet" />
 
-<div class="mt-5">
+<h4>Customer Update</h4>
+
+<div class="mt-2">
     <EditForm Model="Customer" OnValidSubmit="UpdateCustomer">
         <DataAnnotationsValidator />
         <label class="fw-bold">First Name:</label>
@@ -35,11 +37,11 @@
         <InputNumber class="w-100" @bind-Value="Customer.ZipCode"></InputNumber>
         @if (Email.IsNullOrEmpty())
         {
-            <button class="btn btn-primary mt-2" @onmouseup="() => ShowDialog = false" disabled="disabled">Save</button>
+            <button class="btn btn-store-primary mt-2" @onmouseup="() => ShowDialog = false" disabled="disabled">Save</button>
         }
         else
         {
-            <button class="btn btn-primary mt-2" @onmouseup="() => ShowDialog = true">Save</button>
+            <button class="btn btn-store-primary mt-2" @onmouseup="() => ShowDialog = true">Save</button>
         }
 
         <ValidationSummary />

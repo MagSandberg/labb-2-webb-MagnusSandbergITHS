@@ -6,7 +6,11 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject PublicClient PublicClient
 
-<h3>Customer Registration</h3>
+<link href="css/commonstyles.css" rel="stylesheet" />
+
+<PageTitle>Customer - Registration</PageTitle>
+
+<h4>Customer Registration</h4>
 
 <p>You need to login to register your account details.</p>
 <NavLink href="/authentication/login">
@@ -37,7 +41,7 @@
         <label class="fw-bold mt-2">Zip Code:</label>
         <InputNumber class="w-100" @bind-Value="Customer.ZipCode"></InputNumber>
 
-        <button class="btn btn-primary mt-2 mb-5">Save</button>
+        <button class="btn btn-store-primary mt-2">Save</button>
         <ValidationSummary />
     </EditForm>
 </div>

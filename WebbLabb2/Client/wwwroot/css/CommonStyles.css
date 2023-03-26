@@ -1,23 +1,33 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
 
+a {
+    color: aliceblue;
+}
+
+a:hover {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 h4 {
     font-family: 'Playfair Display', serif;
     font-size: 2.5em;
     font-weight: 600;
-    color: indianred;
-    padding-bottom: 20px;
+    color: #dc3545;
+    padding-bottom: 16px;
 }
 
 .color-store-primary {
     color: #FFF;
-    background-color: indianred;
+    background-color: #dc3545;
 }
 
 .btn-store-primary {
     font-weight: bold;
     padding-bottom: 5px;
     color: #FFF;
-    background-color: indianred;
+    background-color: #dc3545;
 }
 
 .btn-store-primary:hover {
