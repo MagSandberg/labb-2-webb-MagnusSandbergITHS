@@ -10,6 +10,7 @@ public partial class AdminCustomerEdit : ComponentBase
     public CustomerDto CurrentSelectedCustomer { get; set; } = new();
     public Guid CurrentCustomerId { get; set; }
     public string Email { get; set; } = string.Empty;
+    private bool ShowDialog { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -49,5 +50,15 @@ public partial class AdminCustomerEdit : ComponentBase
         if (CurrentSelectedCustomer.StreetAddress == string.Empty) { CurrentSelectedCustomer.StreetAddress = safetyDto.StreetAddress; }
 
         await PublicClient.Client.PatchAsJsonAsync($"updateCustomer?id={CurrentCustomerId}", CurrentSelectedCustomer);
+    }
+
+    private void OnConfirmed(bool confirmed)
+    {
+        if (confirmed)
+        {
+            ShowDialog = false;
+        }
+
+        ShowDialog = false;
     }
 }

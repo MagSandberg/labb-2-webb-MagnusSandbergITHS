@@ -1,6 +1,8 @@
 ﻿@page "/adminproductedit"
 
 @using WebbLabb2.Client.PublicClient
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
@@ -36,3 +38,8 @@
         <button class="btn btn-primary mt-2 mb-5">Save</button>
     </EditForm>
 </div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialogAdd Message="Product updated" OnConfirmed="@OnConfirmed" />
+}

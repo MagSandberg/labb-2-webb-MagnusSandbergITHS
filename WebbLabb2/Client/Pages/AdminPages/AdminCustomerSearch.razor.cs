@@ -37,17 +37,49 @@ public partial class AdminCustomerSearch : ComponentBase
     {
         SelectedCustomerId = Customer.Id;
 
-        var safetyDto = Customer;
-
-        if (Customer.FirstName == string.Empty) { Customer.FirstName = safetyDto.FirstName; }
-        if (Customer.LastName == string.Empty) { Customer.LastName = safetyDto.LastName; }
-        if (Customer.Email == string.Empty) { Customer.Email = safetyDto.Email; }
-        if (Customer.CellNumber == string.Empty) { Customer.CellNumber = safetyDto.CellNumber; }
-        if (Customer.ZipCode == 0) { Customer.ZipCode = safetyDto.ZipCode; }
-        if (Customer.City == string.Empty) { Customer.City = safetyDto.City; }
-        if (Customer.StreetAddress == string.Empty) { Customer.StreetAddress = safetyDto.StreetAddress; }
+        GetSafetyDto();
 
         await PublicClient.Client.PatchAsJsonAsync($"updateCustomer?id={SelectedCustomerId}", Customer);
+    }
+
+    private void GetSafetyDto()
+    {
+        var safetyDto = Customer;
+
+        if (Customer.FirstName == string.Empty)
+        {
+            Customer.FirstName = safetyDto.FirstName;
+        }
+
+        if (Customer.LastName == string.Empty)
+        {
+            Customer.LastName = safetyDto.LastName;
+        }
+
+        if (Customer.Email == string.Empty)
+        {
+            Customer.Email = safetyDto.Email;
+        }
+
+        if (Customer.CellNumber == string.Empty)
+        {
+            Customer.CellNumber = safetyDto.CellNumber;
+        }
+
+        if (Customer.ZipCode == 0)
+        {
+            Customer.ZipCode = safetyDto.ZipCode;
+        }
+
+        if (Customer.City == string.Empty)
+        {
+            Customer.City = safetyDto.City;
+        }
+
+        if (Customer.StreetAddress == string.Empty)
+        {
+            Customer.StreetAddress = safetyDto.StreetAddress;
+        }
     }
 
     private async Task OnConfirmed(bool confirmed)

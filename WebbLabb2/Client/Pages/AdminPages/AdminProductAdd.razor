@@ -1,7 +1,6 @@
 ﻿@page "/adminproductadd"
 
 @using Microsoft.AspNetCore.Components
-
 @using WebbLabb2.Client.PublicClient
 @using WebbLabb2.Client.Pages.ConfirmationDialogs
 
@@ -38,10 +37,12 @@
         <InputText class="w-100" @bind-Value="Product.ProductImage"></InputText>
 
         <button class="btn btn-primary mt-2 mb-5" @onmouseup="() => ShowDialog = true">Save</button>
-        @if (ShowDialog)
-        {
-            <ConfirmationDialogAdd Title="Product Added" Message="You succefully added a new product!" OnConfirmed="@OnConfirmed" />
-        }
+        
         <ValidationSummary />
     </EditForm>
 </div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialogAdd Title="Product Added" Message="You succefully added a new product!" OnConfirmed="@OnConfirmed" />
+}

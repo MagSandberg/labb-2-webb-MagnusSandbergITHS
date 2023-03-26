@@ -53,10 +53,6 @@
                         else
                         {
                             <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentCustomerId(item.Id)"></button>
-                            @if (ShowDialog)
-                            {
-                                <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
-                            }
                         }
                     </td>
                 </tr>
@@ -64,3 +60,8 @@
         </tbody>
     </table>
 </div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected customer." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+}

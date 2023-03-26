@@ -27,6 +27,7 @@ public partial class AdminOrdersAll : ComponentBase
             AllOrders.AddRange(response);
         }
     }
+
     private async Task DeleteOrder()
     {
         await PublicClient.Client.DeleteAsync($"removeOrder/{SelectedOrderId}");

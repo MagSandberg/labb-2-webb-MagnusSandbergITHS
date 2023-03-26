@@ -52,11 +52,19 @@ public partial class AdminOrderEdit : ComponentBase
     public async Task UpdateOrder()
     {
         CurrentOrderId = CurrentSelectedOrder.OrderId;
-        var safetyDto = CurrentSelectedOrder;
-
-        if (CurrentSelectedOrder.CustomerEmail == string.Empty) { CurrentSelectedOrder.CustomerEmail = safetyDto.CustomerEmail; }
+        GetSafetyDto();
 
         await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id={CurrentOrderId}", CurrentSelectedOrder);
+    }
+
+    private void GetSafetyDto()
+    {
+        var safetyDto = CurrentSelectedOrder;
+
+        if (CurrentSelectedOrder.CustomerEmail == string.Empty)
+        {
+            CurrentSelectedOrder.CustomerEmail = safetyDto.CustomerEmail;
+        }
     }
 
     private async Task OnConfirmed(bool confirmed)

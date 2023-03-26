@@ -1,6 +1,8 @@
 ﻿@page "/admincustomeredit"
 
 @using WebbLabb2.Client.PublicClient
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
 @inject PublicClient PublicClient
 
 <PageTitle>Admin - Edit Customer</PageTitle>
@@ -31,6 +33,11 @@
         <label class="fw-bold mt-2">Zip Code:</label>
         <InputNumber class="w-100" @bind-Value="CurrentSelectedCustomer.ZipCode"></InputNumber>
 
-        <button class="btn btn-primary mt-2 mb-5">Save</button>
+        <button class="btn btn-primary mt-2 mb-5" @onclick="() => ShowDialog = true">Save</button>
     </EditForm>
 </div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialogAdd Message="Customer updated" OnConfirmed="@OnConfirmed" />
+}

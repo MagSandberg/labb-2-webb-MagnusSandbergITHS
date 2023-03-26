@@ -42,10 +42,6 @@
                     else
                     {
                         <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentOrderId(item.OrderId)"></button>
-                        @if (ShowDialog)
-                        {
-                            <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected order." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
-                        }
                     }
                 </td>
             </tr>
@@ -53,6 +49,11 @@
         </tbody>
     </table>
 </div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected order." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+}
 
 @code {
     private void SaveOrderId(string orderId)

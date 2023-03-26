@@ -11,12 +11,22 @@ public partial class AdminProductAdd : ComponentBase
     private bool ShowDialog { get; set; }
     public async Task CreateProduct()
     {
-        if (Product.ProductImage.IsNullOrEmpty())
-        { Product.ProductImage = "resources/images/noimage.png"; }
-        if (Product.ProductCategory.IsNullOrEmpty())
-        { Product.ProductCategory = "Uncategorized"; }
+        SetDefaultValuesProduct();
 
         await PublicClient.Client.PostAsJsonAsync("createProduct", Product);
+    }
+
+    private void SetDefaultValuesProduct()
+    {
+        if (Product.ProductImage.IsNullOrEmpty())
+        {
+            Product.ProductImage = "resources/images/noimage.png";
+        }
+
+        if (Product.ProductCategory.IsNullOrEmpty())
+        {
+            Product.ProductCategory = "Uncategorized";
+        }
     }
 
     private void OnConfirmed(bool confirmed)
