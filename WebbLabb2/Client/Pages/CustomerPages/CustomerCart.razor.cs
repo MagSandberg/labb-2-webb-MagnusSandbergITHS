@@ -25,7 +25,7 @@ public partial class CustomerCart : ComponentBase
 
     public async Task UpdateOrder()
     {
-        await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id=641dfe3a24041c76e93e812f", Order);
+        await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id=641dfe3a24041c76e93e812f", UpdatedOrder);
     }
 
     public void SetSelectedProductName(string selectedProductName)
@@ -49,7 +49,7 @@ public partial class CustomerCart : ComponentBase
         if (confirmed)
         {
             await RemoveProductAtIndex(SelectedProductName);
-            await PublicClient.Client.PatchAsJsonAsync($"updateOrder/641dfe3a24041c76e93e812f", UpdatedOrder);
+            await UpdateOrder();
         }
 
         ShowDialog = false;

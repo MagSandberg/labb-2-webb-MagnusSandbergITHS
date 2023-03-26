@@ -10,7 +10,7 @@
 <h4>Customer Cart</h4>
 
 <div>
-    <EditForm Model="Order" OnSubmit="UpdateOrder">
+    <EditForm Model="Order" >
 
         <div class="table-responsive">
             <table class="table table-striped">
@@ -45,7 +45,7 @@
                             <td><InputNumber @bind-Value="item.OrderCount"></InputNumber></td>
                             <td>@ProductTotal(@item.ProductPrice, @item.OrderCount)</td>
                             <td>
-                                <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetSelectedProductName(item.ProductName)"></button>
+                                <button class="btn btn-close" @onclick="() => ShowDialog = true" @onmouseup="() => SetSelectedProductName(item.ProductName)"></button>
                                 @if (ShowDialog)
                                 {
                                     <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected product." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
@@ -57,7 +57,7 @@
             </table>
         </div>
 
-        <button class="btn btn-primary mt-2 mb-5"><span class="oi oi-credit-card mt-1"></span> Shop</button>
+        <button class="btn btn-primary mt-2 mb-5" onclick="@UpdateOrder"><span class="oi oi-credit-card mt-1"></span> Shop</button>
     </EditForm>
 </div>
 
