@@ -8,13 +8,14 @@ public partial class Products : ComponentBase
 {
     public OrderDto Order { get; set; } = new();
     public List<ProductDto>? AllProducts { get; set; }
+    private bool ShowDialog { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await GetAllProductsAndPopulateList();
         await base.OnInitializedAsync();
     }
-    //TODO Lägg till dialogpopup added item
+
     private async Task GetAllProductsAndPopulateList()
     {
         AllProducts = new List<ProductDto>();
@@ -29,7 +30,7 @@ public partial class Products : ComponentBase
     //TODO UNIT OF WORK HÄR?
     private async Task AddProductToCart(string productName)
     {
-        var product = await PublicClient.Client.GetFromJsonAsync<ProductDto>($"getProductByName/{productName}");
+        var product = await GetProductByName(productName);
         
         var result = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/641dfe3a24041c76e93e812f");
         Order = result;
@@ -41,5 +42,21 @@ public partial class Products : ComponentBase
         }
 
         await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id=641dfe3a24041c76e93e812f", Order);
+    }
+
+    private async Task<ProductDto?> GetProductByName(string productName)
+    {
+        var product = await PublicClient.Client.GetFromJsonAsync<ProductDto>($"getProductByName/{productName}");
+        return product;
+    }
+
+    private void OnConfirmed(bool confirmed)
+    {
+        if (confirmed)
+        {
+            ShowDialog = false;
+        }
+
+        ShowDialog = false;
     }
 }

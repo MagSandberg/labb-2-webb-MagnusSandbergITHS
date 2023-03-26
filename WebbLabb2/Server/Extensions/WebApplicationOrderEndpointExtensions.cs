@@ -27,7 +27,7 @@ public static class WebApplicationOrderEndpointExtensions
             if (ObjectId.TryParse(id, out var objectId))
             {
                 var result = await orderService.GetOrder(objectId.ToString());
-                return result == null ? Results.NotFound("Product ID doesn't exist.") : Results.Ok(result);
+                return result == null ? Results.NotFound("Order ID doesn't exist.") : Results.Ok(result);
             }
 
             return Results.BadRequest("Not a valid ID.");
