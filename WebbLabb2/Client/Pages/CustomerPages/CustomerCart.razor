@@ -46,10 +46,6 @@
                             <td>@ProductTotal(@item.ProductPrice, @item.OrderCount)</td>
                             <td>
                                 <button class="btn btn-close" @onclick="() => ShowDialog = true" @onmouseup="() => SetSelectedProductName(item.ProductName)"></button>
-                                @if (ShowDialog)
-                                {
-                                    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected product." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
-                                }
                             </td>
                         </tr>
                     }
@@ -60,6 +56,11 @@
         <button class="btn btn-primary mt-2 mb-5" onclick="@ClearPlaceholderProductList"><span class="oi oi-credit-card mt-1"></span> Shop</button>
     </EditForm>
 </div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected product." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+}
 
 @code {
     private float ProductTotal(float price, int orderCount)

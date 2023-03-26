@@ -12,6 +12,7 @@ public partial class CustomerRegistration : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         var userAuth = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
         Email = userAuth.User.Identity.Name;
         Customer.Email = Email;
 

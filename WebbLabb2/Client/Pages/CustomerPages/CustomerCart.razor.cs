@@ -30,7 +30,7 @@ public partial class CustomerCart : ComponentBase
 
     public async Task ClearPlaceholderProductList()
     {
-        Order.ProductList.Clear();
+        if (Order.ProductList != null) Order.ProductList.Clear();
         await UpdateOrder();
     }
 
