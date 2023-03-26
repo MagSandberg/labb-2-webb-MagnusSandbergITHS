@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Resources\images\Logo\logo_icon.jpg" />
+    <None Include="wwwroot\Resources\images\Logo\logo_main.jpg" />
+    <None Include="wwwroot\Resources\images\Logo\logo_main_bw.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_1.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_2.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_3.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_4.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_5.jpg" />
+    <None Include="wwwroot\Resources\images\Perfume\perfume_6.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_1.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_2.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_3.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_4.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_5.jpg" />
+    <None Include="wwwroot\Resources\images\Soap\soap_6.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_1.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_2.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_3.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_4.jpg" />
+    <None Include="wwwroot\Resources\images\Vase\vase_5.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.SessionStorage" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\WebbLabb2.DataAccess.Sql\WebbLabb2.DataAccess.Sql.csproj" />
+    <ProjectReference Include="..\Shared\WebbLabb2.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PublicClient\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4css_4bootstrap_4bootstrap_1min_1css_1map__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

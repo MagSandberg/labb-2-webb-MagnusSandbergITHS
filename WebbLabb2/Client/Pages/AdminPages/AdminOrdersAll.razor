@@ -1,0 +1,63 @@
+﻿@page "/adminordersall"
+
+@using WebbLabb2.Client.PublicClient
+@using Blazored.SessionStorage
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
+@inject PublicClient PublicClient
+@inject ISessionStorageService SessionStorage
+
+<link href="css/commonstyles.css" rel="stylesheet" />
+
+<PageTitle>Admin - All Orders</PageTitle>
+
+<h4>All orders</h4>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="color-store-primary">
+        <tr>
+            <th>Order ID</th>
+            <th>Customer Email</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody class="align-middle">
+        @foreach (var item in AllOrders!)
+        {
+            <tr class="tr-hover">
+                <td>@item.OrderId</td>
+                <td>@item.CustomerEmail</td>
+                <td>
+                    <NavLink href="adminorderedit">
+                        <button class="btn btn-store-primary" @onclick="() => SaveOrderId(item.OrderId)">View order</button>
+                    </NavLink>
+                </td>
+                <td>
+                    @if (item.CustomerEmail == "Not found")
+                    {
+                        <button class="btn btn-close" disabled="disabled"></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentOrderId(item.OrderId)"></button>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected order." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+}
+
+@code {
+    private void SaveOrderId(string orderId)
+    {
+        SessionStorage.SetItemAsync("orderId", orderId);
+    }
+}

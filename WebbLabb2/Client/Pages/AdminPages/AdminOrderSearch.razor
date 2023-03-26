@@ -1,0 +1,116 @@
+﻿@page "/adminordersearch"
+
+@using WebbLabb2.Client.PublicClient
+@using Blazored.SessionStorage
+@using Microsoft.IdentityModel.Tokens
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
+@inject PublicClient PublicClient
+@inject ISessionStorageService SessionStorage
+
+<link href="css/commonstyles.css" rel="stylesheet" />
+
+<PageTitle>Admin - Search Order</PageTitle>
+
+<h4>Search order by ID</h4>
+
+<EditForm Model="Order" OnValidSubmit="GetOrderById">
+    <div class="form-control">
+        <InputText @bind-Value="OrderId"></InputText>
+        <button class="btn btn-store-primary">Search</button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="color-store-primary">
+            <tr>
+                <th>Customer E-mail</th>
+                <th>Order ID</th>
+                <th>Edit Order</th>
+                <th>Remove Order</th>
+            </tr>
+            </thead>
+            <tbody class="align-middle">
+            <tr class="tr-hover">
+                <td>@Order.CustomerEmail</td>
+                <td>@Order.OrderId</td>
+                <td>
+                    @if (@Order.OrderId.IsNullOrEmpty())
+                    {
+                        <button class="btn btn-store-primary" disabled="disabled" @onclick="() => SaveOrderId(Order.OrderId)">
+                            <span class="oi oi-wrench"></span>
+                        </button>
+                    }
+                    else
+                    {
+                        <NavLink href="adminorderedit">
+                            <button class="btn btn-store-primary" @onclick="() => SaveOrderId(Order.OrderId)">
+                                <span class="oi oi-wrench"></span>
+                            </button>
+                        </NavLink>
+                    }
+                </td>
+                <td>
+                    @if (Order.CustomerEmail == "Not found")
+                    {
+                        <button class="btn btn-close" disabled="disabled"></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetCurrentOrderId(Order.OrderId)"></button>
+                    }
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h5 class="mt-4">Order Items</h5>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="color-store-primary">
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>In stock</th>
+                <th>Order Count</th>
+            </tr>
+            </thead>
+            <tbody class="align-middle">
+            @foreach (var item in Order.ProductList!)
+            {
+                <tr class="tr-hover">
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductDescription</td>
+                    <td>$@item.ProductPrice</td>
+                    <td>@item.ProductCategory</td>
+                    <td>
+                        @if (item.ProductStatus)
+                        {
+                            <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                        }
+                        else
+                        {
+                            <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                        }
+                    </td>
+                    <td>@item.OrderCount</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</EditForm>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected order." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+}
+
+@code {
+    private void SaveOrderId(string orderId)
+    {
+        SessionStorage.SetItemAsync("orderId", orderId);
+    }
+}

@@ -1,0 +1,67 @@
+﻿@page "/products"
+
+@using WebbLabb2.Client.PublicClient
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
+@inject PublicClient PublicClient
+
+<link href="css/commonstyles.css" rel="stylesheet" />
+
+<PageTitle>Products</PageTitle>
+
+<h4>Products</h4>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="color-store-primary">
+        <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>In stock</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody class="align-middle">
+        @foreach (var item in AllProducts)
+        {
+                <tr class="tr-hover">
+                <td>
+                    <div class="modal-dialog modal-dialog-centered img-fluid-container">
+                        <img alt="" class="img-fluid-store" src="@item.ProductImage"/>
+                    </div>
+                </td>
+                <td>@item.ProductName<br /><span class="text-secondary">@item.ProductDescription</span></td>
+                <td>$@item.ProductPrice</td>
+                <td>@item.ProductCategory</td>
+                <td>
+                    @if (item.ProductStatus)
+                    {
+                        <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus"/>
+                    }
+                    else
+                    {
+                        <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                    }
+                </td>
+                <td>
+                    @if (item.ProductStatus)
+                    {
+                        <button class="btn btn-store-primary" @onclick="() => ShowDialog = true" @onmouseup="() => AddProductToCart(item.ProductName)"><span class="oi oi-cart"></span></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-store-primary" style="visibility: hidden" disabled="disabled"><span class="oi oi-cart"></span></button>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialogAdd Message="Product added to cart." OnConfirmed="@OnConfirmed" />
+}

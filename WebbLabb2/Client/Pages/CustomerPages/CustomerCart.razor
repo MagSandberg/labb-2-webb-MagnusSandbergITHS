@@ -1,0 +1,73 @@
+﻿@page "/customercart"
+
+@using WebbLabb2.Client.PublicClient
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
+@inject PublicClient PublicClient
+
+<link href="css/commonstyles.css" rel="stylesheet" />
+
+<PageTitle>Customer - Cart</PageTitle>
+
+<h4>Customer Cart</h4>
+
+<div>
+    <EditForm Model="Order" >
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="color-store-primary">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>In stock</th>
+                        <th>Order Count</th>
+                        <th>Product Total</th>
+                        <th>Remove Item</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach (var item in Order.ProductList!)
+                    {
+                        <tr class="tr-hover">
+                            <td>@item.ProductName<br /><span class="text-secondary">@item.ProductDescription</span></td>
+                            <td>$@item.ProductPrice</td>
+                            <td>@item.ProductCategory</td>
+                            <td>
+                                @if (item.ProductStatus)
+                                {
+                                    <InputCheckbox class="form-check-input" style="opacity: 1; background-color: indianred; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                                }
+                                else
+                                {
+                                    <InputCheckbox class="form-check-input" style="opacity: 0.4; background-color: gray; border: 0;" Disabled="true" @bind-Value="@item.ProductStatus" />
+                                }
+                            </td>
+                            <td><InputNumber @bind-Value="item.OrderCount"></InputNumber></td>
+                            <td>@ProductTotal(@item.ProductPrice, @item.OrderCount)</td>
+                            <td>
+                                <button class="btn btn-close" @onclick="() => ShowDialog = true" @onmouseup="() => SetSelectedProductName(item.ProductName)"></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn btn-store-primary mt-2" onclick="@ClearPlaceholderProductList"><span class="oi oi-credit-card mt-1"></span> Shop</button>
+    </EditForm>
+</div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected product." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
+}
+
+@code {
+    private float ProductTotal(float price, int orderCount)
+    {
+        var total = price * orderCount;
+        return total;
+    }
+}

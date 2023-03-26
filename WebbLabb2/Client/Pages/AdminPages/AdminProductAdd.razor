@@ -1,0 +1,50 @@
+﻿@page "/adminproductadd"
+
+@using Microsoft.AspNetCore.Components
+@using WebbLabb2.Client.PublicClient
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
+<link href="css/CommonStyles.css" rel="stylesheet" />
+
+@inject PublicClient PublicClient
+
+<link href="css/commonstyles.css" rel="stylesheet" />
+
+<PageTitle>Admin - Add Product</PageTitle>
+
+<h4>Add new product</h4>
+
+<div>
+    <EditForm Model="Product" OnValidSubmit="CreateProduct">
+        <DataAnnotationsValidator />
+        <label class="fw-bold">Product name:</label>
+        <InputText class="w-100" @bind-Value="Product.ProductName"></InputText>
+
+        <label class="fw-bold mt-2">Description:</label>
+        <InputText class="w-100" @bind-Value="Product.ProductDescription"></InputText>
+
+        <label class="fw-bold mt-2">Category:</label>
+        <InputText class="w-100" @bind-Value="Product.ProductCategory"></InputText>
+
+        <label class="fw-bold mt-2">Product number:</label>
+        <InputNumber class="w-100" @bind-Value="Product.ProductNumber"></InputNumber>
+
+        <label class="fw-bold mt-2">Price:</label>
+        <InputNumber class="w-100" @bind-Value="Product.ProductPrice"></InputNumber>
+
+        <label class="fw-bold mt-2">Availability:</label>
+        <InputCheckbox class="form-check form-check-input" @bind-Value="Product.ProductStatus"></InputCheckbox>
+        
+        <label class="fw-bold mt-2">Image link:</label>
+        <InputText class="w-100" @bind-Value="Product.ProductImage"></InputText>
+
+        <button class="btn btn-store-primary mt-3" @onmouseup="() => ShowDialog = true">Save</button>
+        
+        <ValidationSummary />
+    </EditForm>
+</div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialogAdd Title="Product Added" Message="You succefully added a new product!" OnConfirmed="@OnConfirmed" />
+}

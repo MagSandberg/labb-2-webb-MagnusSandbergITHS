@@ -1,0 +1,45 @@
+﻿@page "/admincustomeredit"
+
+@using WebbLabb2.Client.PublicClient
+@using WebbLabb2.Client.Pages.ConfirmationDialogs
+
+@inject PublicClient PublicClient
+
+<link href="css/commonstyles.css" rel="stylesheet" />
+
+<PageTitle>Admin - Edit Customer</PageTitle>
+
+<h4>Edit customer</h4>
+
+<div>
+    <EditForm Model="Email" OnSubmit="UpdateCustomer">
+
+        <label class="fw-bold">First Name:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.FirstName"></InputText>
+
+        <label class="fw-bold mt-2">Last Name:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.LastName"></InputText>
+
+        <label class="fw-bold mt-2">Email:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.Email" disabled="disabled"></InputText>
+
+        <label class="fw-bold mt-2">Cell Number:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.CellNumber"></InputText>
+
+        <label class="fw-bold mt-2">Street Address:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.StreetAddress"></InputText>
+
+        <label class="fw-bold mt-2">City:</label>
+        <InputText class="w-100" @bind-Value="CurrentSelectedCustomer.City"></InputText>
+
+        <label class="fw-bold mt-2">Zip Code:</label>
+        <InputNumber class="w-100" @bind-Value="CurrentSelectedCustomer.ZipCode"></InputNumber>
+
+        <button class="btn btn-primary mt-2 mb-5" @onclick="() => ShowDialog = true">Save</button>
+    </EditForm>
+</div>
+
+@if (ShowDialog)
+{
+    <ConfirmationDialogAdd Message="Customer updated" OnConfirmed="@OnConfirmed" />
+}

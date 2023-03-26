@@ -1,0 +1,20 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <NavLink href="customerregistration">
+            <button class="btn btn-primary w-100 h-100">First login?</button>
+            <p style="font-size: 5em;" class="text-dark text-center">Fill in the blanks please.</p>
+        </NavLink>
+    </Authorized>
+    <NotAuthorized>
+        <NavLink href="/authentication/register">
+            <button class="btn btn-primary">Register</button>
+        </NavLink>
+        <NavLink href="/authentication/login">
+            <button class="btn btn-primary">Login</button>
+        </NavLink>
+    </NotAuthorized>
+</AuthorizeView>
