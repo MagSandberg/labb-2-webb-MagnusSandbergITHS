@@ -1,9 +1,21 @@
-﻿.color-store-primary {
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: 600;
+    color: indianred;
+    padding-bottom: 20px;
+}
+
+.color-store-primary {
     color: #FFF;
     background-color: indianred;
 }
 
 .btn-store-primary {
+    font-weight: bold;
+    padding-bottom: 5px;
     color: #FFF;
     background-color: indianred;
 }

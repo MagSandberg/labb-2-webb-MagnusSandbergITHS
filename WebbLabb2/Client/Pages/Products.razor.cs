@@ -27,7 +27,7 @@ public partial class Products : ComponentBase
             AllProducts.AddRange(response);
         }
     }
-    //TODO UNIT OF WORK HÄR?
+
     private async Task AddProductToCart(string productName)
     {
         var product = await GetProductByName(productName);

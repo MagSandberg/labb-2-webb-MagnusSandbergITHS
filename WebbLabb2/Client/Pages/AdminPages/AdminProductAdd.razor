@@ -4,13 +4,15 @@
 @using WebbLabb2.Client.PublicClient
 @using WebbLabb2.Client.Pages.ConfirmationDialogs
 
+<link href="css/CommonStyles.css" rel="stylesheet" />
+
 @inject PublicClient PublicClient
 
 <link href="css/CommonStyles.css" rel="stylesheet" />
 
 <PageTitle>Admin - Add Product</PageTitle>
 
-<h3>Add new product</h3>
+<h4>Add new product</h4>
 
 <div>
     <EditForm Model="Product" OnValidSubmit="CreateProduct">
@@ -36,7 +38,7 @@
         <label class="fw-bold mt-2">Image link:</label>
         <InputText class="w-100" @bind-Value="Product.ProductImage"></InputText>
 
-        <button class="btn btn-primary mt-2 mb-5" @onmouseup="() => ShowDialog = true">Save</button>
+        <button class="btn btn-store-primary mt-3" @onmouseup="() => ShowDialog = true">Save</button>
         
         <ValidationSummary />
     </EditForm>

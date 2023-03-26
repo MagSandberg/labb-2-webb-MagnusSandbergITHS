@@ -1,7 +1,5 @@
 ﻿using MongoDB.Driver;
-using MongoDB.Driver.Core.Operations;
 using WebbLabb2.DataAccess.Models;
-using WebbLabb2.DataAccess.Sql.Models;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.DataAccess.Repositories;
