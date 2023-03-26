@@ -1,54 +1,55 @@
 ﻿using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components;
-using Microsoft.IdentityModel.Tokens;
 using WebbLabb2.Shared.DTOs;
 
 namespace WebbLabb2.Client.Pages.CustomerPages;
 
 public partial class CustomerCart : ComponentBase
 {
-    public Index SetPlaceholder = new();
     public OrderDto Order { get; set; } = new();
-    public string CurrentOrderEmail { get; set; } = string.Empty;
-    public string CurrentOrderId { get; set; } = string.Empty;
+    public OrderDto UpdatedOrder { get; set; } = new();
+    public string SelectedProductName { get; set; } = string.Empty;
     private bool ShowDialog { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        CurrentOrderEmail = SetPlaceholder.PlaceholderEmail;
-
         await GetPlaceholderOrder();
-
         await base.OnInitializedAsync();
     }
 
-    //TODO Lägg till get order placeholderorder
     public async Task GetPlaceholderOrder()
     {
-        var result = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getPlaceholderOrder/{CurrentOrderEmail}");
+        var result = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/641dfe3a24041c76e93e812f");
+        Order = result;
+    }
 
-        if (result != null)
+    public async Task UpdateOrder()
+    {
+        await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id=641dfe3a24041c76e93e812f", Order);
+    }
+
+    public void SetSelectedProductName(string selectedProductName)
+    {
+        SelectedProductName = selectedProductName;
+    }
+
+    public async Task RemoveProductAtIndex(string productName)
+    {
+        await Task.Run(() =>
         {
-            CurrentOrderId = result.OrderId;
-        }
-    }
+            var filter = Order.ProductList!.FindIndex(p => p.ProductName == productName);
+            Order.ProductList.RemoveAt(filter);
 
-    public void RemoveProductAtIndex(string productName)
-    {
-        var filter = Order.ProductList!.FindIndex(p => p.ProductName == productName);
-        Order.ProductList.RemoveAt(filter);
-    }
-
-    public async Task UpdatePlaceholderOrder()
-    {
-        await PublicClient.Client.PatchAsJsonAsync($"updatePlaceholderOrder?email={CurrentOrderEmail}", Order);
+            UpdatedOrder = Order;
+        });
     }
 
     private async Task OnConfirmed(bool confirmed)
     {
         if (confirmed)
         {
-            await PublicClient.Client.DeleteAsync($"removeOrder/{CurrentOrderId}");
+            await RemoveProductAtIndex(SelectedProductName);
+            await PublicClient.Client.PatchAsJsonAsync($"updateOrder/641dfe3a24041c76e93e812f", UpdatedOrder);
         }
 
         ShowDialog = false;

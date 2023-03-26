@@ -1,18 +1,16 @@
 ﻿@page "/customercart"
 
 @using WebbLabb2.Client.PublicClient
-@using Blazored.SessionStorage
 @using WebbLabb2.Client.Pages.ConfirmationDialogs
 
 @inject PublicClient PublicClient
-@inject ISessionStorageService SessionStorage
 
 <PageTitle>Customer - Cart</PageTitle>
 
 <h4>Customer Cart</h4>
 
 <div>
-    <EditForm Model="Order" OnSubmit="UpdatePlaceholderOrder">
+    <EditForm Model="Order" OnSubmit="UpdateOrder">
 
         <div class="table-responsive">
             <table class="table table-striped">
@@ -47,17 +45,10 @@
                             <td><InputNumber @bind-Value="item.OrderCount"></InputNumber></td>
                             <td>@ProductTotal(@item.ProductPrice, @item.OrderCount)</td>
                             <td>
-                                @if (Order.CustomerEmail == "Not found")
+                                <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => SetSelectedProductName(item.ProductName)"></button>
+                                @if (ShowDialog)
                                 {
-                                    <button class="btn btn-close" disabled="disabled"></button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-close" @onmouseup="() => ShowDialog = true" @onclick="() => RemoveProductAtIndex(item.ProductName)"></button>
-                                    @if (ShowDialog)
-                                    {
-                                        <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected product." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
-                                    }
+                                    <ConfirmationDialog Title="Are you sure?" Message="Pressing 'Yes' will remove the selected product." OnConfirmed="@OnConfirmed" OnCancelled="@Close" />
                                 }
                             </td>
                         </tr>

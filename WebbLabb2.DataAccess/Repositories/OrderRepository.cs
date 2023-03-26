@@ -35,11 +35,6 @@ public class OrderRepository
         return true;
     }
 
-    public async Task CreatePlaceholderOrder(OrderDto dto)
-    {
-        await _orderModelCollection.InsertOneAsync(ConvertToModel(dto));
-    }
-
     public async Task<bool> UpdateOrder(string id, OrderDto dto)
     {
         var filter = Builders<OrderModel>.Filter.Eq("OrderId", id);
@@ -53,15 +48,6 @@ public class OrderRepository
         return true;
     }
 
-    public async Task UpdatePlaceholderOrder(string email, OrderDto dto)
-    {
-        var filter = Builders<OrderModel>.Filter.Eq("CustomerEmail", email);
-        var update = Builders<OrderModel>.Update
-            .Set(o => o.ProductList, dto.ProductList);
-
-        await _orderModelCollection.UpdateOneAsync(filter, update);
-    }
-
     public async Task<OrderDto> GetOrder(string id)
     {
         var order = await _orderModelCollection.FindAsync(o => o.OrderId.Equals(id));
@@ -71,21 +57,6 @@ public class OrderRepository
         var nullDto = new OrderDto
         {
             CustomerEmail = string.Empty,
-            OrderId = "Not found",
-            ProductList = new List<ProductDto>()
-        };
-        return nullDto;
-    }
-
-    public async Task<OrderDto> GetPlaceholderOrder(string email)
-    {
-        var order = await _orderModelCollection.FindAsync(o => o.CustomerEmail.Equals(email));
-
-        if (order != null) return ConvertToDto(await order.FirstOrDefaultAsync());
-
-        var nullDto = new OrderDto
-        {
-            CustomerEmail = "Not found",
             OrderId = "Not found",
             ProductList = new List<ProductDto>()
         };
@@ -105,15 +76,6 @@ public class OrderRepository
         if (orderIdExists == false) return false;
 
         await _orderModelCollection.DeleteOneAsync(p => p.OrderId.Equals(id));
-        return true;
-    }
-
-    public async Task<bool> RemovePlaceHolderOrder(string email)
-    {
-        var orderIdExists = await _orderModelCollection.FindAsync(o => o.CustomerEmail.Equals(email)).Result.AnyAsync();
-        if (orderIdExists == false) return false;
-
-        await _orderModelCollection.DeleteOneAsync(p => p.CustomerEmail.Equals(email));
         return true;
     }
 

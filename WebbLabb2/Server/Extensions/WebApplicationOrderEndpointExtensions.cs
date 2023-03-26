@@ -16,20 +16,10 @@ public static class WebApplicationOrderEndpointExtensions
                 Results.BadRequest("Email is not registered.");
         });
 
-        app.MapPost("/createPlaceHolderOrder", async (OrderService orderService, OrderDto dto) =>
-        {
-            await orderService.CreatePlaceholderOrder(dto);
-        });
-
         app.MapPatch("/updateOrder", async (OrderService orderService, string id, OrderDto dto) =>
         {
             var result = await orderService.UpdateOrder(id, dto);
             return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order updated");
-        });
-
-        app.MapPatch("/updatePlaceholderOrder", async (OrderService orderService, string email, OrderDto dto) =>
-        {
-            await orderService.UpdatePlaceholderOrder(email, dto);
         });
 
         app.MapGet("/getOrder/{id}", async (OrderService orderService, string id) =>
@@ -43,11 +33,6 @@ public static class WebApplicationOrderEndpointExtensions
             return Results.BadRequest("Not a valid ID.");
         });
 
-        app.MapGet("/getPlaceholderOrder/{email}", async (OrderService orderService, string email) =>
-        {
-            await orderService.GetPlaceholderOrder(email);
-        });
-
         app.MapGet("/getOrders", async (OrderService orderService) =>
             await orderService.GetOrders());
 
@@ -55,12 +40,6 @@ public static class WebApplicationOrderEndpointExtensions
         {
             var result = await orderService.RemoveOrder(id);
             return result == false ? Results.NotFound("Order ID doesn't exist") : Results.Ok("Order removed");
-        });
-
-        app.MapDelete("/removePlaceholderOrder/{email}", async (OrderService orderService, string email) =>
-        {
-            var result = await orderService.RemovePlaceHolderOrder(email);
-            return result == false ? Results.NotFound("Order Email doesn't exist") : Results.Ok("Order removed");
         });
 
         return app;

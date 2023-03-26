@@ -17,29 +17,14 @@ public class OrderService
         return await _orderRepository.CreateOrder(dto);
     }
 
-    public async Task CreatePlaceholderOrder(OrderDto dto)
-    {
-        await _orderRepository.CreatePlaceholderOrder(dto);
-    }
-
     public async Task<bool> UpdateOrder(string id, OrderDto dto)
     {
         return await _orderRepository.UpdateOrder(id, dto);
     }
 
-    public async Task UpdatePlaceholderOrder(string email, OrderDto dto)
-    {
-        await _orderRepository.UpdatePlaceholderOrder(email, dto);
-    }
-
     public async Task<OrderDto> GetOrder(string id)
     {
         return await _orderRepository.GetOrder(id);
-    }
-
-    public async Task<OrderDto> GetPlaceholderOrder(string email)
-    {
-        return await _orderRepository.GetPlaceholderOrder(email);
     }
 
     public async Task<OrderDto[]> GetOrders()
@@ -50,10 +35,5 @@ public class OrderService
     public async Task<bool> RemoveOrder(string id)
     {
         return await _orderRepository.RemoveOrder(id);
-    }
-
-    public async Task<bool> RemovePlaceHolderOrder(string email)
-    {
-        return await _orderRepository.RemovePlaceHolderOrder(email);
     }
 }
