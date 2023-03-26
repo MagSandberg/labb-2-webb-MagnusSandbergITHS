@@ -24,14 +24,12 @@ public partial class AdminOrderSearch : ComponentBase
         }
         else
         {
-            //TODO Fixa API anropet!
             response = await PublicClient.Client.GetFromJsonAsync<OrderDto>($"getOrder/{OrderId}");
-            if (response == null)
+            if (response != null)
             {
-                //Order;
+                Order = response!;
+                SelectedOrderId = response!.OrderId;
             }
-            Order = response!;
-            SelectedOrderId = response!.OrderId;
         }
     }
 

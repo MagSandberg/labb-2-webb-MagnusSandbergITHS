@@ -14,7 +14,7 @@ public partial class Products : ComponentBase
         await GetAllProductsAndPopulateList();
         await base.OnInitializedAsync();
     }
-
+    //TODO Lägg till dialogpopup added item
     private async Task GetAllProductsAndPopulateList()
     {
         AllProducts = new List<ProductDto>();
@@ -36,6 +36,7 @@ public partial class Products : ComponentBase
         
         if (product != null)
         {
+            product.OrderCount = 1;
             Order.ProductList.Add(product);
         }
 

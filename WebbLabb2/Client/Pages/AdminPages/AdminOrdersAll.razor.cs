@@ -27,12 +27,16 @@ public partial class AdminOrdersAll : ComponentBase
             AllOrders.AddRange(response);
         }
     }
+    private async Task DeleteOrder()
+    {
+        await PublicClient.Client.DeleteAsync($"removeOrder/{SelectedOrderId}");
+    }
 
     private async Task OnConfirmed(bool confirmed)
     {
         if (confirmed)
         {
-            await PublicClient.Client.DeleteAsync($"removeOrder/{SelectedOrderId}");
+            await DeleteOrder();
             await GetAllOrdersAndPopulateList();
         }
 

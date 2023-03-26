@@ -26,7 +26,6 @@ public partial class AdminCustomerSearch : ComponentBase
         }
         else
         {
-            //TODO Ta in hela responset utan att parsa den för att komma åt result
             response = await PublicClient.Client.GetFromJsonAsync<CustomerDto>($"getCustomerByEmail/{Email}");
 
             Customer = response!;

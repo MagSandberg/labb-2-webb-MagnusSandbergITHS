@@ -28,6 +28,12 @@ public partial class CustomerCart : ComponentBase
         await PublicClient.Client.PatchAsJsonAsync($"updateOrder?id=641dfe3a24041c76e93e812f", UpdatedOrder);
     }
 
+    public async Task ClearPlaceholderProductList()
+    {
+        Order.ProductList.Clear();
+        await UpdateOrder();
+    }
+
     public void SetSelectedProductName(string selectedProductName)
     {
         SelectedProductName = selectedProductName;

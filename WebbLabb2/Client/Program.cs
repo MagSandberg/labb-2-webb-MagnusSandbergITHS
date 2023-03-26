@@ -2,7 +2,9 @@ using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using WebbLabb2.Client;
+using WebbLabb2.Client.Pages.CustomerPages;
 using WebbLabb2.Client.PublicClient;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
